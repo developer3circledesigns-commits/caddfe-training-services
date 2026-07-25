@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "A modern PHP project with Tailwind CSS, Apache, Docker, and Node.js",
   "type": "project",
-  "scripts": {
-    "dev": "npm run dev",
-    "build": "npm run build",
-    "watch": "npm run watch"
-  },
+  "scripts": {},
   "authors": [
     {
       "name": "Developer",
