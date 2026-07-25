@@ -11,8 +11,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
     [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
     [data-aos="fade-left"] { transform: translateX(-50px); }
     [data-aos="fade-left"].aos-animate { transform: translateX(0); }
@@ -37,17 +38,56 @@
     .scroll-arrow-right { right: 8px; }
     .hero-section { position: relative; min-height: 100vh; }
     .hero-bg { position: absolute; inset: 0; z-index: -10; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4)); }
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
-    .small-hover:hover { color: #fff !important; }
+    .small-hover { position: relative; text-decoration: none !important; }
+.small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #fff; transition: width 0.3s ease; }
+.small-hover:hover { color: #fff !important; }
+    .small-hover:hover::after { width: 100%; }
+    .enroll-btn {
+      background: transparent; border: none; cursor: pointer; outline: none;
+      padding: 0; font: inherit; color: inherit; display: inline-flex;
+      position: relative; overflow: hidden; transition: .5s linear;
+    }
+    .enroll-btn .box {
+      display: block; position: relative; overflow: hidden;
+      padding: 10px 20px; text-align: center; background: transparent;
+      font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
+    }
+    .enroll-btn .box::before {
+      position: absolute; content: ''; left: 0; bottom: 0;
+      height: 4px; width: 100%;
+      border-bottom: 3px solid transparent;
+      border-left: 3px solid transparent;
+      box-sizing: border-box; transform: translateX(100%);
+    }
+    .enroll-btn .box::after {
+      position: absolute; content: ''; top: 0; left: 0;
+      width: 100%; height: 4px;
+      border-top: 3px solid transparent;
+      border-right: 3px solid transparent;
+      box-sizing: border-box; transform: translateX(-100%);
+    }
+    .enroll-btn:hover .box { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    .enroll-btn:hover .box::before {
+      border-color: #fff; height: 100%; transform: translateX(0);
+      transition: .3s transform linear, .3s height linear .3s;
+    }
+    .enroll-btn:hover .box::after {
+      border-color: #fff; height: 100%; transform: translateX(0);
+      transition: .3s transform linear, .3s height linear .5s;
+    }
     .hover-bg-light:hover { background-color: #f8f9fa !important; }
     .bg-opacity-10 { background-color: rgba(220, 38, 38, 0.1) !important; }
     .text-opacity-75 { color: rgba(255, 255, 255, 0.75) !important; }
     .border-opacity-10 { border-color: rgba(108, 117, 125, 0.1) !important; }
     p, .card-text, dd { text-align: justify; }
     .card .card-img-top { height: 200px; object-fit: cover; }
+    .scroll-inner .card-text,
+    .scroll-inner .card p { text-align: left; }
+    .scroll-inner .card img { border-radius: 0 !important; }
     .feature-card {
       position: relative;
       display: flex;
@@ -238,7 +278,7 @@
 
 <div class="hero-section">
   <div class="hero-bg">
-    <img src="images/hero-section.jpg" alt="CADDFE Training Services - Professional Engineering Solutions" width="1920" height="1080" />
+    <img src="images/hero3.jpg" alt="CADDFE Training Services - Professional Engineering Solutions - Image by Freepik" width="1920" height="1080" />
     <div class="hero-overlay"></div>
   </div>
 
@@ -260,19 +300,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-4">
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.75;" href="#">Home</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.75;" href="#">Courses</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Courses</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.75;" href="#">Services</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.75;" href="#">Project</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Project</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.75;" href="#">Contact Us</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Contact Us</a>
           </li>
         </ul>
         <div class="d-lg-none pb-3">
@@ -281,7 +321,9 @@
           </a>
         </div>
         <div class="d-none d-lg-flex align-items-center ms-lg-3">
-          <a href="#" class="text-white fw-semibold small-hover text-decoration-none" style="opacity:0.75;">Enroll Now &rarr;</a>
+          <button class="enroll-btn text-white" onclick="window.location.href='#'">
+            <span class="box">Enroll Now &rarr;</span>
+          </button>
         </div>
       </div>
     </nav>
@@ -438,101 +480,101 @@
     <div class="scroll-container" data-speed="1" data-direction="left">
       <div class="scroll-inner">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/262367/pexels-photo-262367.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Post Graduate</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h5>
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 370hrs<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Architecture</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h5>
-            <p class="card-text small text-secondary">Duration: 8 Months<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 200hrs<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Civil</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h5>
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">University Program</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h5>
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/2092516/pexels-photo-2092516.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h5>
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 160hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="buildingSMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">buildingSMART BIM Professional Certification</h5>
-            <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 70hrs<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
       </div>
       <div class="scroll-inner">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/262367/pexels-photo-262367.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Post Graduate</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h5>
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 370hrs<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Architecture</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h5>
-            <p class="card-text small text-secondary">Duration: 8 Months<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 200hrs<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Civil</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h5>
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">University Program</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h5>
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/2092516/pexels-photo-2092516.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h5>
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 160hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="buildingSMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">buildingSMART BIM Professional Certification</h5>
-            <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
+            <!-- <h5 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h5> -->
+            <p class="card-text small text-secondary">Duration: 70hrs<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
       </div>
@@ -545,7 +587,7 @@
     <div class="scroll-container" data-speed="1" data-direction="right">
       <div class="scroll-inner">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/262367/pexels-photo-262367.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Post Graduate</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h5>
@@ -553,7 +595,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Architecture</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h5>
@@ -561,7 +603,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Civil</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h5>
@@ -569,7 +611,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">University Program</span>
             <h5 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h5>
@@ -577,7 +619,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/2092516/pexels-photo-2092516.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h5>
@@ -585,17 +627,17 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="buildingSMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">buildingSMART BIM Professional Certification</h5>
+            <h5 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h5>
             <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
           </div>
         </div>
       </div>
       <div class="scroll-inner">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/262367/pexels-photo-262367.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Post Graduate</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h5>
@@ -603,7 +645,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Architecture</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h5>
@@ -611,7 +653,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Civil</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h5>
@@ -619,7 +661,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">University Program</span>
             <h5 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h5>
@@ -627,7 +669,7 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/2092516/pexels-photo-2092516.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
             <h5 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h5>
@@ -635,10 +677,10 @@
           </div>
         </div>
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="buildingSMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Professional</span>
-            <h5 class="card-title mt-2 fw-bold text-dark">buildingSMART BIM Professional Certification</h5>
+            <h5 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h5>
             <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
           </div>
         </div>
@@ -906,44 +948,43 @@
   containers.forEach(function(c){
     var raw = parseFloat(c.getAttribute('data-speed')) || 0.5;
     var direction = c.getAttribute('data-direction') || 'left';
-    c._paused = false;
     c._speed = raw;
     c._direction = direction;
-    c._scrollPos = 0;
+    c._paused = false;
+    c._manualPaused = false;
     
     function tick(){
-      if (!c._paused) {
+      if (!c._paused && !c._manualPaused) {
+        var half = c.scrollWidth / 2;
         if (c._direction === 'left') {
-          c._scrollPos += c._speed;
-          var maxScroll = c.scrollWidth / 2;
-          if (c._scrollPos >= maxScroll) {
-            c._scrollPos = 0;
+          c.scrollLeft += c._speed;
+          if (c.scrollLeft >= half) {
+            c.scrollLeft = 0;
           }
         } else {
-          c._scrollPos -= c._speed;
-          var maxScroll = c.scrollWidth / 2;
-          if (c._scrollPos <= 0) {
-            c._scrollPos = maxScroll;
+          c.scrollLeft -= c._speed;
+          if (c.scrollLeft <= 0) {
+            c.scrollLeft = half;
           }
         }
-        c.scrollLeft = c._scrollPos;
       }
       requestAnimationFrame(tick);
     }
     c.addEventListener('mouseenter', function(){ c._paused = true; });
-    c.addEventListener('mouseleave', function(){ c._paused = false; });
+    c.addEventListener('mouseleave', function(){ 
+      c._paused = false; 
+      c._manualPaused = false;
+    });
     requestAnimationFrame(tick);
   });
   window.scrollRow = function(btn, dir){
     var c = btn.parentElement.querySelector('.scroll-container');
     if (!c) return;
     var cardW = 344;
-    c.scrollBy({ left: dir * cardW, behavior: 'smooth' });
-    c._paused = true;
-    if (c._pauseTimer) clearTimeout(c._pauseTimer);
-    c._pauseTimer = setTimeout(function(){ c._paused = false; }, 5000);
+    c._manualPaused = true;
+    c.scrollLeft += dir * cardW;
   };
-  })();
+})();
 </script>
 <script>
 (function(){
@@ -994,12 +1035,18 @@
         </div>
         <div class="col-6 col-lg-3">
           <h6 class="footer-heading text-white">Programs</h6>
-          <ul class="list-unstyled small d-flex flex-column gap-2">
-            <li><a href="#" class="footer-link">BIM-Ready+ Post Graduation</a></li>
-            <li><a href="#" class="footer-link">BIM-Ready Architecture Advanced</a></li>
-            <li><a href="#" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li><a href="#" class="footer-link">MSU Certification in BIM</a></li>
-            <li><a href="#" class="footer-link">buildingSMART Certification</a></li>
+          <ul class="list-unstyled small d-flex flex-wrap gap-x-3 gap-y-1" style="column-count:2;display:block!important;">
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready+ Post Graduation</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">MSU Certification in BIM</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Building - SMART Certification</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -1007,15 +1054,15 @@
           <ul class="list-unstyled small d-flex flex-column gap-3">
             <li class="d-flex gap-2">
               <i class="bi bi-geo-alt text-danger mt-1"></i>
-              <span>123, Engineering Hub,<br />Mumbai, Maharashtra 400001</span>
+              <span>No:23, Thiruvasagam Street,<br />Avadi, Chennai - 600072</span>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-telephone text-danger mt-1"></i>
-              <a href="tel:+919999999999" class="footer-link">+91 99999 99999</a>
+              <a href="tel:+919952403574" class="footer-link">+91 99524 03574</a>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-envelope text-danger mt-1"></i>
-              <a href="mailto:info@caddfe.com" class="footer-link">info@caddfe.com</a>
+              <a href="mailto:magendhiran@caddfe.com" class="footer-link">magendhiran@caddfe.com</a>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-clock text-danger mt-1"></i>
