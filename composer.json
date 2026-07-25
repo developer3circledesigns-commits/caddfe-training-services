@@ -1,0 +1,37 @@
+{
+  "name": "php-tailwind-project",
+  "version": "1.0.0",
+  "description": "A modern PHP project with Tailwind CSS, Apache, Docker, and Node.js",
+  "type": "project",
+  "scripts": {
+    "dev": "npm run dev",
+    "build": "npm run build",
+    "watch": "npm run watch"
+  },
+  "authors": [
+    {
+      "name": "Developer",
+      "email": "dev@example.com"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^8.3",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-mysqli": "*",
+    "ext-mbstring": "*",
+    "ext-zip": "*",
+    "ext-intl": "*",
+    "ext-gd": "*",
+    "ext-opcache": "*",
+    "ext-fileinfo": "*",
+    "ext-curl": "*",
+    "ext-openssl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
