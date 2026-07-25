@@ -812,7 +812,7 @@
   <div class="container" style="max-width:80rem;">
     <div data-aos="fade-up" class="text-center mb-5">
       <h2 class="small fw-semibold text-danger text-uppercase mb-1">Testimonials</h2>
-      <p class="display-5 fw-semibold text-dark" style="letter-spacing:-0.025em; text-align: center;">Student Success Stories</p>
+      <!-- <p class="display-5 fw-semibold text-dark" style="letter-spacing:-0.025em; text-align: center;">Student Success Stories</p> -->
       <!-- <p class="text-secondary" style="max-width:32rem;margin:0 auto;">Hear from our graduates who have transformed their careers through our programs.</p> -->
     </div>
     <div class="row g-4">
