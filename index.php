@@ -542,10 +542,7 @@
   <header class="hero-header">
     <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
       <a href="#" class="navbar-brand p-1">
-        <span class="visually-hidden">CADDFE Training Services</span>
-        <svg class="text-white" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
+        <img src="images/logo.png" alt="CADDFE Training Services" height="32" loading="eager">
       </a>
 
       <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1452,7 +1449,7 @@
       <div class="row g-5">
         <div class="col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#dc2626"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <img src="images/logo.png" alt="CADDFE" height="28" loading="lazy">
             <span class="fw-bold text-white fs-5">CADDFE</span>
           </div>
           <p class="small" style="line-height:1.7;">CADDFE Training Services bridges the gap between academic learning and industry demands through hands-on Civil CAD training and professional architectural design services.</p>
