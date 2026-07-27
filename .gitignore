@@ -24,8 +24,8 @@ yarn.lock
 *.log
 
 # Images - only committed resized versions, not originals
-images/hero3.jpg
-images/hero-section.jpg
+/images/hero3.jpg
+/images/hero-section.jpg
 
 # Environment / Config
 .env
