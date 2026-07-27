@@ -607,7 +607,7 @@
       <div data-aos="fade-up" class="d-none d-sm-flex mb-4 justify-content-start">
         <div class="rounded-pill px-3 py-1 small text-white text-opacity-75 border border-white border-opacity-25" style="cursor:default;">
           Professional Engineering Solutions - 
-          <a href="#" class="fw-semibold text-white text-decoration-none">Explore programs &rarr;</a>
+          <a href="#" class="fw-semibold text-white text-decoration-none" style="transition:color .2s" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color=''">Explore programs &rarr;</a>
         </div>
       </div>
       <div class="text-start">
