@@ -1,0 +1,32 @@
+# OS files
+Thumbs.db
+.DS_Store
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# PHP
+*.log
+
+# Images - only committed resized versions, not originals
+images/hero3.jpg
+images/hero-section.jpg
+
+# Environment / Config
+.env
+.env.local
