@@ -578,12 +578,12 @@ function openWhatsAppEnquiry(el) {
   var text = "I'm interested in enrolling for " + name + " at CADDFE. Please share more details.";
   var encoded = encodeURIComponent(text);
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    window.location.href = 'https://wa.me/919500818276?text=' + encoded;
+    window.location.href = 'https://wa.me/919952403574?text=' + encoded;
   } else if (whatsappWin && !whatsappWin.closed) {
-    whatsappWin.location.href = 'https://web.whatsapp.com/send?phone=919500818276&text=' + encoded;
+    whatsappWin.location.href = 'https://web.whatsapp.com/send?phone=919952403574&text=' + encoded;
     whatsappWin.focus();
   } else {
-    whatsappWin = window.open('https://web.whatsapp.com/send?phone=919500818276&text=' + encoded, 'whatsapp');
+    whatsappWin = window.open('https://web.whatsapp.com/send?phone=919952403574&text=' + encoded, 'whatsapp');
   }
 }
 var urlParams = new URLSearchParams(window.location.search);

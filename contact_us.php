@@ -280,6 +280,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
     .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
+    .modal-backdrop { background-color: rgba(0, 0, 0, 0.5) !important; }
+    .modal-backdrop.show { opacity: 1 !important; }
 
     @media (max-width: 767px) {
       .hero-header .navbar-collapse {
@@ -475,8 +477,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
     }
     .banter-loader__box:nth-child(9) { animation: moveBox-9 4s infinite; }
 
-  .modal.show { display:flex !important; align-items:center; justify-content:center; }
-  .modal.show .modal-dialog { margin:0; }
   </style>
 </head>
 <body>
@@ -649,9 +649,9 @@ href="services.php">Services</a>
         </form>
       </div>
 
-      <div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="max-width:420px;">
-          <div class="modal-content rounded-0 border-0 shadow">
+      <div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
+          <div class="modal-content rounded-0 border-0">
             <div class="modal-body text-center p-5">
               <div class="mb-3" style="font-size:3.5rem;color:#198754;"><i class="bi bi-check-circle-fill"></i></div>
               <h5 class="fw-bold" id="successModalLabel">Message Sent Successfully!</h5>
@@ -662,9 +662,9 @@ href="services.php">Services</a>
         </div>
       </div>
 
-      <div id="errorModal" class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="max-width:420px;">
-          <div class="modal-content rounded-0 border-0 shadow">
+      <div id="errorModal" class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
+          <div class="modal-content rounded-0 border-0">
             <div class="modal-body text-center p-5">
               <div class="mb-3" style="font-size:3.5rem;color:#dc3545;"><i class="bi bi-x-circle-fill"></i></div>
               <h5 class="fw-bold" id="errorModalLabel">Something Went Wrong</h5>
@@ -724,15 +724,15 @@ href="services.php">Services</a>
   function validateField(field) {
     var isValid = field.checkValidity();
     if (field.tagName === 'SELECT' && field.value === '') isValid = false;
-    if (field.id === 'phone' && field.value !== '' && !new RegExp(field.pattern).test(field.value)) isValid = false;
+    if (field.id === 'phone' && field.value !== '' && !new RegExp('^(?:' + field.pattern + ')$').test(field.value)) isValid = false;
     field.classList.toggle('is-invalid', !isValid && field.value !== '');
     field.classList.toggle('is-valid', isValid && field.value !== '');
-    return isValid || field.value === '';
+    return isValid;
   }
 
   fields.forEach(function(field) {
     field.addEventListener('blur', function() {
-      if (field.value !== '') validateField(field);
+      validateField(field);
     });
     field.addEventListener('input', function() {
       if (field.classList.contains('is-invalid') || field.classList.contains('is-valid')) {
@@ -765,7 +765,8 @@ href="services.php">Services</a>
       firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-    submitBtn.disabled = true;
+    if (form.submitting) { e.preventDefault(); return; }
+    form.submitting = true;
     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...';
   });
 
@@ -808,6 +809,7 @@ href="services.php">Services</a>
   if (!loader) return;
   function show(){ loader.classList.remove('hidden'); }
   function hide(){ loader.classList.add('hidden'); }
+  hide();
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
@@ -835,7 +837,8 @@ href="services.php">Services</a>
     var c = document.getElementById('charCounter');
     if (c) c.textContent = '0 / 5000';
     var btn = document.getElementById('submitBtn');
-    btn.disabled = false;
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) contactForm.submitting = false;
     btn.innerHTML = 'Send <i class="bi bi-send ms-1"></i>';
   });
 })();
@@ -852,7 +855,8 @@ href="services.php">Services</a>
   modal.show();
   document.getElementById('errorModal').addEventListener('hidden.bs.modal', function() {
     var btn = document.getElementById('submitBtn');
-    btn.disabled = false;
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) contactForm.submitting = false;
     btn.innerHTML = 'Send <i class="bi bi-send ms-1"></i>';
     document.getElementById('contactForm').querySelectorAll('.is-invalid, .is-valid').forEach(function(el){ el.classList.remove('is-invalid', 'is-valid'); });
   });
