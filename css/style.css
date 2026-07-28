@@ -11,6 +11,120 @@
 .transition-all { transition-property: all; }
 .duration-300 { transition-duration: 300ms; }
 
+/* ---- Mobile & Tablet Responsive ---- */
+@media (max-width: 1023px) {
+  body, html { overflow-x: hidden; }
+  .container { padding-left: 20px; padding-right: 20px; }
+  img { max-width: 100%; height: auto; }
+  .img-fluid { max-width: 100%; height: auto; }
+  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .btn, .btn-lg, .btn-sm { min-height: 44px; }
+  .form-control, .form-select { min-height: 44px; }
+  .nav-link { padding: 0.5rem !important; }
+  .card { break-inside: avoid; }
+  .card .card-img-top { max-width: 100%; height: auto; }
+  .display-4 { font-size: 2.25rem; }
+  .display-5 { font-size: 2rem; }
+  .display-6 { font-size: 1.5rem; }
+  h1, .h1 { font-size: 1.75rem; }
+  h2, .h2 { font-size: 1.5rem; }
+  h3, .h3 { font-size: 1.25rem; }
+  h4, .h4 { font-size: 1.1rem; }
+  p { font-size: 0.95rem; }
+  .small { font-size: 0.8rem; }
+  .fs-5 { font-size: 1rem; }
+  .fs-6 { font-size: 0.85rem; }
+  .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .py-sm-28 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+  .row.gx-5.gy-5 > .col-lg-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .row.gx-4.gy-4 > .col-lg-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .row.gx-3.gy-3 > .col-lg-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .row.gx-5.gy-5 > .col-md-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .row.gx-4.gy-4 > .col-md-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .row.gx-3.gy-3 > .col-md-6 { padding-left: 12px !important; padding-right: 12px !important; }
+  .mega-dropdown .mega-inner { padding: 0 16px; }
+  .mega-dropdown .mega-card { padding: 16px; }
+  .footer .col-6, .footer .col-md-3, .footer .col-md-4, .footer .col-lg-2, .footer .col-lg-3, .footer .col-lg-4 { flex: 0 0 100%; max-width: 100%; margin-bottom: 1.5rem; }
+  .footer .col-6:last-child, .footer .col-md-3:last-child, .footer .col-md-4:last-child { margin-bottom: 0; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
+  .social-icon { width: 44px; height: 44px; }
+  .scroll-arrow { width: 40px; height: 40px; font-size: 1.25rem; }
+  .scroll-arrow-left { left: 8px; }
+  .scroll-arrow-right { right: 8px; }
+  .scroll-container { padding: 0 !important; }
+  .contact-info-card { margin-bottom: 1rem; }
+  .contact-info-card:last-child { margin-bottom: 0; }
+  .service-feature { margin-bottom: 1rem; }
+  .service-feature:last-child { margin-bottom: 0; }
+  .project-card { margin-bottom: 1rem; }
+  .project-card:last-child { margin-bottom: 0; }
+  .testimonial-grid-card { padding: 1.25rem; }
+  .counter-card .counter-number { font-size: 2rem; }
+  .counter-card { padding: 1rem 0.5rem; }
+  [data-aos="fade-left"] { transform: translateX(0) !important; }
+  [data-aos="fade-right"] { transform: translateX(0) !important; }
+  .d-flex.gap-2.mt-4[style*="width:300px"] { width: 100% !important; }
+  .enroll-btn .box { padding: 12px 16px; font-size: 0.85rem; }
+  .hero-content { padding-top: 70px; }
+  .page-hero { min-height: 40vh; }
+  .page-hero h1 { font-size: 2rem !important; }
+  .filter-pill { padding: 0.5rem 1rem; font-size: 0.8rem; }
+  .search-box { max-width: 100% !important; }
+  .course-card-modern .card-img { height: 160px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container { padding-left: 32px; padding-right: 32px; }
+  .display-4 { font-size: 2.5rem; }
+  .display-5 { font-size: 2.25rem; }
+  .hero-content { padding-top: 74px; }
+  .py-20 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  .counter-card .counter-number { font-size: 2.5rem; }
+  .footer .col-lg-4 { flex: 0 0 100%; max-width: 100%; margin-bottom: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .scroll-arrow { width: 40px; height: 40px; }
+  .course-card-modern .card-img { height: 180px; }
+  [data-aos="fade-left"] { transform: translateX(0) !important; }
+  [data-aos="fade-right"] { transform: translateX(0) !important; }
+}
+
+@media (max-width: 575px) {
+  .container { padding-left: 16px; padding-right: 16px; }
+  .display-4 { font-size: 1.75rem; }
+  .display-5 { font-size: 1.5rem; }
+  h1, .h1 { font-size: 1.5rem; }
+  h2, .h2 { font-size: 1.25rem; }
+  .hero-content { padding-top: 64px; }
+  .hero-section { min-height: 85vh; }
+  .py-20 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .counter-card .counter-number { font-size: 1.75rem; }
+  .scroll-arrow { width: 32px; height: 32px; font-size: 1rem; }
+  .scroll-arrow-left { left: 4px; }
+  .scroll-arrow-right { right: 4px; }
+  .card .card-img-top { height: 140px; }
+  .service-feature { padding: 1.25rem; }
+  .feature-card .content .heading { font-size: 18px; }
+  .feature-card .content .para { font-size: 12px; }
+  .enroll-btn .box { padding: 10px 12px; font-size: 0.8rem; }
+  .footer .col-6 { flex: 0 0 50%; max-width: 50%; }
+  .footer .col-lg-3:last-child { flex: 0 0 100%; max-width: 100%; }
+  .contact-form .btn { width: 100%; }
+  .pill-nav { flex-wrap: wrap; }
+  .pill-nav button { flex: 1 1 auto; font-size: 0.75rem; padding: 0.5rem 0.75rem; min-height: 44px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding-left: 12px; padding-right: 12px; }
+  .display-4 { font-size: 1.5rem; }
+  .display-5 { font-size: 1.25rem; }
+  .hero-content { padding-top: 60px; }
+  .py-20 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .scroll-row { overflow-x: hidden; }
+  .scroll-container > .scroll-inner { gap: 0.75rem; }
+  .card { border-radius: 0; }
+  .rounded-3, .rounded-4 { border-radius: 0; }
+}
+
 /* ---- Page Loader ---- */
 .page-loader {
   position: fixed; inset: 0; z-index: 9999;

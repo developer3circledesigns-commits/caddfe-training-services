@@ -3,10 +3,11 @@ services:
     image: mysql:8.0
     container_name: caddfe-db
     environment:
-      MYSQL_DATABASE: caddfe_training
+      MYSQL_DATABASE: u814177917_caddfe
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
       - db_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     healthcheck:
@@ -35,6 +36,22 @@ services:
     env_file: .env
     environment:
       DB_HOST: db
+    networks:
+      - public_html_network
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: caddfe-phpmyadmin
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      UPLOAD_LIMIT: 100M
+    volumes:
+      - ./docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+    ports:
+      - "8085:80"
     networks:
       - public_html_network
     restart: unless-stopped

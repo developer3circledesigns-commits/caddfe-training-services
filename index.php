@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://esm.sh; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
   <meta name="description" content="CADDFE Training Services — Professional Civil CAD training and architectural design services. Hands-on courses, industry-certified instructors, and career-ready programs." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23dc2626'/></svg>" />
+  <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>CADDFE — Civil CAD Training &amp; Design Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +17,7 @@
   <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/style.css" />
   <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
   <style>
     html { scroll-behavior: smooth; }
@@ -32,12 +33,12 @@
     .scroll-container::-webkit-scrollbar { display: none; }
     .scroll-container > .scroll-inner { flex-shrink: 0; display: flex; gap: 1.5rem; }
     .scroll-container { scroll-behavior: auto; }
-    #word-wrapper { display: inline-block; color: #ef4444; min-width: 180px; text-align: left; vertical-align: baseline; }
+    #word-wrapper { display: inline-block; color: #d8000d; min-width: 180px; text-align: left; vertical-align: baseline; }
     .scroll-arrow {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
       width: 44px; height: 44px; border-radius: 50%;
       background: rgba(255,255,255,0.92); border: none;
-      font-size: 1.75rem; line-height: 1; color: #dc2626;
+      font-size: 1.75rem; line-height: 1; color: #d8000d;
       cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
@@ -52,9 +53,11 @@
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
-.small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #ef4444; transition: width 0.3s ease; }
-.small-hover:hover { color: #fff !important; }
+.small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #d8000d; transition: width 0.3s ease; }
+    .small-hover:hover { color: #fff !important; }
     .small-hover:hover::after { width: 100%; }
+    .explore-link { transition: color .2s; }
+    .explore-link:hover { color: #d8000d !important; }
     .dropdown-nav .mega-dropdown {
       position: fixed; left: 0; right: 0; top: 72px;
       background: #fff; border-radius: 0;
@@ -88,7 +91,7 @@
     }
     .hero-header:has(.dropdown-nav:hover) .small-hover::after,
     .hero-header:has(.dropdown-nav.show) .small-hover::after {
-      background: #ef4444 !important;
+      background: #d8000d !important;
     }
     .mega-dropdown .mega-inner { max-width: 72rem; margin: 0 auto; display: flex; padding: 0 48px; }
     .mega-dropdown .mega-card {
@@ -107,7 +110,7 @@
     .mega-dropdown .mega-card:hover .mega-icon { transform: scale(1.1); }
     .mega-dropdown .mega-card h5 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
     .mega-dropdown .mega-card .mega-desc { font-size: 0.78rem; color: #64748b; line-height: 1.5; margin-bottom: 12px; }
-    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #dc2626; transition: all 0.25s; }
+    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #d8000d; transition: all 0.25s; }
     .mega-dropdown .mega-card:hover .mega-arrow { letter-spacing: 0.05em; }
     @media (max-width: 991.98px) {
       .dropdown-nav .mega-dropdown { display: none !important; }
@@ -138,15 +141,15 @@
     }
     .enroll-btn:hover .box { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
     .enroll-btn:hover .box::before {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .3s;
     }
     .enroll-btn:hover .box::after {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .5s;
     }
-    .btn-danger { background-color: #ef4444 !important; border-color: #ef4444 !important; }
-    .btn-danger:hover { background-color: #dc2626 !important; border-color: #dc2626 !important; }
+    .btn-danger { background-color: #d8000d !important; border-color: #d8000d !important; }
+    .btn-danger:hover { background-color: #d8000d !important; border-color: #d8000d !important; }
     .hover-bg-light:hover { background-color: #f8f9fa !important; }
     .bg-opacity-10 { background-color: rgba(220, 38, 38, 0.1) !important; }
     .text-opacity-75 { color: rgba(255, 255, 255, 0.75) !important; }
@@ -199,7 +202,7 @@
       font-weight: 600;
       border: none;
       cursor: pointer;
-      background: linear-gradient(-45deg, #dc2626 0%, #991b1b 100%);
+      background: linear-gradient(-45deg, #d8000d 0%, #991b1b 100%);
       border-radius: 5px;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
@@ -210,7 +213,7 @@
       top: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(-45deg, #dc2626 0%, #991b1b 100%);
+      background: linear-gradient(-45deg, #d8000d 0%, #991b1b 100%);
       z-index: 0;
       transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
     }
@@ -233,13 +236,13 @@
       box-shadow: none;
     }
     .testimonial-grid-card { background: #fff; border: 1px solid #e9ecef; padding: 1.75rem; height: 100%; transition: all 0.3s; }
-    .testimonial-grid-card:hover { border-color: #dc2626; }
+    .testimonial-grid-card:hover { border-color: #d8000d; }
     .testimonial-avatar { width: 48px; height: 48px; border-radius: 0; object-fit: cover; }
     .stars { color: #f59e0b; letter-spacing: 2px; }
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-link:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
     .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; transition: all 0.3s; }
-    .social-icon:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
+    .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
     .counter-card { text-align: center; padding: 1.5rem 1rem; background: transparent; }
@@ -258,7 +261,7 @@
     .offcanvas-backdrop { display: none; }
     .offcanvas-backdrop.show { display: block; }
 
-    @media (max-width: 767px) {
+@media (max-width: 767px) {
       .hero-header .navbar-collapse {
         background: rgba(15, 23, 42, 0.85);
         backdrop-filter: blur(16px);
@@ -285,8 +288,6 @@
       .container { padding-left: 20px; padding-right: 20px; }
       .counter-card .counter-number { font-size: 2rem !important; }
       .counter-card { padding: 1rem 0.5rem; }
-      .about-section .card { margin-top: 0 !important; }
-      .about-section .col-lg-6 .card { margin-top: 2rem !important; max-height: 300px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
       .footer .col-6 { flex: 0 0 50%; max-width: 50%; }
       .footer .col-lg-4, .footer .col-lg-3, .footer .col-lg-2 { margin-bottom: 1.5rem; }
@@ -295,15 +296,15 @@
       .scroll-arrow-right { right: 4px; }
       .card .card-img-top { height: 160px; }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
-    #mobile-menu { max-width: 85vw; }
-    #mobile-menu .offcanvas-body a:not(.btn):hover { background: rgba(255,255,255,0.08) !important; color: #fff !important; }
+      #mobile-menu { max-width: 85vw; }
+      #mobile-menu .offcanvas-body a:not(.btn):hover { background: rgba(255,255,255,0.08) !important; color: #fff !important; }
       .testimonial-grid-card { padding: 1.25rem; }
       .position-relative.pb-0 .container .bg-white { padding: 0.75rem !important; }
       .position-relative.pb-0 .col-12 { margin-bottom: 0; }
       .position-relative.pb-0 .rounded-pill { font-size: 0.7rem; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
-      section.bg-danger.py-20 .display-5 { font-size: 1.75rem !important; }
+      section[style*="background:#d8000d"] .display-5 { font-size: 1.75rem !important; }
       .row.gx-5.gy-5 > .col-lg-6 { padding-left: 0 !important; padding-right: 0 !important; }
       dl.mt-5 { margin-top: 2rem !important; }
       dl.mt-5 .position-relative.ps-5 { padding-left: 3rem !important; }
@@ -319,7 +320,20 @@
       html { overflow-x: hidden; }
       .row { margin-left: 0; margin-right: 0; }
       [class*="col-"] { padding-left: 12px; padding-right: 12px; }
-    }
+      img { max-width: 100%; height: auto; }
+      .scroll-container > .scroll-inner { gap: 1rem; }
+      .scroll-inner .card { min-height: auto; }
+      .scroll-inner .card img { min-height: 120px; width: 100%; object-fit: cover; }
+      .service-card-modern { padding: 1.25rem; }
+      .feature-card { min-height: 200px; padding: 24px; }
+      .feature-card .content .heading { font-size: 20px; }
+      .feature-card .content .para { font-size: 13px; }
+      .counter-card { padding: 1rem 0.5rem; }
+      .about-hero .card.text-bg-dark { margin-top: 2rem !important; margin-bottom: 0 !important; max-height: 350px; }
+      .about-hero .col-lg-6:first-child { margin-bottom: 1.5rem; }
+      .about-hero .col-lg-6:last-child { margin-top: 0 !important; }
+.about-hero .position-absolute { display: none !important; }
+     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
       .hero-section .display-4 { font-size: 3rem; }
@@ -342,6 +356,8 @@
       [data-aos="fade-right"] { transform: translateX(0) !important; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
+      .mega-dropdown .mega-inner { padding: 0 24px; }
+      img { max-width: 100%; height: auto; }
     }
     .service-card-modern {
       background: #fff; border-radius: 0; padding: 2rem; height: 100%;
@@ -351,7 +367,7 @@
     }
     .service-card-modern::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, #dc2626, #ef4444);
+      background: linear-gradient(90deg, #d8000d, #d8000d);
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.4s;
     }
@@ -385,7 +401,7 @@
       content: "";
       position: absolute; left: 0; top: 0;
       width: 100%; height: 100%;
-      background: #dc2626;
+      background: #d8000d;
     }
     .banter-loader__box:nth-child(3n) { margin-right: 0; margin-bottom: 6px; }
     .banter-loader__box:nth-child(1):before,
@@ -541,8 +557,8 @@
 
   <header class="hero-header">
     <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-      <a href="#" class="navbar-brand p-1">
-        <img src="images/logo.png" alt="CADDFE Training Services" height="44" style="filter:brightness(1.2)" loading="eager">
+      <a href="/index.php" class="navbar-brand p-1">
+        <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
       </a>
 
       <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -560,13 +576,13 @@
             <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#" onclick="event.preventDefault();document.getElementById('coursesToggle').parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
             <div class="mega-dropdown">
               <div class="mega-inner">
-                <a href="/courses?cat=diploma" class="mega-card">
-                  <div class="mega-icon" style="background:#fef2f2;color:#dc2626;"><i class="bi bi-mortarboard"></i></div>
+                <a href="courses.php?cat=diploma" class="mega-card">
+                  <div class="mega-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-mortarboard"></i></div>
                   <h4>Diploma Programs</h4>
                   <p class="mega-desc">Architectural &amp; Interior Design diplomas with hands-on training</p>
                   <span class="mega-arrow">Browse Courses &rarr;</span>
                 </a>
-                <a href="/courses?cat=bim" class="mega-card">
+                <a href="courses.php?cat=bim" class="mega-card">
                   <div class="mega-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-cpu"></i></div>
                   <h4>BIM Programs</h4>
                   <p class="mega-desc">Industry-aligned BIM certification courses for modern careers</p>
@@ -579,10 +595,10 @@
             <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Projects</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Contact Us</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="contact_us.php">Contact Us</a>
           </li>
         </ul>
         <div class="d-lg-none pb-3">
@@ -604,7 +620,7 @@
       <div data-aos="fade-up" class="d-none d-sm-flex mb-4 justify-content-start">
         <div class="rounded-pill px-3 py-1 small text-white text-opacity-75 border border-white border-opacity-25" style="cursor:default;">
           Professional Engineering Solutions - 
-          <a href="#" class="fw-semibold text-white text-decoration-none" style="transition:color .2s" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color=''">Explore programs &rarr;</a>
+          <a href="courses.php" class="fw-semibold text-white text-decoration-none explore-link">Explore programs &rarr;</a>
         </div>
       </div>
       <div class="text-start">
@@ -615,7 +631,7 @@
         <script type="module">
         import { createTimeline, stagger } from 'https://esm.sh/animejs@4.0.0';
 
-        var words = ['Solutions', 'Features', 'Careers'];
+        var words = ['Solutions', 'Future', 'Career'];
         var idx = 0;
         var el = document.getElementById('word-wrapper');
 
@@ -756,7 +772,7 @@
   </div>
 </section>
 
-<div class="bg-white">
+<div class="bg-white about-hero">
   <div class="container py-20" style="max-width:80rem;">
     <div class="row gx-5 gy-5">
       <div data-aos="fade-left" class="col-lg-6 d-flex flex-column justify-content-center pe-lg-5">
@@ -803,13 +819,13 @@
         <div class="position-absolute top-0 start-0" style="width:7rem;height:7rem;border-radius:50%;background:rgba(220,38,38,0.08);filter:blur(32px);transform:translate(-1rem,-1rem);"></div>
         <div class="position-absolute bottom-0 end-0" style="width:9rem;height:9rem;border-radius:50%;background:rgba(220,38,38,0.05);filter:blur(40px);transform:translate(1rem,1rem);"></div>
         <div class="card text-bg-dark ms-auto" style="max-width:100%; height: 70%; border-radius:0; margin-top: 10rem; border: none; border-color: transparent;">
-          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" class="card-img" alt="Engineering and design workspace" loading="lazy" style="height: 100%; object-fit: cover; border-radius: 0; border: none; border-color: transparent;" />
+          <img src="images/about_us.jpg" class="card-img" alt="Engineering and design workspace" loading="lazy" style="height: 100%; object-fit: cover; border-radius: 0; border: none; border-color: transparent;" />
         </div>
       </div>
     </div>
   </div>
 </div>
-<section class="bg-danger py-20 overflow-hidden">
+<section class="py-20 overflow-hidden" style="background:#d8000d;">
   <div class="container text-center mb-5" style="max-width:80rem;">
     <div data-aos="fade-up">
       <h2 class="small fw-semibold text-white text-opacity-75 text-uppercase">Explore Programs</h2>
@@ -821,7 +837,7 @@
     <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)">&#8249;</button>
     <div class="scroll-container" data-speed="1" data-direction="left">
       <div class="scroll-inner">
-        <a href="/courses?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
@@ -831,7 +847,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
@@ -841,7 +857,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
@@ -851,7 +867,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
@@ -861,7 +877,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
@@ -871,7 +887,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
@@ -883,7 +899,7 @@
         </a>
       </div>
       <div class="scroll-inner">
-        <a href="/courses?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
@@ -893,7 +909,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
@@ -903,7 +919,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
@@ -913,7 +929,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
@@ -923,7 +939,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
@@ -933,7 +949,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
@@ -952,7 +968,7 @@
     <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)">&#8249;</button>
     <div class="scroll-container" data-speed="1" data-direction="right">
       <div class="scroll-inner">
-        <a href="/courses?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
@@ -962,7 +978,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
@@ -972,7 +988,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
@@ -982,7 +998,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
@@ -992,7 +1008,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
@@ -1002,7 +1018,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
           <div class="card-body">
@@ -1014,7 +1030,7 @@
         </a>
       </div>
       <div class="scroll-inner">
-        <a href="/courses?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
           <div class="card-body">
@@ -1024,7 +1040,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
@@ -1034,7 +1050,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
@@ -1044,7 +1060,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
           <div class="card-body">
@@ -1054,7 +1070,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
@@ -1064,7 +1080,7 @@
           </div>
         </div>
         </a>
-        <a href="/courses?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
           <div class="card-body">
@@ -1450,7 +1466,7 @@
         <div class="col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
             <img src="images/logo.png" alt="CADDFE" height="38" style="filter:brightness(1.2)" loading="lazy">
-            <span class="fw-bold text-white fs-5">CADDFE</span>
+            <!-- <span class="fw-bold text-white fs-5">CADDFE</span> -->
           </div>
           <p class="small" style="line-height:1.7;">CADDFE Training Services bridges the gap between academic learning and industry demands through hands-on Civil CAD training and professional architectural design services.</p>
           <div class="d-flex gap-2 mt-3">
@@ -1463,10 +1479,10 @@
         <div class="col-6 col-lg-2">
           <h3 class="footer-heading text-white">Quick Links</h3>
           <ul class="list-unstyled small d-flex flex-column gap-2">
-            <li><a href="#" class="footer-link">Home</a></li>
-            <li><a href="#" class="footer-link">Programs</a></li>
+            <li><a href="index.php" class="footer-link">Home</a></li>
+            <li><a href="courses.php" class="footer-link">Programs</a></li>
             <li><a href="#" class="footer-link">About Us</a></li>
-            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="contact_us.php" class="footer-link">Contact</a></li>
             <li><a href="#" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>

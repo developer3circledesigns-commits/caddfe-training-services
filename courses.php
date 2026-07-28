@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://esm.sh; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
   <meta name="description" content="Browse CADDFE&#39;s professional Civil CAD training programs — AutoCAD, Revit, Staad Pro, 3ds Max, and more. Flexible schedules for students and professionals." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23dc2626'/></svg>" />
+  <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>Pick Your Course - CADDFE Training Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +17,7 @@
   <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/style.css" />
   <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
   <style>
     html { scroll-behavior: smooth; }
@@ -24,7 +25,7 @@
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
-    .small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #ef4444; transition: width 0.3s ease; }
+    .small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #d8000d; transition: width 0.3s ease; }
     .small-hover:hover { color: #fff !important; }
     .small-hover:hover::after { width: 100%; }
     .dropdown-nav .mega-dropdown {
@@ -60,7 +61,7 @@
     }
     .hero-header:has(.dropdown-nav:hover) .small-hover::after,
     .hero-header:has(.dropdown-nav.show) .small-hover::after {
-      background: #ef4444 !important;
+      background: #d8000d !important;
     }
     .mega-dropdown .mega-inner { max-width: 72rem; margin: 0 auto; display: flex; padding: 0 48px; }
     .mega-dropdown .mega-card {
@@ -79,7 +80,7 @@
     .mega-dropdown .mega-card:hover .mega-icon { transform: scale(1.1); }
     .mega-dropdown .mega-card h5 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
     .mega-dropdown .mega-card .mega-desc { font-size: 0.78rem; color: #64748b; line-height: 1.5; margin-bottom: 12px; }
-    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #dc2626; transition: all 0.25s; }
+    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #d8000d; transition: all 0.25s; }
     .mega-dropdown .mega-card:hover .mega-arrow { letter-spacing: 0.05em; }
     @media (max-width: 991.98px) {
       .dropdown-nav .mega-dropdown { display: none !important; }
@@ -110,15 +111,15 @@
     }
     .enroll-btn:hover .box { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
     .enroll-btn:hover .box::before {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .3s;
     }
     .enroll-btn:hover .box::after {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .5s;
     }
-    .btn-danger { background-color: #ef4444 !important; border-color: #ef4444 !important; }
-    .btn-danger:hover { background-color: #dc2626 !important; border-color: #dc2626 !important; }
+    .btn-danger { background-color: #d8000d !important; border-color: #d8000d !important; }
+    .btn-danger:hover { background-color: #d8000d !important; border-color: #d8000d !important; }
     .hero-header .navbar { padding-top: 1rem !important; padding-bottom: 1rem !important; }
     .hero-header .navbar-brand { padding: 0.25rem !important; margin: 0 !important; }
     .hero-header .navbar-toggler { padding: 0.5rem !important; box-shadow: none !important; outline: none !important; }
@@ -133,32 +134,27 @@
 
     .pill-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill-nav button { padding: 0.6rem 1.5rem; border: 1px solid #dee2e6; background: #fff; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; cursor: pointer; }
-    .pill-nav button:hover { border-color: #dc2626; color: #dc2626; }
-    .pill-nav button.active { background: #dc2626; border-color: #dc2626; color: #fff; }
+    .pill-nav button:hover { border-color: #d8000d; color: #d8000d; }
+    .pill-nav button.active { background: #d8000d; border-color: #d8000d; color: #fff; }
 
-    .course-card-modern { background: #fff; border-bottom: 3px solid #e9ecef; transition: all 0.3s; cursor: pointer; position: relative; display: flex; flex-direction: column; height: 100%; }
-    .course-card-modern:hover { border-bottom-color: #dc2626; box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
-    .course-card-modern.selected { border-bottom-color: #dc2626; background: #fefcfc; }
-    .course-card-modern .card-check { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; border: 2px solid #dee2e6; display: none; align-items: center; justify-content: center; background: #fff; z-index: 2; font-size: 0.9rem; color: #fff; transition: all 0.2s; }
-    .course-card-modern.selected .card-check { display: flex; background: #dc2626; border-color: #dc2626; }
+    .course-card-modern { background: #fff; border-bottom: 3px solid #e9ecef; transition: all 0.3s; position: relative; display: flex; flex-direction: column; height: 100%; }
+    .course-card-modern:hover { border-bottom-color: #d8000d; box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
+
     .course-card-modern .card-img { height: 200px; object-fit: cover; width: 100%; flex-shrink: 0; }
-    .course-card-modern .card-body-content { flex: 1; display: flex; flex-direction: column; }
-    .course-card-modern .card-body-content .card-details { flex: 1; }
+    .course-card-modern .card-body-content { flex: 1; }
     .tag-modern { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.75rem; display: inline-block; }
     .stat-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: #64748b; }
 
-    .multi-select-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid #e9ecef; padding: 1rem 0; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
-    .multi-select-bar.show { transform: translateY(0); }
-    .badge-course-count { display: inline-flex; align-items: center; justify-content: center; background: #dc2626; color: #fff; width: 28px; height: 28px; font-weight: 700; font-size: 0.85rem; }
+
     .search-box { border: 1px solid #e9ecef; padding: 0.75rem 1.25rem; font-size: 0.9rem; width: 100%; max-width: 400px; outline: none; transition: border 0.2s; }
-    .search-box:focus { border-color: #dc2626; }
+    .search-box:focus { border-color: #d8000d; }
     .hero-content { padding-top: 76px; }
     .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
 
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-link:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
     .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; transition: all 0.3s; }
-    .social-icon:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
+    .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
 
@@ -174,14 +170,31 @@
       }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
       .page-hero { min-height: 40vh; }
-      .course-card-modern .card-img { height: 160px; }
-      .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      .page-hero h1 { font-size: 2rem !important; }
       .container { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
+      .course-card-modern .card-img { height: 160px; }
+      .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      body { overflow-x: hidden; }
+      html { overflow-x: hidden; }
+      img { max-width: 100%; height: auto; }
+      .pill-nav { flex-direction: column; align-items: stretch; }
+      .pill-nav button { width: 100%; text-align: center; min-height: 44px; }
+      .search-box { max-width: 100% !important; width: 100% !important; }
+      .col-sm-6 { flex: 0 0 100%; max-width: 100%; }
+      [data-aos="fade-left"] { transform: translateX(0) !important; }
+      [data-aos="fade-right"] { transform: translateX(0) !important; }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
       .py-20 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
       .container { padding-left: 32px; padding-right: 32px; }
+      body { overflow-x: hidden; }
+      html { overflow-x: hidden; }
+      img { max-width: 100%; height: auto; }
+      .course-card-modern .card-img { height: 180px; }
+      [data-aos="fade-left"] { transform: translateX(0) !important; }
+      [data-aos="fade-right"] { transform: translateX(0) !important; }
+      .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
     }
     .small-hover:hover { opacity: 1 !important; }
     .hover-bg-light:hover { background-color: #f8f9fa !important; }
@@ -210,7 +223,7 @@
       content: "";
       position: absolute; left: 0; top: 0;
       width: 100%; height: 100%;
-      background: #dc2626;
+      background: #d8000d;
     }
     .banter-loader__box:nth-child(3n) { margin-right: 0; margin-bottom: 6px; }
     .banter-loader__box:nth-child(1):before,
@@ -356,9 +369,9 @@
 
 <header class="hero-header">
   <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-    <a href="#" class="navbar-brand p-1">
-      <img src="images/logo.png" alt="CADDFE Training Services" height="44" style="filter:brightness(1.2)" loading="eager">
-    </a>
+    <a href="/index.php" class="navbar-brand p-1">
+        <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
+      </a>
 
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="24" height="24">
@@ -375,13 +388,13 @@
             <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
             <div class="mega-dropdown">
               <div class="mega-inner">
-                <a href="/courses?cat=diploma" class="mega-card">
-                  <div class="mega-icon" style="background:#fef2f2;color:#dc2626;"><i class="bi bi-mortarboard"></i></div>
+                <a href="courses.php?cat=diploma" class="mega-card">
+                  <div class="mega-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-mortarboard"></i></div>
                   <h4>Diploma Programs</h4>
                   <p class="mega-desc">Architectural &amp; Interior Design diplomas with hands-on training</p>
                   <span class="mega-arrow">Browse Courses &rarr;</span>
                 </a>
-                <a href="/courses?cat=bim" class="mega-card">
+                <a href="courses.php?cat=bim" class="mega-card">
                   <div class="mega-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-cpu"></i></div>
                   <h4>BIM Programs</h4>
                   <p class="mega-desc">Industry-aligned BIM certification courses for modern careers</p>
@@ -395,10 +408,10 @@
 href="/services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Projects</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Contact Us</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="contact_us.php">Contact Us</a>
         </li>
       </ul>
       <div class="d-lg-none pb-3">
@@ -449,22 +462,6 @@ href="/services">Services</a>
   </div>
 </section>
 
-<div class="multi-select-bar" id="selectionBar">
-  <div class="container d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center gap-3">
-      <span class="badge-course-count rounded-0" id="barCount">0</span>
-      <div>
-        <span class="fw-bold" id="barLabel">No courses selected</span>
-        <span class="d-block small text-secondary" id="barTotal"></span>
-      </div>
-    </div>
-    <div class="d-flex gap-2">
-      <button class="btn btn-outline-secondary btn-sm fw-semibold rounded-0" onclick="clearAll()">Clear</button>
-      <button class="btn btn-danger fw-semibold rounded-0 px-4" onclick="submitModern()">Submit <i class="bi bi-send ms-1"></i></button>
-    </div>
-  </div>
-</div>
-
 <footer style="background:#0f172a;color:#cbd5e1;">
   <div style="padding:4rem 0 2.5rem;">
     <div class="container" style="max-width:80rem;">
@@ -472,7 +469,7 @@ href="/services">Services</a>
         <div class="col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
             <img src="images/logo.png" alt="CADDFE" height="38" style="filter:brightness(1.2)" loading="lazy">
-            <span class="fw-bold text-white fs-5">CADDFE</span>
+            <!-- <span class="fw-bold text-white fs-5">CADDFE</span> -->
           </div>
           <p class="small" style="line-height:1.7;">CADDFE Training Services bridges the gap between academic learning and industry demands through hands-on Civil CAD training and professional architectural design services.</p>
           <div class="d-flex gap-2 mt-3">
@@ -485,10 +482,10 @@ href="/services">Services</a>
         <div class="col-6 col-lg-2">
           <h3 class="footer-heading text-white">Quick Links</h3>
           <ul class="list-unstyled small d-flex flex-column gap-2">
-            <li><a href="#" class="footer-link">Home</a></li>
-            <li><a href="#" class="footer-link">Programs</a></li>
+            <li><a href="index.php" class="footer-link">Home</a></li>
+            <li><a href="courses.php" class="footer-link">Programs</a></li>
             <li><a href="#" class="footer-link">About Us</a></li>
-            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="contact_us.php" class="footer-link">Contact</a></li>
             <li><a href="#" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>
@@ -574,7 +571,21 @@ const coursesData = [
   { id: 12, name: 'Building - SMART BIM Professional Certification', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg' },
 ];
 
-let selectedIds = new Set();
+let whatsappWin = null;
+
+function openWhatsAppEnquiry(el) {
+  var name = decodeURIComponent(el.getAttribute('data-course'));
+  var text = "I'm interested in enrolling for " + name + " at CADDFE. Please share more details.";
+  var encoded = encodeURIComponent(text);
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    window.location.href = 'https://wa.me/919500818276?text=' + encoded;
+  } else if (whatsappWin && !whatsappWin.closed) {
+    whatsappWin.location.href = 'https://web.whatsapp.com/send?phone=919500818276&text=' + encoded;
+    whatsappWin.focus();
+  } else {
+    whatsappWin = window.open('https://web.whatsapp.com/send?phone=919500818276&text=' + encoded, 'whatsapp');
+  }
+}
 var urlParams = new URLSearchParams(window.location.search);
 var catParam = urlParams.get('cat');
 var currentFilter = catParam || 'all';
@@ -595,7 +606,6 @@ function renderCourses(filter, query) {
   }
   if (query) filtered = filtered.filter(c => c.name.toLowerCase().includes(query.toLowerCase()));
   container.innerHTML = filtered.map(c => {
-    const sel = selectedIds.has(c.id) ? 'selected' : '';
     var detailsHtml = '';
     if (c.levelsDetail) {
       detailsHtml = '<span class="stat-item"><i class="bi bi-layers"></i> ' + c.levels + ' Level' + (c.levels > 1 ? 's' : '') + '</span>';
@@ -605,31 +615,30 @@ function renderCourses(filter, query) {
     }
     var durationHtml = c.duration ? '<span class="stat-item"><i class="bi bi-calendar-week"></i> ' + c.duration + '</span>' : '';
     return `<div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex">
-      <div class="course-card-modern rounded-0 ${sel}" data-id="${c.id}" onclick="toggleModern(${c.id})">
-        <div class="card-check rounded-0"><i class="bi bi-check-lg"></i></div>
+      <div class="course-card-modern rounded-0">
         <img src="${c.img}" alt="${c.name}" class="card-img" loading="lazy" />
-        <div class="p-3 card-body-content">
-          <span class="tag-modern badge bg-${c.tagColor} mb-2">${c.tag}</span>
-           <h3 class="fw-bold mb-2" style="font-size:0.9rem;">${c.name}</h3>
-          <div class="card-details">
-            <div class="d-flex flex-wrap gap-3">
-              <span class="stat-item"><i class="bi bi-clock"></i> ${c.hrs} hrs</span>
-              ${durationHtml}
-              ${detailsHtml}
+        <div class="card-body-content">
+          <div class="p-3 card-body-inner">
+            <span class="tag-modern badge bg-${c.tagColor} mb-2">${c.tag}</span>
+            <h3 class="fw-bold mb-2" style="font-size:0.9rem;">${c.name}</h3>
+            <div class="card-details">
+              <div class="d-flex flex-wrap gap-3">
+                <span class="stat-item"><i class="bi bi-clock"></i> ${c.hrs} hrs</span>
+                ${durationHtml}
+                ${detailsHtml}
+              </div>
+              ${c.levelsDetail ? '<div class="small text-secondary mt-2" style="line-height:1.4;">' + c.levelsDetail + '</div>' : ''}
             </div>
-            ${c.levelsDetail ? '<div class="small text-secondary mt-2" style="line-height:1.4;">' + c.levelsDetail + '</div>' : ''}
           </div>
+        </div>
+        <div class="p-3 border-top mt-auto">
+          <a href="#" class="btn btn-sm btn-success w-100 rounded-0 fw-semibold" onclick="openWhatsAppEnquiry(this); return false;" data-course="${encodeURIComponent(c.name)}">
+            <i class="bi bi-whatsapp me-1"></i> Enquire on WhatsApp
+          </a>
         </div>
       </div>
     </div>`;
   }).join('');
-}
-
-function toggleModern(id) {
-  if (selectedIds.has(id)) selectedIds.delete(id);
-  else selectedIds.add(id);
-  renderCourses(getActiveFilter(), document.getElementById('searchInput').value);
-  updateBar();
 }
 
 function getActiveFilter() {
@@ -642,28 +651,6 @@ function filterCourses() {
   renderCourses(getActiveFilter(), document.getElementById('searchInput').value);
 }
 
-function updateBar() {
-  var n = selectedIds.size;
-  var bar = document.getElementById('selectionBar');
-  document.getElementById('barCount').textContent = n;
-  document.getElementById('barLabel').textContent = n > 0 ? n + ' course' + (n !== 1 ? 's' : '') + ' selected' : 'No courses selected';
-  var totalHrs = coursesData.filter(function(c) { return selectedIds.has(c.id); }).reduce(function(s, c) { return s + c.hrs; }, 0);
-  document.getElementById('barTotal').textContent = totalHrs > 0 ? 'Total: ' + totalHrs + ' hrs' : '';
-  bar.classList.toggle('show', n > 0);
-}
-
-function clearAll() {
-  selectedIds.clear();
-  renderCourses(getActiveFilter(), document.getElementById('searchInput').value);
-  updateBar();
-}
-
-function submitModern() {
-  if (selectedIds.size === 0) { alert('Please select at least one course.'); return; }
-  var names = coursesData.filter(function(c) { return selectedIds.has(c.id); }).map(function(c) { return c.name; });
-  alert('Your preferred courses:\n' + names.join('\n') + '\n\nTotal: ' + selectedIds.size + ' course(s)\nWe will get in touch with you!');
-}
-
 document.querySelectorAll('#pillNav button').forEach(function(btn) {
   btn.addEventListener('click', function() {
     catParam = null;
@@ -674,14 +661,12 @@ document.querySelectorAll('#pillNav button').forEach(function(btn) {
   });
 });
 
-if (catParam === 'diploma') {
-  document.querySelector('h1').textContent = 'Diploma Programs';
-  document.title = 'Diploma Programs - CADDFE Training Services';
-} else if (catParam === 'bim') {
-  document.querySelector('h1').textContent = 'BIM Programs';
-  document.title = 'BIM Programs - CADDFE Training Services';
+if (catParam) {
+  document.querySelectorAll('#pillNav button').forEach(function(b) { b.classList.remove('active'); });
+  var match = document.querySelector('#pillNav button[data-filter="' + catParam + '"]');
+  if (match) match.classList.add('active');
 }
-renderCourses();
+renderCourses(currentFilter);
 
 (function(){
   var loader = document.getElementById('pageLoader');

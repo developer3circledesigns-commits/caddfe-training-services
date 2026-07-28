@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <meta name="description" content="CADDFE offers professional architectural design services — 2D drafting, 3D modeling, rendering, and structural documentation for residential and commercial projects." />
   <title>Architectural Design Services - CADDFE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,6 +17,7 @@
   <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/style.css" />
   <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
   <style>
     html { scroll-behavior: smooth; }
@@ -29,7 +31,7 @@
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
-    .small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #ef4444; transition: width 0.3s ease; }
+    .small-hover::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #d8000d; transition: width 0.3s ease; }
     .small-hover:hover { color: #fff !important; }
     .small-hover:hover::after { width: 100%; }
     .dropdown-nav .mega-dropdown {
@@ -64,7 +66,7 @@
     }
     .hero-header:has(.dropdown-nav:hover) .small-hover::after,
     .hero-header:has(.dropdown-nav.show) .small-hover::after {
-      background: #ef4444 !important;
+      background: #d8000d !important;
     }
     .mega-dropdown .mega-inner { max-width: 72rem; margin: 0 auto; display: flex; padding: 0 48px; }
     .mega-dropdown .mega-card {
@@ -83,7 +85,7 @@
     .mega-dropdown .mega-card:hover .mega-icon { transform: scale(1.1); }
     .mega-dropdown .mega-card h5 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
     .mega-dropdown .mega-card .mega-desc { font-size: 0.78rem; color: #64748b; line-height: 1.5; margin-bottom: 12px; }
-    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #dc2626; transition: all 0.25s; }
+    .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #d8000d; transition: all 0.25s; }
     .mega-dropdown .mega-card:hover .mega-arrow { letter-spacing: 0.05em; }
     @media (max-width: 991.98px) {
       .dropdown-nav .mega-dropdown { display: none !important; }
@@ -114,37 +116,44 @@
     }
     .enroll-btn:hover .box { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
     .enroll-btn:hover .box::before {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .3s;
     }
     .enroll-btn:hover .box::after {
-      border-color: #ef4444; height: 100%; transform: translateX(0);
+      border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .5s;
     }
-    .btn-danger { background-color: #ef4444 !important; border-color: #ef4444 !important; }
-    .btn-danger:hover { background-color: #dc2626 !important; border-color: #dc2626 !important; }
+    .btn-danger { background-color: #d8000d !important; border-color: #d8000d !important; }
+    .btn-danger:hover { background-color: #d8000d !important; border-color: #d8000d !important; }
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-link:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
     .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; transition: all 0.3s; }
-    .social-icon:hover { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
+    .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
-    .section-tag { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #dc2626; margin-bottom: 0.5rem; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)); }
+    .section-tag { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #d8000d; margin-bottom: 0.5rem; }
     .service-feature { padding: 2rem; background: #fff; border: 1px solid #e9ecef; height: 100%; transition: all 0.3s; }
-    .service-feature:hover { border-color: #dc2626; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .service-feature:hover { border-color: #d8000d; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
     .service-feature .sf-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
     .code-badge { display: inline-block; padding: 0.3rem 0.8rem; font-size: 0.7rem; font-weight: 600; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
     .project-card { background: #fff; border: 1px solid #e9ecef; transition: all 0.3s; height: 100%; }
-    .project-card:hover { border-color: #dc2626; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .project-card:hover { border-color: #d8000d; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
     .project-card img { height: 200px; object-fit: cover; width: 100%; }
+    .card-horizontal-img { width:100%; height:100%; object-fit:cover; }
+    @media (max-width:767px) { .card-horizontal-img { height:220px; } }
     .hero-header .navbar { padding-top: 1rem !important; padding-bottom: 1rem !important; }
     .hero-header .navbar-brand { padding: 0.25rem !important; margin: 0 !important; }
     .hero-header .navbar-toggler { padding: 0.5rem !important; box-shadow: none !important; outline: none !important; }
     .hero-header .navbar-toggler:focus { box-shadow: none !important; }
     .hero-header .nav-link { padding: 0 !important; }
     .hero-header .nav-link:hover { color: #fff !important; }
+    .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
+    .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
+    .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
+    .hero-content { padding-top: 76px; }
     p, .card-text, dd { text-align: justify; }
+    .card-body .fw-bold { color: #d8000d; }
     @media (max-width: 767px) {
       .hero-header .navbar-collapse {
         background: rgba(15, 23, 42, 0.85);
@@ -159,15 +168,28 @@
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
-    }
-    @media (max-width: 767px) {
+      img { max-width: 100%; height: auto; }
+      .card-horizontal-img { height: 180px !important; }
+      .col-md-5 { flex: 0 0 100%; max-width: 100%; margin-bottom: 1rem; }
+      .col-md-5:last-child { margin-bottom: 0; }
+      .col-md-7 { flex: 0 0 100%; max-width: 100%; }
+      .page-hero { min-height: 40vh; }
+      .page-hero h1 { font-size: 2rem !important; }
+      .service-feature { margin-bottom: 1rem; }
+      .service-feature:last-child { margin-bottom: 0; }
+      .container { padding-left: 20px; padding-right: 20px; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
+      .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
+      body { overflow-x: hidden; }
+      html { overflow-x: hidden; }
+      img { max-width: 100%; height: auto; }
+      .card-horizontal-img { height: 200px !important; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
-      .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
+      .container { padding-left: 32px; padding-right: 32px; }
     }
     .small-hover:hover { opacity: 1 !important; }
     .hover-bg-light:hover { background-color: #f8f9fa !important; }
@@ -196,7 +218,7 @@
       content: "";
       position: absolute; left: 0; top: 0;
       width: 100%; height: 100%;
-      background: #dc2626;
+      background: #d8000d;
     }
     .banter-loader__box:nth-child(3n) { margin-right: 0; margin-bottom: 6px; }
     .banter-loader__box:nth-child(1):before,
@@ -342,10 +364,9 @@
 
 <header class="hero-header">
   <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-    <a href="/" class="navbar-brand p-1">
-      <img src="images/logo.png" alt="CADDFE Training Services" height="44" style="filter:brightness(1.2)" loading="eager">
-    </a>
-
+    <a href="/index.php" class="navbar-brand p-1">
+        <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
+      </a>
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="24" height="24">
         <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -361,13 +382,13 @@
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
           <div class="mega-dropdown">
             <div class="mega-inner">
-              <a href="/courses?cat=diploma" class="mega-card">
-                <div class="mega-icon" style="background:#fef2f2;color:#dc2626;"><i class="bi bi-mortarboard"></i></div>
+                <a href="courses.php?cat=diploma" class="mega-card">
+                <div class="mega-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-mortarboard"></i></div>
                 <h4>Diploma Programs</h4>
                 <p class="mega-desc">Architectural &amp; Interior Design diplomas with hands-on training</p>
                 <span class="mega-arrow">Browse Courses &rarr;</span>
               </a>
-              <a href="/courses?cat=bim" class="mega-card">
+                <a href="courses.php?cat=bim" class="mega-card">
                 <div class="mega-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-cpu"></i></div>
                 <h4>BIM Programs</h4>
                 <p class="mega-desc">Industry-aligned BIM certification courses for modern careers</p>
@@ -380,10 +401,10 @@
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Projects</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#">Contact Us</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="contact_us.php">Contact Us</a>
         </li>
       </ul>
       <div class="d-lg-none pb-3">
@@ -400,18 +421,18 @@
   </nav>
 </header>
 
-<div style="position:relative;min-height:60vh;display:flex;align-items:center;">
-  <div style="position:absolute;inset:0;z-index:-10;">
+<div class="page-hero hero-content">
+  <div class="page-hero-bg">
     <picture>
       <source srcset="images/hero-section-960.webp 960w, images/hero-section-1920.webp 1920w" type="image/webp" sizes="100vw" />
       <source srcset="images/hero-section-960.jpg 960w, images/hero-section-1920.jpg 1920w" type="image/jpeg" sizes="100vw" />
-      <img src="images/hero-section-1920.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Architectural Design" loading="eager" fetchpriority="high" />
+      <img src="images/hero-section-1920.jpg" alt="Architectural Design" width="1920" height="1080" loading="eager" fetchpriority="high" />
     </picture>
-    <div class="hero-overlay"></div>
+    <div class="page-hero-overlay"></div>
   </div>
-  <div data-aos="fade-up" class="container text-center text-white position-relative py-5" style="padding-top:120px;">
-    <h1 class="fw-bold" style="font-size:2.8rem;letter-spacing:-0.025em;">Architectural Design Services</h1>
-    <p class="text-white-50 mt-2" style="max-width:650px;margin:0 auto; text-align: center;">From concept to completion — professional architectural design solutions tailored for residential, commercial, and institutional projects.</p>
+  <div class="container text-center text-white position-relative">
+    <h1 class="fw-bold" style="font-size:2.5rem;letter-spacing:-0.025em;">Architectural Design Services</h1>
+    <p class="text-white-50 mt-2" style="max-width:650px;margin:0 auto;">From concept to completion — professional architectural design solutions tailored for residential, commercial, and institutional projects.</p>
   </div>
 </div>
 
@@ -433,11 +454,81 @@
   <div class="container" style="max-width:72rem;">
     <div class="text-center mb-5"><p class="section-tag" style="text-align:center;">What We Offer</p><h2 class="fw-bold" style="font-size:2rem;">Architectural Design Services</h2></div>
     <div class="row g-4">
-      <div class="col-sm-6 col-lg-4"><div class="service-feature"><div class="sf-icon bg-danger text-white"><i class="bi bi-house-door"></i></div><h3 class="fw-bold">Interior Design</h3><p class="small text-secondary mb-0">Space planning, material selection, lighting design, and furniture layout for residential and commercial interiors. Stunning 3D walkthroughs included.</p></div></div>
-      <div class="col-sm-6 col-lg-4"><div class="service-feature"><div class="sf-icon bg-primary text-white"><i class="bi bi-grid-3x3-gap"></i></div><h3 class="fw-bold">Structural Design</h3><p class="small text-secondary mb-0">RCC and steel structural design with seismic analysis. Safe, durable, and code-compliant structural solutions for all building types.</p></div></div>
-      <div class="col-sm-6 col-lg-4"><div class="service-feature"><div class="sf-icon bg-warning text-dark"><i class="bi bi-layout-three-columns"></i></div><h3 class="fw-bold">Layout &amp; Plan</h3><p class="small text-secondary mb-0">Architectural floor plans, site layouts, and zoning diagrams. Optimized space utilization with seamless circulation and functionality.</p></div></div>
-      <div class="col-sm-6 col-lg-4"><div class="service-feature"><div class="sf-icon bg-info text-dark"><i class="bi bi-cube"></i></div><h3 class="fw-bold">3D Modelling</h3><p class="small text-secondary mb-0">High-detail 3D models with realistic textures, lighting, and environments. Interactive walkthroughs and VR-ready visualizations.</p></div></div>
-      <div class="col-sm-6 col-lg-4"><div class="service-feature"><div class="sf-icon bg-success text-white"><i class="bi bi-buildings"></i></div><h3 class="fw-bold">Elevation Design</h3><p class="small text-secondary mb-0">Front, rear, and side elevation designs with aesthetic façade treatments. Modern, contemporary, and traditional style options available.</p></div></div>
+      <div class="col-12">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-md-5">
+              <img src="images/interior.jpg" class="card-horizontal-img" alt="Interior Design" loading="lazy">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="fw-bold">Interior Design</h5>
+                <p class="card-text text-secondary small">Space planning, material selection, lighting design, and furniture layout for residential and commercial interiors. Stunning 3D walkthroughs included. Our team specializes in creating functional yet aesthetically pleasing interiors that maximize space utilization while reflecting your personal style. From concept development to final execution, we handle every detail including color schemes, texture coordination, custom joinery, and ambient lighting solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-md-5">
+              <img src="images/structure.jpg" class="card-horizontal-img" alt="Structural Design" loading="lazy">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="fw-bold">Structural Design</h5>
+                <p class="card-text text-secondary small">RCC and steel structural design with seismic analysis. Safe, durable, and code-compliant structural solutions for all building types. We provide comprehensive structural engineering services including load analysis, foundation design, beam and column detailing, and slab reinforcement layouts. Our designs adhere to IS, ACI, and Eurocode standards, ensuring safety and longevity for residential, commercial, and industrial structures.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-md-5">
+              <img src="images/planlayout.jpg" class="card-horizontal-img" alt="Layout &amp; Plan" loading="lazy">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="fw-bold">Layout &amp; Plan</h5>
+                <p class="card-text text-secondary small">Architectural floor plans, site layouts, and zoning diagrams. Optimized space utilization with seamless circulation and functionality. We create detailed 2D and 3D layout plans that cover everything from room dimensions and door/window placements to furniture layouts and traffic flow analysis. Our designs ensure optimal natural lighting, ventilation, and spatial efficiency while complying with local building codes and regulations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-md-5">
+              <img src="images/3dmodel.jpg" class="card-horizontal-img" alt="3D Modelling" loading="lazy">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="fw-bold">3D Modelling</h5>
+                <p class="card-text text-secondary small">High-detail 3D models with realistic textures, lighting, and environments. Interactive walkthroughs and VR-ready visualizations. We use industry-leading software including 3ds Max, SketchUp, and Lumion to produce photorealistic renders with accurate material properties, daylight simulation, and camera-matched perspectives. Our 3D services also include animated walkthrough videos and virtual tour experiences for client presentations and marketing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="row g-0 h-100">
+            <div class="col-md-5">
+              <img src="images/elevation.jpg" class="card-horizontal-img" alt="Elevation Design" loading="lazy">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="fw-bold">Elevation Design</h5>
+                <p class="card-text text-secondary small">Front, rear, and side elevation designs with aesthetic façade treatments. Modern, contemporary, and traditional style options available. Our elevation designs focus on curb appeal and architectural harmony, incorporating elements such as cladding materials, window patterns, roof styles, balcony details, and exterior color palettes. We provide photorealistic elevation views with shadow analysis and material callouts to help you visualize the final built form accurately.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -493,7 +584,7 @@
         <div class="col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
             <img src="images/logo.png" alt="CADDFE" height="38" style="filter:brightness(1.2)" loading="lazy">
-            <span class="fw-bold text-white fs-5">CADDFE</span>
+            <!-- <span class="fw-bold text-white fs-5">CADDFE</span> -->
           </div>
           <p class="small" style="line-height:1.7;">CADDFE Training Services bridges the gap between academic learning and industry demands through hands-on Civil CAD training and professional architectural design services.</p>
           <div class="d-flex gap-2 mt-3">
@@ -506,10 +597,10 @@
         <div class="col-6 col-lg-2">
           <h3 class="footer-heading text-white">Quick Links</h3>
           <ul class="list-unstyled small d-flex flex-column gap-2">
-            <li><a href="/" class="footer-link">Home</a></li>
-            <li><a href="#" class="footer-link">Programs</a></li>
+            <li><a href="index.php" class="footer-link">Home</a></li>
+            <li><a href="courses.php" class="footer-link">Programs</a></li>
             <li><a href="#" class="footer-link">About Us</a></li>
-            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="contact_us.php" class="footer-link">Contact</a></li>
             <li><a href="#" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>
