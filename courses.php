@@ -83,8 +83,41 @@
     .mega-dropdown .mega-card .mega-arrow { font-size: 0.78rem; font-weight: 700; color: #d8000d; transition: all 0.25s; }
     .mega-dropdown .mega-card:hover .mega-arrow { letter-spacing: 0.05em; }
     @media (max-width: 991.98px) {
-      .dropdown-nav .mega-dropdown { display: none !important; }
+      .dropdown-nav .mega-dropdown {
+        position: static; background: transparent; box-shadow: none;
+        opacity: 1; visibility: visible; pointer-events: auto;
+        display: none; width: 100%; transition: none;
+      }
+      .dropdown-nav.show .mega-dropdown { display: block; }
+      .mega-dropdown::before { display: none; }
+      .mega-dropdown .mega-inner { flex-direction: column; padding: 8px 0 0; max-width: 100%; }
+      .mega-dropdown .mega-card {
+        padding: 14px 16px; flex-direction: row; text-align: left;
+        gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .mega-dropdown .mega-card:first-child { border-right: none; }
+      .mega-dropdown .mega-card:hover { background: rgba(255,255,255,0.05); }
+      .mega-dropdown .mega-icon {
+        width: 40px; height: 40px; font-size: 1.1rem;
+        margin-bottom: 0; flex-shrink: 0;
+      }
+      .mega-dropdown .mega-card h4 { font-size: 0.85rem; color: #fff; margin-bottom: 2px; }
+      .mega-dropdown .mega-card .mega-desc {
+        font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 2px;
+      }
+      .mega-dropdown .mega-card .mega-arrow { font-size: 0.7rem; color: #d8000d; }
+      .hero-header:has(.dropdown-nav.show) {
+        background: transparent !important; backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important; box-shadow: none !important;
+      }
+      .hero-header:has(.dropdown-nav.show) .nav-link {
+        color: #fff !important; opacity: 0.9 !important;
+      }
+      .hero-header:has(.dropdown-nav.show) .small-hover::after {
+        background: #d8000d !important;
+      }
     }
+    .dropdown-nav.show .bi-chevron-down { transform: rotate(180deg); }
     .enroll-btn {
       background: transparent; border: none; cursor: pointer; outline: none;
       padding: 0; font: inherit; color: inherit; display: inline-flex;
@@ -173,15 +206,16 @@
       .page-hero h1 { font-size: 2rem !important; }
       .container { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
-      .course-card-modern .card-img { height: 160px; }
+      .course-card-modern .card-img { height: 130px; }
+      .course-card-modern .card-body-inner { padding: 0.75rem !important; }
       .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
-      .pill-nav { flex-direction: column; align-items: stretch; }
-      .pill-nav button { width: 100%; text-align: center; min-height: 44px; }
+      .pill-nav { flex-direction: row; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0.4rem; padding-bottom: 4px; }
+      .pill-nav::-webkit-scrollbar { display: none; }
+      .pill-nav button { white-space: nowrap; flex-shrink: 0; min-height: 44px; }
       .search-box { max-width: 100% !important; width: 100% !important; }
-      .col-sm-6 { flex: 0 0 100%; max-width: 100%; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
     }
@@ -385,7 +419,7 @@
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/">Home</a>
         </li>
           <li class="nav-item dropdown-nav">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
+            <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses <i class="bi bi-chevron-down" style="font-size:0.65rem;transition:transform 0.25s;"></i></a>
             <div class="mega-dropdown">
               <div class="mega-inner">
                 <a href="courses.php?cat=diploma" class="mega-card">
@@ -614,7 +648,7 @@ function renderCourses(filter, query) {
       detailsHtml = '<span class="stat-item"><i class="bi bi-journal-text"></i> ' + c.modules + ' Modules</span><span class="stat-item"><i class="bi bi-pencil-square"></i> ' + c.assessments + ' Assessments</span>';
     }
     var durationHtml = c.duration ? '<span class="stat-item"><i class="bi bi-calendar-week"></i> ' + c.duration + '</span>' : '';
-    return `<div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex">
+    return `<div class="col-6 col-sm-6 col-lg-4 col-xl-3 d-flex">
       <div class="course-card-modern rounded-0">
         <img src="${c.img}" alt="${c.name}" class="card-img" loading="lazy" />
         <div class="card-body-content">
