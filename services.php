@@ -507,6 +507,7 @@
               <div class="card-body">
                 <h5 class="fw-bold">Interior Design</h5>
                 <p class="card-text text-secondary small">Space planning, material selection, lighting design, and furniture layout for residential and commercial interiors. Stunning 3D walkthroughs included. Our team specializes in creating functional yet aesthetically pleasing interiors that maximize space utilization while reflecting your personal style. From concept development to final execution, we handle every detail including color schemes, texture coordination, custom joinery, and ambient lighting solutions.</p>
+                <a href="contact_us.php?enquiry=Interior+Design" class="btn btn-outline-danger btn-sm rounded-0 fw-semibold mt-2">Enquire Now &rarr;</a>
               </div>
             </div>
           </div>
@@ -522,6 +523,7 @@
               <div class="card-body">
                 <h5 class="fw-bold">Structural Design</h5>
                 <p class="card-text text-secondary small">RCC and steel structural design with seismic analysis. Safe, durable, and code-compliant structural solutions for all building types. We provide comprehensive structural engineering services including load analysis, foundation design, beam and column detailing, and slab reinforcement layouts. Our designs adhere to IS, ACI, and Eurocode standards, ensuring safety and longevity for residential, commercial, and industrial structures.</p>
+                <a href="contact_us.php?enquiry=Structural+Design" class="btn btn-outline-danger btn-sm rounded-0 fw-semibold mt-2">Enquire Now &rarr;</a>
               </div>
             </div>
           </div>
@@ -537,6 +539,7 @@
               <div class="card-body">
                 <h5 class="fw-bold">Layout &amp; Plan</h5>
                 <p class="card-text text-secondary small">Architectural floor plans, site layouts, and zoning diagrams. Optimized space utilization with seamless circulation and functionality. We create detailed 2D and 3D layout plans that cover everything from room dimensions and door/window placements to furniture layouts and traffic flow analysis. Our designs ensure optimal natural lighting, ventilation, and spatial efficiency while complying with local building codes and regulations.</p>
+                <a href="contact_us.php?enquiry=Layout+%26+Plan" class="btn btn-outline-danger btn-sm rounded-0 fw-semibold mt-2">Enquire Now &rarr;</a>
               </div>
             </div>
           </div>
@@ -552,6 +555,7 @@
               <div class="card-body">
                 <h5 class="fw-bold">3D Modelling</h5>
                 <p class="card-text text-secondary small">High-detail 3D models with realistic textures, lighting, and environments. Interactive walkthroughs and VR-ready visualizations. We use industry-leading software including 3ds Max, SketchUp, and Lumion to produce photorealistic renders with accurate material properties, daylight simulation, and camera-matched perspectives. Our 3D services also include animated walkthrough videos and virtual tour experiences for client presentations and marketing.</p>
+                <a href="contact_us.php?enquiry=3D+Modelling" class="btn btn-outline-danger btn-sm rounded-0 fw-semibold mt-2">Enquire Now &rarr;</a>
               </div>
             </div>
           </div>
@@ -567,6 +571,7 @@
               <div class="card-body">
                 <h5 class="fw-bold">Elevation Design</h5>
                 <p class="card-text text-secondary small">Front, rear, and side elevation designs with aesthetic façade treatments. Modern, contemporary, and traditional style options available. Our elevation designs focus on curb appeal and architectural harmony, incorporating elements such as cladding materials, window patterns, roof styles, balcony details, and exterior color palettes. We provide photorealistic elevation views with shadow analysis and material callouts to help you visualize the final built form accurately.</p>
+                <a href="contact_us.php?enquiry=Elevation+Design" class="btn btn-outline-danger btn-sm rounded-0 fw-semibold mt-2">Enquire Now &rarr;</a>
               </div>
             </div>
           </div>
