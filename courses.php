@@ -564,7 +564,7 @@
         <div class="d-flex gap-3">
           <a href="https://www.thecircledesigns.com" target="_blank" class="footer-link small">Design and Developed by Circle Designs</a>
           <span class="text-muted small opacity-50">|</span>
-          <a href="admin/" class="footer-link small text-muted opacity-50">Admin</a>
+          <a href="admin/" target="_blank" class="footer-link small text-muted opacity-50">Admin</a>
         </div>
       </div>
     </div>
