@@ -38,4 +38,5 @@ debug/
 .env
 .env.local
 config/app.php
+config/app.php.example
 
