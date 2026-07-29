@@ -15,7 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /var/www/html
 
-COPY custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
+COPY docker/php/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:80/ || exit 1
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/uploads 2>/dev/null || true
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+    CMD curl -f http://localhost/health.php || exit 1

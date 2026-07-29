@@ -147,7 +147,6 @@
         background: #d8000d !important;
       }
     }
-    .dropdown-nav.show .bi-chevron-down { transform: rotate(180deg); }
     .enroll-btn {
       background: transparent; border: none; cursor: pointer; outline: none;
       padding: 0; font: inherit; color: inherit; display: inline-flex;
@@ -606,7 +605,7 @@
             <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/">Home</a>
           </li>
           <li class="nav-item dropdown-nav">
-            <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();document.getElementById('coursesToggle').parentElement.classList.toggle('show');" id="coursesToggle">Courses <i class="bi bi-chevron-down" style="font-size:0.65rem;transition:transform 0.25s;"></i></a>
+            <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();document.getElementById('coursesToggle').parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
             <div class="mega-dropdown">
               <div class="mega-inner">
                 <a href="courses.php?cat=diploma" class="mega-card">
@@ -635,12 +634,12 @@
           </li>
         </ul>
         <div class="d-lg-none pb-3">
-          <a href="#" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
+          <a href="enroll.php" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
             Enroll Now <i class="bi bi-arrow-right"></i>
           </a>
         </div>
         <div class="d-none d-lg-flex align-items-center ms-lg-3">
-          <button class="enroll-btn text-white" onclick="window.location.href='#'">
+          <button class="enroll-btn text-white" onclick="window.location.href='enroll.php'">
             <span class="box">Enroll Now &rarr;</span>
           </button>
         </div>
@@ -1516,7 +1515,7 @@
             <li><a href="courses.php" class="footer-link">Programs</a></li>
             <li><a href="#" class="footer-link">About Us</a></li>
             <li><a href="contact_us.php" class="footer-link">Contact</a></li>
-            <li><a href="#" class="footer-link">Enroll Now</a></li>
+            <li><a href="enroll.php" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>
         <div class="col-6 col-lg-3">

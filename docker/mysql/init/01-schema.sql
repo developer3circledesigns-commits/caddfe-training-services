@@ -120,18 +120,52 @@ INSERT INTO `courses` (`category_id`, `name`, `slug`, `category`, `hours`, `dura
 -- ============================================================
 CREATE TABLE `enrollments` (
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `full_name` VARCHAR(255) NOT NULL,
+  `phone` VARCHAR(50) NOT NULL,
+  `dob` DATE DEFAULT NULL,
+  `address` TEXT DEFAULT NULL,
+  `education` VARCHAR(500) DEFAULT NULL,
   `course_id` INT UNSIGNED DEFAULT NULL,
   `course_name` VARCHAR(500) NOT NULL,
-  `full_name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
-  `phone` VARCHAR(50) NOT NULL,
-  `message` TEXT DEFAULT NULL,
+  `photo_path` VARCHAR(500) DEFAULT NULL,
+  `photo_data` MEDIUMBLOB DEFAULT NULL,
+  `photo_mime` VARCHAR(50) DEFAULT NULL,
   `status` ENUM('pending', 'contacted', 'enrolled', 'cancelled') DEFAULT 'pending',
   `enquiry_source` VARCHAR(100) DEFAULT 'web',
+  `ip_address` VARCHAR(45) DEFAULT NULL,
+  `user_agent` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE SET NULL
+  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE SET NULL,
+  INDEX `idx_enrollments_email` (`email`),
+  INDEX `idx_enrollments_phone` (`phone`),
+  INDEX `idx_enrollments_course` (`course_id`),
+  INDEX `idx_enrollments_status` (`status`),
+  INDEX `idx_enrollments_created` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DELIMITER //
+CREATE TRIGGER `validate_enrollment_before_insert` BEFORE INSERT ON `enrollments`
+FOR EACH ROW
+BEGIN
+  IF NEW.full_name IS NULL OR LENGTH(TRIM(NEW.full_name)) < 2 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Full name must be at least 2 characters';
+  END IF;
+  IF NEW.email IS NULL OR LOCATE('@', NEW.email) = 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A valid email address is required';
+  END IF;
+  IF NEW.phone IS NULL OR LENGTH(TRIM(NEW.phone)) < 7 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A valid phone number is required';
+  END IF;
+  IF NEW.dob IS NOT NULL AND NEW.dob > CURDATE() THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Date of birth cannot be in the future';
+  END IF;
+  IF NEW.course_id IS NULL THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Please select a preferred course';
+  END IF;
+END//
+DELIMITER ;
 
 -- ============================================================
 -- 6. CONTACT FORM SUBMISSIONS

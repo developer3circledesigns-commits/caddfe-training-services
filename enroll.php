@@ -1,16 +1,183 @@
-﻿<!DOCTYPE html>
+<?php
+require_once __DIR__ . '/config/db_connect.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$form_submitted = false;
+$form_errors = [];
+$form_success = false;
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+$courses_list = [];
+try {
+    if ($pdo !== null) {
+        $stmt = $pdo->query('SELECT id, name FROM courses WHERE is_active = 1 ORDER BY display_order ASC');
+        $courses_list = $stmt->fetchAll();
+    }
+} catch (\Throwable $e) {
+    error_log('Failed to fetch courses: ' . $e->getMessage());
+}
+
+function getClientIP(): string
+{
+    $candidates = [
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_REAL_IP',
+        'REMOTE_ADDR',
+    ];
+    foreach ($candidates as $key) {
+        $value = $_SERVER[$key] ?? '';
+        if ($value === '') continue;
+        if (strpos($value, ',') !== false) {
+            $value = trim(explode(',', $value)[0]);
+        }
+        if (filter_var($value, FILTER_VALIDATE_IP)) {
+            return $value;
+        }
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
+    $form_submitted = true;
+
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $form_errors[] = 'Invalid or expired form. Please reload the page and try again.';
+    }
+
+    $full_name  = trim($_POST['full_name'] ?? '');
+    $phone      = trim($_POST['phone'] ?? '');
+    $dob        = trim($_POST['dob'] ?? '');
+    $address    = trim($_POST['address'] ?? '');
+    $education  = trim($_POST['education'] ?? '');
+    $course_id  = trim($_POST['course_id'] ?? '');
+    $email      = trim($_POST['email'] ?? '');
+    $honeypot   = trim($_POST['website'] ?? '');
+
+    if ($honeypot !== '') {
+        $form_errors[] = 'Bot detected.';
+    }
+
+    if ($full_name === '') {
+        $form_errors[] = 'Full name is required.';
+    } elseif (strlen($full_name) < 2 || strlen($full_name) > 255) {
+        $form_errors[] = 'Full name must be between 2 and 255 characters.';
+    }
+
+    if ($phone === '') {
+        $form_errors[] = 'Phone number is required.';
+    } elseif (!preg_match('/^[+\d][\d\s\-().]{6,20}$/', $phone)) {
+        $form_errors[] = 'Please enter a valid phone number.';
+    }
+
+    if ($dob !== '') {
+        $dob_ts = strtotime($dob);
+        if ($dob_ts === false) {
+            $form_errors[] = 'Please enter a valid date of birth.';
+        } elseif ($dob_ts > time()) {
+            $form_errors[] = 'Date of birth cannot be in the future.';
+        }
+    }
+
+    if ($education !== '' && strlen($education) > 500) {
+        $form_errors[] = 'Education must not exceed 500 characters.';
+    }
+
+    if ($course_id === '') {
+        $form_errors[] = 'Please select a preferred course.';
+    } else {
+        $course_found = false;
+        $course_name = '';
+        foreach ($courses_list as $c) {
+            if ((string)$c['id'] === $course_id) {
+                $course_found = true;
+                $course_name = $c['name'];
+                break;
+            }
+        }
+        if (!$course_found) {
+            $form_errors[] = 'Invalid course selected.';
+        }
+    }
+
+    if ($email === '') {
+        $form_errors[] = 'Email address is required.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $form_errors[] = 'Please enter a valid email address.';
+    }
+
+    $photo_data = null;
+    $photo_mime = null;
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $file = $_FILES['photo'];
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $form_errors[] = 'Photo upload failed with error code ' . $file['error'];
+        } else {
+            $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime = finfo_file($finfo, $file['tmp_name']);
+            finfo_close($finfo);
+            if (!in_array($mime, $allowed)) {
+                $form_errors[] = 'Photo must be a JPEG, PNG, or WebP image.';
+            } elseif ($file['size'] > 5 * 1024 * 1024) {
+                $form_errors[] = 'Photo must be less than 5 MB.';
+            } else {
+                $photo_data = file_get_contents($file['tmp_name']);
+                if ($photo_data === false) {
+                    $form_errors[] = 'Failed to read uploaded photo.';
+                } else {
+                    $photo_mime = $mime;
+                }
+            }
+        }
+    }
+
+    if (empty($form_errors)) {
+        try {
+            if ($pdo === null) {
+                throw new \RuntimeException('Database connection not available');
+            }
+            $stmt = $pdo->prepare('INSERT INTO enrollments (full_name, phone, dob, address, education, course_id, course_name, email, photo_data, photo_mime, ip_address, user_agent) VALUES (:full_name, :phone, :dob, :address, :education, :course_id, :course_name, :email, :photo_data, :photo_mime, :ip_address, :user_agent)');
+            $stmt->execute([
+                ':full_name'  => $full_name,
+                ':phone'      => $phone,
+                ':dob'        => $dob !== '' ? $dob : null,
+                ':address'    => $address !== '' ? $address : null,
+                ':education'  => $education !== '' ? $education : null,
+                ':course_id'  => (int)$course_id,
+                ':course_name'=> $course_name,
+                ':email'      => $email,
+                ':photo_data' => $photo_data,
+                ':photo_mime' => $photo_mime,
+                ':ip_address' => getClientIP(),
+                ':user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+            ]);
+            $form_success = true;
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        } catch (\Throwable $e) {
+            $form_errors[] = 'Something went wrong. Please try again later.';
+            error_log('Enrollment insert failed: ' . $e->getMessage());
+        }
+    }
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net; frame-src 'none'; object-src 'none';" />
+  <meta name="description" content="Enroll in CADDFE Training Services — Fill out the form to register for your preferred Civil CAD, BIM, or architectural design course." />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
-  <meta name="description" content="CADDFE offers professional architectural design services — 2D drafting, 3D modeling, rendering, and structural documentation for residential and commercial projects." />
-  <title>Architectural Design Services - CADDFE</title>
+  <title>Enroll Now - CADDFE Training Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,13 +188,7 @@
   <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
-    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
-    [data-aos="fade-left"] { transform: translateX(-50px); }
-    [data-aos="fade-left"].aos-animate { transform: translateX(0); }
-    [data-aos="fade-right"] { transform: translateX(50px); }
-    [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
@@ -46,7 +207,8 @@
       left: 0; right: 0; bottom: 100%;
       height: 18px; background: #fff;
     }
-    .dropdown-nav:hover .mega-dropdown {
+    .dropdown-nav:hover .mega-dropdown,
+    .dropdown-nav.show .mega-dropdown {
       opacity: 1; visibility: visible;
       pointer-events: auto;
     }
@@ -122,6 +284,14 @@
         background: #d8000d !important;
       }
     }
+    .hero-header .navbar { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+    .hero-header .navbar-brand { padding: 0.25rem !important; margin: 0 !important; }
+    .hero-header .navbar-toggler { padding: 0.5rem !important; box-shadow: none !important; outline: none !important; }
+    .hero-header .navbar-toggler:focus { box-shadow: none !important; }
+    .hero-header .nav-link { padding: 0 !important; }
+    .hero-header .nav-link:hover { color: #fff !important; }
+    .btn-danger { background-color: #d8000d !important; border-color: #d8000d !important; }
+    .btn-danger:hover { background-color: #d8000d !important; border-color: #d8000d !important; }
     .enroll-btn {
       background: transparent; border: none; cursor: pointer; outline: none;
       padding: 0; font: inherit; color: inherit; display: inline-flex;
@@ -155,37 +325,19 @@
       border-color: #d8000d; height: 100%; transform: translateX(0);
       transition: .3s transform linear, .3s height linear .5s;
     }
-    .btn-danger { background-color: #d8000d !important; border-color: #d8000d !important; }
-    .btn-danger:hover { background-color: #d8000d !important; border-color: #d8000d !important; }
+    .hero-content { padding-top: 76px; }
+    .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
+    .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
+    .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
+    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-link:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
     .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; transition: all 0.3s; }
     .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
-    .section-tag { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #d8000d; margin-bottom: 0.5rem; }
-    .service-feature { padding: 2rem; background: #fff; border: 1px solid #e9ecef; height: 100%; transition: all 0.3s; }
-    .service-feature:hover { border-color: #d8000d; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-    .service-feature .sf-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
-    .code-badge { display: inline-block; padding: 0.3rem 0.8rem; font-size: 0.7rem; font-weight: 600; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
-    .project-card { background: #fff; border: 1px solid #e9ecef; transition: all 0.3s; height: 100%; }
-    .project-card:hover { border-color: #d8000d; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-    .project-card img { height: 200px; object-fit: cover; width: 100%; }
-    .card-horizontal-img { width:100%; height:100%; object-fit:cover; }
-    @media (max-width:767px) { .card-horizontal-img { height:220px; } }
-    .hero-header .navbar { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-    .hero-header .navbar-brand { padding: 0.25rem !important; margin: 0 !important; }
-    .hero-header .navbar-toggler { padding: 0.5rem !important; box-shadow: none !important; outline: none !important; }
-    .hero-header .navbar-toggler:focus { box-shadow: none !important; }
-    .hero-header .nav-link { padding: 0 !important; }
-    .hero-header .nav-link:hover { color: #fff !important; }
-    .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
-    .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
-    .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
-    .hero-content { padding-top: 76px; }
-    p, .card-text, dd { text-align: justify; }
-    .card-body .fw-bold { color: #d8000d; }
     @media (max-width: 767px) {
       .hero-header .navbar-collapse {
         background: rgba(15, 23, 42, 0.85);
@@ -197,41 +349,26 @@
         border-radius: 0.5rem;
       }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
+      .page-hero { min-height: 40vh; }
+      .page-hero h1 { font-size: 2rem !important; }
+      .container { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
+      .form-control, .form-select { min-height: 44px; }
+      .btn, .btn-lg, .btn-sm { min-height: 44px; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
-      .card-horizontal-img { height: 180px !important; }
-      .col-md-5 { flex: 0 0 100%; max-width: 100%; margin-bottom: 1rem; }
-      .col-md-5:last-child { margin-bottom: 0; }
-      .col-md-7 { flex: 0 0 100%; max-width: 100%; }
-      .page-hero { min-height: 40vh; }
-      .page-hero h1 { font-size: 2rem !important; }
-      .service-feature { margin-bottom: 1rem; }
-      .service-feature:last-child { margin-bottom: 0; }
-      .container { padding-left: 20px; padding-right: 20px; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
-      .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
+      .container { padding-left: 32px; padding-right: 32px; }
       body { overflow-x: hidden; }
-      html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
-      .card-horizontal-img { height: 200px !important; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
-      .container { padding-left: 32px; padding-right: 32px; }
+      .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
     }
-    .small-hover:hover { opacity: 1 !important; }
-    .hover-bg-light:hover { background-color: #f8f9fa !important; }
-    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-    @media (min-width: 576px) {
-      .py-sm-28 { padding-top: 7rem; padding-bottom: 7rem; }
-    }
-    .text-balance { text-wrap: balance; }
-    .transition-all { transition-property: all; }
-    .duration-300 { transition-duration: 300ms; }
     .page-loader {
       position: fixed; inset: 0; z-index: 9999;
       display: flex; align-items: center; justify-content: center;
@@ -277,7 +414,7 @@
       27.2727272727% { transform: translate(0px, 0); }
       36.3636363636% { transform: translate(26px, 0); }
       45.4545454545% { transform: translate(26px, 26px); }
-      54.5454545455% { transform: translate(26px, 26px); }
+      54.5454545454% { transform: translate(26px, 26px); }
       63.6363636364% { transform: translate(26px, 26px); }
       72.7272727273% { transform: translate(26px, 26px); }
       81.8181818182% { transform: translate(0px, 26px); }
@@ -396,31 +533,30 @@
 
 <header class="hero-header">
   <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-    <a href="/index.php" class="navbar-brand p-1">
-        <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
-      </a>
+    <a href="index.php" class="navbar-brand p-1">
+      <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
+    </a>
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="24" height="24">
         <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-4">
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/">Home</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="index.php">Home</a>
         </li>
         <li class="nav-item dropdown-nav">
-          <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
+          <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');">Courses</a>
           <div class="mega-dropdown">
             <div class="mega-inner">
-                <a href="courses.php?cat=diploma" class="mega-card">
+              <a href="courses.php?cat=diploma" class="mega-card">
                 <div class="mega-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-mortarboard"></i></div>
                 <h4>Diploma Programs</h4>
                 <p class="mega-desc">Architectural &amp; Interior Design diplomas with hands-on training</p>
                 <span class="mega-arrow">Browse Courses &rarr;</span>
               </a>
-                <a href="courses.php?cat=bim" class="mega-card">
+              <a href="courses.php?cat=bim" class="mega-card">
                 <div class="mega-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-cpu"></i></div>
                 <h4>BIM Programs</h4>
                 <p class="mega-desc">Industry-aligned BIM certification courses for modern careers</p>
@@ -430,7 +566,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/services">Services</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="services.php">Services</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
@@ -455,126 +591,107 @@
 
 <div class="page-hero hero-content">
   <div class="page-hero-bg">
-    <picture>
-      <source srcset="images/hero-section-960.webp 960w, images/hero-section-1920.webp 1920w" type="image/webp" sizes="100vw" />
-      <source srcset="images/hero-section-960.jpg 960w, images/hero-section-1920.jpg 1920w" type="image/jpeg" sizes="100vw" />
-      <img src="images/hero-section-1920.jpg" alt="Architectural Design" width="1920" height="1080" loading="eager" fetchpriority="high" />
-    </picture>
+    <img src="images/enroll-hero.jpg" alt="Enroll at CADDFE" width="1920" height="1080" loading="eager" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05);" />
     <div class="page-hero-overlay"></div>
   </div>
   <div class="container text-center text-white position-relative">
-    <h1 class="fw-bold" style="font-size:2.5rem;letter-spacing:-0.025em;">Architectural Design Services</h1>
-    <p class="text-white-50 mt-2" style="max-width:650px;margin:0 auto;">From concept to completion — professional architectural design solutions tailored for residential, commercial, and institutional projects.</p>
+    <h1 class="fw-bold" style="font-size:2.5rem;letter-spacing:-0.025em;">Enroll Now</h1>
+    <p class="text-white-50 mt-2" style="max-width:600px;margin:0 auto;">Fill out the form below to register for your preferred course and take the next step toward your career.</p>
   </div>
 </div>
 
-<section data-aos="fade-up" class="py-5 bg-light">
-  <div class="container" style="max-width:72rem;">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=700&q=80" class="w-100" alt="" loading="lazy" style="height:400px;object-fit:cover;" /></div>
-      <div class="col-lg-6">
-        <p class="section-tag">Overview</p>
-        <h2 class="fw-bold mb-3" style="font-size:2rem;letter-spacing:-0.02em;">Complete Architectural Solutions</h2>
-        <p class="text-secondary" style="line-height:1.8;">We offer end-to-end architectural design services that bring your vision to life. Whether it's a new build, renovation, or interior fit-out, our team delivers creative, functional, and code-compliant designs using industry-leading BIM and CAD software.</p>
-        <div class="d-flex flex-wrap gap-2 mt-3"><span class="code-badge">AutoCAD</span><span class="code-badge">Revit</span><span class="code-badge">3ds Max</span><span class="code-badge">SketchUp</span><span class="code-badge">Lumion</span><span class="code-badge">ETABS</span></div>
-      </div>
-    </div>
+<div data-aos="fade-up" class="container pb-5" style="max-width:56rem;margin-top:-3rem;">
+  <?php if ($form_success): ?>
+  <div class="bg-white p-5 shadow-sm text-center">
+    <div style="font-size:3.5rem;color:#198754;" class="mb-3"><i class="bi bi-check-circle-fill"></i></div>
+    <h4 class="fw-bold">Enrollment Submitted Successfully!</h4>
+    <p class="text-secondary mt-2 mb-4">Thank you for enrolling at CADDFE. Our team will contact you within 24 hours with further details about your course.</p>
+    <a href="enroll.php" class="btn btn-success rounded-0 fw-semibold px-4">Enroll Again</a>
+    <a href="index.php" class="btn btn-outline-secondary rounded-0 fw-semibold px-4 ms-2">Back to Home</a>
   </div>
-</section>
-
-<section data-aos="fade-up" class="py-5">
-  <div class="container" style="max-width:72rem;">
-    <div class="text-center mb-5"><p class="section-tag" style="text-align:center;">What We Offer</p><h2 class="fw-bold" style="font-size:2rem;">Architectural Design Services</h2></div>
-    <div class="row g-4">
-      <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="row g-0 h-100">
-            <div class="col-md-5">
-              <img src="images/interior.jpg" class="card-horizontal-img" alt="Interior Design" loading="lazy">
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="fw-bold">Interior Design</h5>
-                <p class="card-text text-secondary small">Space planning, material selection, lighting design, and furniture layout for residential and commercial interiors. Stunning 3D walkthroughs included. Our team specializes in creating functional yet aesthetically pleasing interiors that maximize space utilization while reflecting your personal style. From concept development to final execution, we handle every detail including color schemes, texture coordination, custom joinery, and ambient lighting solutions.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="row g-0 h-100">
-            <div class="col-md-5">
-              <img src="images/structure.jpg" class="card-horizontal-img" alt="Structural Design" loading="lazy">
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="fw-bold">Structural Design</h5>
-                <p class="card-text text-secondary small">RCC and steel structural design with seismic analysis. Safe, durable, and code-compliant structural solutions for all building types. We provide comprehensive structural engineering services including load analysis, foundation design, beam and column detailing, and slab reinforcement layouts. Our designs adhere to IS, ACI, and Eurocode standards, ensuring safety and longevity for residential, commercial, and industrial structures.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="row g-0 h-100">
-            <div class="col-md-5">
-              <img src="images/planlayout.jpg" class="card-horizontal-img" alt="Layout &amp; Plan" loading="lazy">
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="fw-bold">Layout &amp; Plan</h5>
-                <p class="card-text text-secondary small">Architectural floor plans, site layouts, and zoning diagrams. Optimized space utilization with seamless circulation and functionality. We create detailed 2D and 3D layout plans that cover everything from room dimensions and door/window placements to furniture layouts and traffic flow analysis. Our designs ensure optimal natural lighting, ventilation, and spatial efficiency while complying with local building codes and regulations.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="row g-0 h-100">
-            <div class="col-md-5">
-              <img src="images/3dmodel.jpg" class="card-horizontal-img" alt="3D Modelling" loading="lazy">
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="fw-bold">3D Modelling</h5>
-                <p class="card-text text-secondary small">High-detail 3D models with realistic textures, lighting, and environments. Interactive walkthroughs and VR-ready visualizations. We use industry-leading software including 3ds Max, SketchUp, and Lumion to produce photorealistic renders with accurate material properties, daylight simulation, and camera-matched perspectives. Our 3D services also include animated walkthrough videos and virtual tour experiences for client presentations and marketing.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="row g-0 h-100">
-            <div class="col-md-5">
-              <img src="images/elevation.jpg" class="card-horizontal-img" alt="Elevation Design" loading="lazy">
-            </div>
-            <div class="col-md-7">
-              <div class="card-body">
-                <h5 class="fw-bold">Elevation Design</h5>
-                <p class="card-text text-secondary small">Front, rear, and side elevation designs with aesthetic façade treatments. Modern, contemporary, and traditional style options available. Our elevation designs focus on curb appeal and architectural harmony, incorporating elements such as cladding materials, window patterns, roof styles, balcony details, and exterior color palettes. We provide photorealistic elevation views with shadow analysis and material callouts to help you visualize the final built form accurately.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <?php else: ?>
+  <?php if (!empty($form_errors)): ?>
+  <div class="alert alert-danger rounded-0 d-flex align-items-center gap-2">
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <ul class="mb-0 ps-3"><?php foreach ($form_errors as $e): ?><li><?= htmlspecialchars($e) ?></li><?php endforeach; ?></ul>
   </div>
-</section>
-
-<!-- <section data-aos="fade-up" class="py-5 bg-light">
-  <div class="container" style="max-width:72rem;">
-    <div class="text-center mb-5"><p class="section-tag" style="text-align:center;">Recent Work</p><h2 class="fw-bold" style="font-size:2rem;">Our Project Portfolio</h2></div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&h=250&fit=crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Interior</span><h3 class="fw-bold mt-2 mb-1">Modern Living Room</h3><p class="small text-secondary mb-0">Complete interior design with custom joinery, ambient lighting, and contemporary furniture layout.</p></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Residential</span><h3 class="fw-bold mt-2 mb-1">G+2 Villa</h3><p class="small text-secondary mb-0">Architectural design including floor plans, elevations, sections, and 3D walkthrough for a modern villa.</p></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Commercial</span><h3 class="fw-bold mt-2 mb-1">Office Interior</h3><p class="small text-secondary mb-0">Space planning, 3D modelling, and elevation design for a 2,000 sq.ft corporate office.</p></div></div></div>
-    </div>
+  <?php endif; ?>
+  <div class="bg-white p-4 p-lg-5 shadow-sm">
+    <h4 class="fw-bold mb-1">Course Enrollment Form</h4>
+    <p class="small text-secondary mb-4">All fields marked with <span class="text-danger">*</span> are required.</p>
+    <form method="POST" action="" novalidate enctype="multipart/form-data" id="enrollForm">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES) ?>">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input type="text" name="full_name" id="full_name" class="form-control rounded-0" placeholder="Full Name" value="<?= htmlspecialchars($_POST['full_name'] ?? '', ENT_QUOTES) ?>" required minlength="2" maxlength="255" />
+            <label for="full_name">Full Name <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">Please enter your full name (2-255 characters).</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input type="tel" name="phone" id="phone" class="form-control rounded-0" placeholder="Phone Number" value="<?= htmlspecialchars($_POST['phone'] ?? '', ENT_QUOTES) ?>" required pattern="[+\d][\d\s\-().]{6,20}" maxlength="21" />
+            <label for="phone">Phone Number <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">Please enter a valid phone number.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input type="date" name="dob" id="dob" class="form-control rounded-0" placeholder="Date of Birth" value="<?= htmlspecialchars($_POST['dob'] ?? '', ENT_QUOTES) ?>" max="<?= date('Y-m-d') ?>" />
+            <label for="dob">Date of Birth</label>
+            <div class="invalid-feedback">Please enter a valid date of birth.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Email Address" value="<?= htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES) ?>" required />
+            <label for="email">Email Address <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating">
+            <textarea name="address" id="address" class="form-control rounded-0" placeholder="Address" style="min-height:100px"><?= htmlspecialchars($_POST['address'] ?? '', ENT_QUOTES) ?></textarea>
+            <label for="address">Address</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="text" name="education" id="education" class="form-control rounded-0" placeholder="Education" value="<?= htmlspecialchars($_POST['education'] ?? '', ENT_QUOTES) ?>" maxlength="500" />
+            <label for="education">Education Qualification</label>
+            <div class="invalid-feedback">Please enter a valid education qualification.</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating">
+            <select name="course_id" id="course_id" class="form-select rounded-0" required>
+              <option value="">Select a course...</option>
+              <?php foreach ($courses_list as $c): ?>
+              <option value="<?= $c['id'] ?>" <?= ($_POST['course_id'] ?? '') === (string)$c['id'] ? 'selected' : '' ?>><?= htmlspecialchars($c['name']) ?></option>
+              <?php endforeach; ?>
+            </select>
+            <label for="course_id">Preferred Course <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">Please select a preferred course.</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="photo" class="form-label fw-semibold small">Upload Photo <span class="text-secondary fw-normal">(JPEG, PNG, or WebP. Max 5 MB)</span></label>
+          <input type="file" name="photo" id="photo" class="form-control rounded-0" accept="image/jpeg,image/png,image/webp" />
+          <div class="invalid-feedback">Please upload a valid image file (JPEG, PNG, or WebP) under 5 MB.</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" name="enroll_submit" class="btn btn-danger fw-semibold rounded-0 px-5 py-2" id="submitBtn">Submit Enrollment <i class="bi bi-send ms-1"></i></button>
+        <button type="reset" class="btn btn-outline-secondary rounded-0 px-4 py-2" id="resetBtn">Reset</button>
+      </div>
+    </form>
   </div>
-</section> -->
+  <?php endif; ?>
+</div>
 
 <script>
 (function(){
@@ -588,6 +705,8 @@
   els.forEach(function(el){ obs.observe(el); });
 })();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 (function(){
@@ -607,7 +726,111 @@
 })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('enrollForm');
+  if (!form) return;
+
+  var fields = form.querySelectorAll('input, textarea, select');
+  var submitBtn = document.getElementById('submitBtn');
+  var photoInput = document.getElementById('photo');
+
+  function validateField(field) {
+    var isValid = field.checkValidity();
+    if (field.tagName === 'SELECT' && field.value === '') isValid = false;
+    if (field.id === 'phone' && field.value !== '' && !new RegExp('^(?:' + field.pattern + ')$').test(field.value)) isValid = false;
+    if (field.id === 'dob' && field.value !== '') {
+      var d = new Date(field.value);
+      if (isNaN(d.getTime()) || d > new Date()) isValid = false;
+    }
+    if (field.type === 'file' && field.files.length > 0) {
+      var f = field.files[0];
+      var allowed = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!allowed.includes(f.type) || f.size > 5 * 1024 * 1024) isValid = false;
+    }
+    field.classList.toggle('is-invalid', !isValid && field.value !== '');
+    field.classList.toggle('is-valid', isValid && field.value !== '');
+    return isValid;
+  }
+
+  fields.forEach(function(field) {
+    field.addEventListener('blur', function() { validateField(field); });
+    field.addEventListener('input', function() {
+      if (field.classList.contains('is-invalid') || field.classList.contains('is-valid')) validateField(field);
+    });
+    field.addEventListener('change', function() {
+      if (field.classList.contains('is-invalid') || field.classList.contains('is-valid')) validateField(field);
+    });
+  });
+
+  if (photoInput) {
+    photoInput.addEventListener('change', function() {
+      validateField(photoInput);
+    });
+  }
+
+  form.addEventListener('submit', function(e) {
+    var firstInvalid = null;
+    fields.forEach(function(field) {
+      if (field.type === 'hidden' || field.name === 'csrf_token' || field.name === 'website') return;
+      validateField(field);
+      if (!field.checkValidity() && !firstInvalid) firstInvalid = field;
+      if (field.tagName === 'SELECT' && field.value === '' && !firstInvalid) firstInvalid = field;
+      if (field.type === 'file' && field.files.length > 0) {
+        var f = field.files[0];
+        var allowed = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!allowed.includes(f.type) || f.size > 5 * 1024 * 1024) {
+          if (!firstInvalid) firstInvalid = field;
+        }
+      }
+    });
+    if (firstInvalid) {
+      e.preventDefault();
+      e.stopPropagation();
+      form.classList.add('was-validated');
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    if (form.submitting) { e.preventDefault(); return; }
+    form.submitting = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Submitting...';
+  });
+
+  document.getElementById('resetBtn')?.addEventListener('click', function() {
+    fields.forEach(function(el) {
+      if (el.type === 'hidden' || el.type === 'submit' || el.name === 'csrf_token') return;
+      if (el.tagName === 'SELECT') { el.selectedIndex = 0; }
+      else if (el.type === 'file') { el.value = ''; }
+      else { el.value = ''; }
+      el.classList.remove('is-invalid', 'is-valid');
+    });
+    form.classList.remove('was-validated');
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var loader = document.getElementById('pageLoader');
+  if (!loader) return;
+  function show(){ loader.classList.remove('hidden'); }
+  function hide(){ loader.classList.add('hidden'); }
+  window.addEventListener('pageshow', hide);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a || a.hostname !== location.hostname) return;
+    var h = a.getAttribute('href');
+    if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
+    show();
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.dropdown-nav')) {
+      document.querySelectorAll('.dropdown-nav.show').forEach(function(el){ el.classList.remove('show'); });
+    }
+  });
+})();
+</script>
 
 <footer style="background:#0f172a;color:#cbd5e1;">
   <div style="padding:4rem 0 2.5rem;">
@@ -616,7 +839,6 @@
         <div class="col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
             <img src="images/logo.png" alt="CADDFE" height="38" style="filter:brightness(1.2)" loading="lazy">
-            <!-- <span class="fw-bold text-white fs-5">CADDFE</span> -->
           </div>
           <p class="small" style="line-height:1.7;">CADDFE Training Services bridges the gap between academic learning and industry demands through hands-on Civil CAD training and professional architectural design services.</p>
           <div class="d-flex gap-2 mt-3">
@@ -631,25 +853,24 @@
           <ul class="list-unstyled small d-flex flex-column gap-2">
             <li><a href="index.php" class="footer-link">Home</a></li>
             <li><a href="courses.php" class="footer-link">Programs</a></li>
-            <li><a href="#" class="footer-link">About Us</a></li>
-            <li><a href="contact_us.php" class="footer-link">Contact</a></li>
             <li><a href="enroll.php" class="footer-link">Enroll Now</a></li>
+            <li><a href="contact_us.php" class="footer-link">Contact</a></li>
           </ul>
         </div>
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready+ Post Graduation</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Architecture Advanced</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">MSU Certification in BIM</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Building - SMART Certification</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-post-graduation" class="footer-link">BIM-Ready+ Post Graduation</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=michigan-state-university-bim" class="footer-link">MSU Certification in BIM</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -683,27 +904,5 @@
     </div>
   </div>
 </footer>
-
-<script>
-(function(){
-  var loader = document.getElementById('pageLoader');
-  if (!loader) return;
-  function show(){ loader.classList.remove('hidden'); }
-  function hide(){ loader.classList.add('hidden'); }
-  window.addEventListener('pageshow', hide);
-  document.addEventListener('click', function(e){
-    var a = e.target.closest('a');
-    if (!a || a.hostname !== location.hostname) return;
-    var h = a.getAttribute('href');
-    if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
-  });
-  document.addEventListener('click', function(e){
-    if (!e.target.closest('.dropdown-nav')) {
-      document.querySelectorAll('.dropdown-nav.show').forEach(function(el){ el.classList.remove('show'); });
-    }
-  });
-})();
-</script>
 </body>
 </html>

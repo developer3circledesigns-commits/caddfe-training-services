@@ -254,7 +254,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
         background: #d8000d !important;
       }
     }
-    .dropdown-nav.show .bi-chevron-down { transform: rotate(180deg); }
     .enroll-btn {
       background: transparent; border: none; cursor: pointer; outline: none;
       padding: 0; font: inherit; color: inherit; display: inline-flex;
@@ -313,8 +312,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
     .social-icon:hover { background: #d8000d !important; border-color: #d8000d !important; color: #fff !important; }
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
-    .modal-backdrop { background-color: rgba(0, 0, 0, 0.5) !important; }
-    .modal-backdrop.show { opacity: 1 !important; }
 
     @media (max-width: 767px) {
       .hero-header .navbar-collapse {
@@ -539,7 +536,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="index.php">Home</a>
         </li>
           <li class="nav-item dropdown-nav">
-            <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses <i class="bi bi-chevron-down" style="font-size:0.65rem;transition:transform 0.25s;"></i></a>
+            <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
             <div class="mega-dropdown">
               <div class="mega-inner">
                 <a href="courses.php?cat=diploma" class="mega-card">
@@ -569,12 +566,12 @@ href="services.php">Services</a>
         </li>
       </ul>
       <div class="d-lg-none pb-3">
-        <a href="#" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
+        <a href="enroll.php" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
           Enroll Now <i class="bi bi-arrow-right"></i>
         </a>
       </div>
       <div class="d-none d-lg-flex align-items-center ms-lg-3">
-        <button class="enroll-btn text-white" onclick="window.location.href='#'">
+        <button class="enroll-btn text-white" onclick="window.location.href='enroll.php'">
           <span class="box">Enroll Now &rarr;</span>
         </button>
       </div>
@@ -682,7 +679,7 @@ href="services.php">Services</a>
         </form>
       </div>
 
-      <div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+      <div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
           <div class="modal-content rounded-0 border-0">
             <div class="modal-body text-center p-5">
@@ -695,7 +692,7 @@ href="services.php">Services</a>
         </div>
       </div>
 
-      <div id="errorModal" class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+      <div id="errorModal" class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
           <div class="modal-content rounded-0 border-0">
             <div class="modal-body text-center p-5">
@@ -920,7 +917,7 @@ href="services.php">Services</a>
             <li><a href="courses.php" class="footer-link">Programs</a></li>
             <li><a href="#" class="footer-link">About Us</a></li>
             <li><a href="contact_us.php" class="footer-link">Contact</a></li>
-            <li><a href="#" class="footer-link">Enroll Now</a></li>
+            <li><a href="enroll.php" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>
         <div class="col-6 col-lg-3">

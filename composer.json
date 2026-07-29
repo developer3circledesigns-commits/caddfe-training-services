@@ -1,0 +1,27 @@
+{
+  "name": "caddfe/training-services",
+  "description": "CADDFE Training Services — Professional Civil CAD training and architectural design services",
+  "type": "project",
+  "require": {
+    "php": ">=8.1"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.10",
+    "phpstan/phpstan": "^1.12",
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "files": [
+      "config/db_connect.php"
+    ]
+  },
+  "scripts": {
+    "lint": "phpcs --standard=PSR12 --extensions=php --exclude=Generic.Files.LineLength .",
+    "lint:fix": "phpcbf --standard=PSR12 --extensions=php --exclude=Generic.Files.LineLength .",
+    "analyse": "phpstan analyse . --level=max --no-progress",
+    "test": "phpunit tests"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

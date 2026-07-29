@@ -23,6 +23,14 @@ yarn.lock
 # PHP
 *.log
 
+# Storage (sensitive runtime data)
+storage/framework/sessions/
+storage/logs/
+storage/cache/
+
+# Uploads
+uploads/
+
 # Environment / Config
 .env
 .env.local
