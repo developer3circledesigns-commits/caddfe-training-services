@@ -43,7 +43,9 @@ CREATE TABLE `social_links` (
   `url` VARCHAR(500) NOT NULL DEFAULT '#',
   `sort_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_social_active` (`is_active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `social_links` (`platform`, `icon_class`, `url`, `sort_order`) VALUES
@@ -63,7 +65,9 @@ CREATE TABLE `course_categories` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_cat_active` (`is_active`),
+  INDEX `idx_cat_order` (`display_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `course_categories` (`slug`, `name`, `description`, `display_order`) VALUES
@@ -98,6 +102,11 @@ CREATE TABLE `courses` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_courses_category_id` (`category_id`),
+  INDEX `idx_courses_category` (`category`),
+  INDEX `idx_courses_active` (`is_active`),
+  INDEX `idx_courses_featured` (`is_featured`),
+  INDEX `idx_courses_order` (`display_order`),
   FOREIGN KEY (`category_id`) REFERENCES `course_categories`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -137,12 +146,12 @@ CREATE TABLE `enrollments` (
   `user_agent` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE SET NULL,
   INDEX `idx_enrollments_email` (`email`),
   INDEX `idx_enrollments_phone` (`phone`),
   INDEX `idx_enrollments_course` (`course_id`),
   INDEX `idx_enrollments_status` (`status`),
-  INDEX `idx_enrollments_created` (`created_at`)
+  INDEX `idx_enrollments_created` (`created_at`),
+  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 DELIMITER //
@@ -184,8 +193,28 @@ CREATE TABLE `contact_submissions` (
   `ip_address` VARCHAR(45) DEFAULT NULL,
   `user_agent` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_contact_email` (`email`),
+  INDEX `idx_contact_read` (`is_read`),
+  INDEX `idx_contact_replied` (`is_replied`),
+  INDEX `idx_contact_created` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DELIMITER //
+CREATE TRIGGER `validate_contact_before_insert` BEFORE INSERT ON `contact_submissions`
+FOR EACH ROW
+BEGIN
+  IF NEW.full_name IS NULL OR LENGTH(TRIM(NEW.full_name)) < 2 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Full name must be at least 2 characters';
+  END IF;
+  IF NEW.email IS NULL OR LOCATE('@', NEW.email) = 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A valid email address is required';
+  END IF;
+  IF NEW.message IS NULL OR LENGTH(TRIM(NEW.message)) < 10 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Message must be at least 10 characters';
+  END IF;
+END//
+DELIMITER ;
 
 -- ============================================================
 -- 7. SERVICES
@@ -202,7 +231,9 @@ CREATE TABLE `services` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_services_active` (`is_active`),
+  INDEX `idx_services_order` (`display_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `services` (`title`, `slug`, `description`, `short_description`, `image`, `display_order`) VALUES
@@ -210,7 +241,7 @@ INSERT INTO `services` (`title`, `slug`, `description`, `short_description`, `im
 ('Structural Design', 'structural-design', 'RCC and steel structural design with seismic analysis. Safe, durable, and code-compliant structural solutions for all building types. We provide comprehensive structural engineering services including load analysis, foundation design, beam and column detailing, and slab reinforcement layouts. Our designs adhere to IS, ACI, and Eurocode standards, ensuring safety and longevity for residential, commercial, and industrial structures.', 'RCC & steel structural design with seismic analysis', 'images/structure.jpg', 2),
 ('Layout & Plan', 'layout-plan', 'Architectural floor plans, site layouts, and zoning diagrams. Optimized space utilization with seamless circulation and functionality. We create detailed 2D and 3D layout plans that cover everything from room dimensions and door/window placements to furniture layouts and traffic flow analysis. Our designs ensure optimal natural lighting, ventilation, and spatial efficiency while complying with local building codes and regulations.', 'Floor plans, site layouts, and zoning diagrams', 'images/planlayout.jpg', 3),
 ('3D Modelling', '3d-modelling', 'High-detail 3D models with realistic textures, lighting, and environments. Interactive walkthroughs and VR-ready visualizations. We use industry-leading software including 3ds Max, SketchUp, and Lumion to produce photorealistic renders with accurate material properties, daylight simulation, and camera-matched perspectives. Our 3D services also include animated walkthrough videos and virtual tour experiences for client presentations and marketing.', 'Photorealistic 3D models with VR-ready visualizations', 'images/3dmodel.jpg', 4),
-('Elevation Design', 'elevation-design', 'Front, rear, and side elevation designs with aesthetic façade treatments. Modern, contemporary, and traditional style options available. Our elevation designs focus on curb appeal and architectural harmony, incorporating elements such as cladding materials, window patterns, roof styles, balcony details, and exterior color palettes. We provide photorealistic elevation views with shadow analysis and material callouts.', 'Façade design with modern, contemporary & traditional styles', 'images/elevation.jpg', 5);
+('Elevation Design', 'elevation-design', 'Front, rear, and side elevation designs with aesthetic fa\u00e7ade treatments. Modern, contemporary, and traditional style options available. Our elevation designs focus on curb appeal and architectural harmony, incorporating elements such as cladding materials, window patterns, roof styles, balcony details, and exterior color palettes. We provide photorealistic elevation views with shadow analysis and material callouts.', 'Fa\u00e7ade design with modern, contemporary & traditional styles', 'images/elevation.jpg', 5);
 
 -- ============================================================
 -- 8. PROJECTS PORTFOLIO
@@ -232,7 +263,12 @@ CREATE TABLE `projects` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_projects_category` (`category`),
+  INDEX `idx_projects_status` (`status`),
+  INDEX `idx_projects_featured` (`is_featured`),
+  INDEX `idx_projects_active` (`is_active`),
+  INDEX `idx_projects_created` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
@@ -248,7 +284,11 @@ CREATE TABLE `testimonials` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_testimonials_active` (`is_active`),
+  INDEX `idx_testimonials_order` (`display_order`),
+  INDEX `idx_testimonials_rating` (`rating`),
+  CONSTRAINT `chk_testimonial_rating` CHECK (`rating` >= 1 AND `rating` <= 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
@@ -263,7 +303,9 @@ CREATE TABLE `site_counters` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_counters_active` (`is_active`),
+  INDEX `idx_counters_order` (`display_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `site_counters` (`label`, `value`, `suffix`, `display_order`) VALUES
@@ -280,7 +322,11 @@ CREATE TABLE `subscribers` (
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `is_active` TINYINT(1) DEFAULT 1,
   `subscribed_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `unsubscribed_at` TIMESTAMP NULL DEFAULT NULL
+  `unsubscribed_at` TIMESTAMP NULL DEFAULT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_subscribers_active` (`is_active`),
+  INDEX `idx_subscribers_date` (`subscribed_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
@@ -298,6 +344,10 @@ CREATE TABLE `navigation_menus` (
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_nav_parent` (`parent_id`),
+  INDEX `idx_nav_location` (`menu_location`),
+  INDEX `idx_nav_active` (`is_active`),
+  INDEX `idx_nav_order` (`display_order`),
   FOREIGN KEY (`parent_id`) REFERENCES `navigation_menus`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -331,11 +381,13 @@ CREATE TABLE `hero_slides` (
   `display_order` INT UNSIGNED DEFAULT 0,
   `is_active` TINYINT(1) DEFAULT 1,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_hero_active` (`is_active`),
+  INDEX `idx_hero_order` (`display_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `hero_slides` (`title`, `subtitle`, `image_desktop`, `image_mobile`, `button_text`, `button_url`, `display_order`) VALUES
-('Shaping Ideas Into Practical Engineering Solutions', 'Professional Engineering Solutions', 'images/hero3-1920.jpg', 'images/hero3-960.jpg', 'Explore programs →', 'courses.php', 1);
+('Shaping Ideas Into Practical Engineering Solutions', 'Professional Engineering Solutions', 'images/hero3-1920.jpg', 'images/hero3-960.jpg', 'Explore programs \u2192', 'courses.php', 1);
 
 -- ============================================================
 -- 14. ADMIN USERS
@@ -351,12 +403,23 @@ CREATE TABLE `admin_users` (
   `last_login` TIMESTAMP NULL DEFAULT NULL,
   `remember_token` VARCHAR(255) DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_admin_role` (`role`),
+  INDEX `idx_admin_active` (`is_active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Default admin: admin / admin123 (change immediately in production)
 INSERT INTO `admin_users` (`username`, `email`, `password_hash`, `full_name`, `role`) VALUES
 ('admin', 'admin@caddfe.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'superadmin');
+
+DELIMITER //
+CREATE TRIGGER `normalize_admin_before_insert` BEFORE INSERT ON `admin_users`
+FOR EACH ROW
+BEGIN
+  SET NEW.username = LOWER(NEW.username);
+  SET NEW.email = LOWER(NEW.email);
+END//
+DELIMITER ;
 
 -- ============================================================
 -- 15. WHATSAPP ENQUIRY LOGS
@@ -370,6 +433,10 @@ CREATE TABLE `whatsapp_enquiries` (
   `ip_address` VARCHAR(45) DEFAULT NULL,
   `user_agent` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_wa_course` (`course_id`),
+  INDEX `idx_wa_phone` (`phone_number`),
+  INDEX `idx_wa_created` (`created_at`),
   FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -384,29 +451,18 @@ CREATE TABLE `activity_logs` (
   `ip_address` VARCHAR(45) DEFAULT NULL,
   `user_agent` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_activity_user` (`user_id`),
+  INDEX `idx_activity_action` (`action`),
+  INDEX `idx_activity_created` (`created_at`),
   FOREIGN KEY (`user_id`) REFERENCES `admin_users`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
--- INDEXES
+-- VIEWS
 -- ============================================================
-CREATE INDEX `idx_courses_category` ON `courses`(`category`);
-CREATE INDEX `idx_courses_active` ON `courses`(`is_active`);
-CREATE INDEX `idx_courses_featured` ON `courses`(`is_featured`);
-CREATE INDEX `idx_contact_read` ON `contact_submissions`(`is_read`);
-CREATE INDEX `idx_enrollments_status` ON `enrollments`(`status`);
-CREATE INDEX `idx_projects_category` ON `projects`(`category`);
-CREATE INDEX `idx_projects_featured` ON `projects`(`is_featured`);
-CREATE INDEX `idx_testimonials_active` ON `testimonials`(`is_active`);
-CREATE INDEX `idx_subscribers_active` ON `subscribers`(`is_active`);
-CREATE INDEX `idx_navigation_location` ON `navigation_menus`(`menu_location`);
-CREATE INDEX `idx_activity_user` ON `activity_logs`(`user_id`);
-CREATE INDEX `idx_activity_created` ON `activity_logs`(`created_at`);
 
--- ============================================================
--- VIEW: Active Courses with Category Names
--- ============================================================
-CREATE VIEW `active_courses_view` AS
+CREATE OR REPLACE VIEW `active_courses_view` AS
 SELECT
   c.*,
   cat.name AS category_name,
@@ -416,14 +472,8 @@ LEFT JOIN `course_categories` cat ON c.category_id = cat.id
 WHERE c.is_active = 1
 ORDER BY c.display_order ASC;
 
--- ============================================================
--- VIEW: Unread Contact Submissions
--- ============================================================
-CREATE VIEW `unread_contacts_view` AS
+CREATE OR REPLACE VIEW `unread_contacts_view` AS
 SELECT * FROM `contact_submissions` WHERE `is_read` = 0 ORDER BY `created_at` DESC;
 
--- ============================================================
--- VIEW: Pending Enrollments
--- ============================================================
-CREATE VIEW `pending_enrollments_view` AS
+CREATE OR REPLACE VIEW `pending_enrollments_view` AS
 SELECT * FROM `enrollments` WHERE `status` = 'pending' ORDER BY `created_at` DESC;

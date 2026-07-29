@@ -1,9 +1,0 @@
-vendor/
-.git/
-.gitignore
-.env
-*.log
-docker/
-storage/logs/*
-storage/cache/*
-storage/framework/*
