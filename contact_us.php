@@ -628,7 +628,7 @@ href="/services">Services</a>
       <div class="bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
         <div style="font-size:2rem;color:#d8000d;" class="mb-2"><i class="bi bi-envelope"></i></div>
         <h6 class="fw-bold">Email</h6>
-        <p class="small text-secondary mb-0">magendhiran@caddfe.com</p>
+        <p class="small text-secondary mb-0">Caddfe90@gmail.com</p>
       </div>
     </div>
     <div class="col-md-3">
@@ -968,7 +968,7 @@ href="/services">Services</a>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-envelope text-danger mt-1"></i>
-              <a href="mailto:magendhiran@caddfe.com" class="footer-link">magendhiran@caddfe.com</a>
+              <a href="mailto:Caddfe90@gmail.com" class="footer-link">Caddfe90@gmail.com</a>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-clock text-danger mt-1"></i>

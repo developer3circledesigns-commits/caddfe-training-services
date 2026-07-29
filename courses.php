@@ -575,7 +575,7 @@
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-envelope text-danger mt-1"></i>
-              <a href="mailto:magendhiran@caddfe.com" class="footer-link">magendhiran@caddfe.com</a>
+              <a href="mailto:Caddfe90@gmail.com" class="footer-link">Caddfe90@gmail.com</a>
             </li>
             <li class="d-flex gap-2">
               <i class="bi bi-clock text-danger mt-1"></i>
