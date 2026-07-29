@@ -589,7 +589,7 @@
 
   <header class="hero-header">
     <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-      <a href="/index.php" class="navbar-brand p-1">
+      <a href="/" class="navbar-brand p-1">
         <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
       </a>
 
@@ -627,19 +627,19 @@
             <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/projects">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="contact_us.php">Contact Us</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/contact_us">Contact Us</a>
           </li>
         </ul>
         <div class="d-lg-none pb-3">
-          <a href="enroll.php" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
+          <a href="/enroll" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
             Enroll Now <i class="bi bi-arrow-right"></i>
           </a>
         </div>
         <div class="d-none d-lg-flex align-items-center ms-lg-3">
-          <button class="enroll-btn text-white" onclick="window.location.href='enroll.php'">
+          <button class="enroll-btn text-white" onclick="window.location.href='/enroll'">
             <span class="box">Enroll Now &rarr;</span>
           </button>
         </div>
@@ -1521,17 +1521,17 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small d-flex flex-wrap gap-x-3 gap-y-1" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready+ Post Graduation</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Architecture Advanced</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">MSU Certification in BIM</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Building - SMART Certification</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Master Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Advanced Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="#" class="footer-link">Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-post-graduation" class="footer-link">BIM-Ready+ Post Graduation</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=michigan-state-university-bim" class="footer-link">MSU Certification in BIM</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">

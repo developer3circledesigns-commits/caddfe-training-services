@@ -533,7 +533,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
 
 <header class="hero-header">
   <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
-    <a href="index.php" class="navbar-brand p-1">
+    <a href="/" class="navbar-brand p-1">
       <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
     </a>
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -544,10 +544,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-4">
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="index.php">Home</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/">Home</a>
         </li>
         <li class="nav-item dropdown-nav">
-          <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');">Courses</a>
+          <a class="nav-link text-white fw-semibold small-hover d-flex align-items-center gap-1" style="opacity:0.9;" href="#" onclick="event.preventDefault();this.parentElement.classList.toggle('show');" id="coursesToggle">Courses</a>
           <div class="mega-dropdown">
             <div class="mega-inner">
               <a href="courses.php?cat=diploma" class="mega-card">
@@ -566,22 +566,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="services.php">Services</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/services">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/projects">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="contact_us.php">Contact Us</a>
+          <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="/contact_us">Contact Us</a>
         </li>
       </ul>
       <div class="d-lg-none pb-3">
-        <a href="enroll.php" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
+        <a href="/enroll" class="btn btn-danger w-100 fw-semibold py-3 rounded-0 d-flex align-items-center justify-content-center gap-2">
           Enroll Now <i class="bi bi-arrow-right"></i>
         </a>
       </div>
       <div class="d-none d-lg-flex align-items-center ms-lg-3">
-        <button class="enroll-btn text-white" onclick="window.location.href='enroll.php'">
+        <button class="enroll-btn text-white" onclick="window.location.href='/enroll'">
           <span class="box">Enroll Now &rarr;</span>
         </button>
       </div>
@@ -853,8 +853,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
           <ul class="list-unstyled small d-flex flex-column gap-2">
             <li><a href="index.php" class="footer-link">Home</a></li>
             <li><a href="courses.php" class="footer-link">Programs</a></li>
-            <li><a href="enroll.php" class="footer-link">Enroll Now</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
             <li><a href="contact_us.php" class="footer-link">Contact</a></li>
+            <li><a href="enroll.php" class="footer-link">Enroll Now</a></li>
           </ul>
         </div>
         <div class="col-6 col-lg-3">
