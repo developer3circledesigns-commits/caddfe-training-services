@@ -31,6 +31,9 @@ storage/cache/
 # Uploads
 uploads/
 
+# Debug / testing (never deploy to production)
+debug/
+
 # Environment / Config
 .env
 .env.local

@@ -5,7 +5,6 @@
   RewriteRule ^config/ - [F,L]
   RewriteRule ^storage/ - [F,L]
   RewriteRule ^docker/ - [F,L]
-  RewriteRule ^\.env - [F,L]
   RewriteRule ^vendor/ - [F,L]
 
   # Set flag for localhost requests
@@ -34,6 +33,9 @@
   RewriteCond %{REQUEST_FILENAME}\.php -f
   RewriteRule ^(.+)$ $1.php [L,QSA]
 </IfModule>
+
+# Return 404 for .env files (avoids security scanner triggers)
+RedirectMatch 404 /\.env
 
 <IfModule mod_expires.c>
   ExpiresActive On
