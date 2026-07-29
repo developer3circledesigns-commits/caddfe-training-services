@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config/db_connect.php';
+require_once __DIR__ . '/config/mail_config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -122,6 +123,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
                 ':user_agent' => safe_truncate($_SERVER['HTTP_USER_AGENT'] ?? '', 65535),
             ]);
             $_SESSION['last_contact_time'] = time();
+
+            sendContactEmail([
+                'full_name' => $full_name,
+                'email'     => $email,
+                'phone'     => $phone,
+                'subject'   => $subject,
+                'message'   => $message,
+            ]);
+
             $redirect = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             if (!$redirect) {
                 $redirect = $_SERVER['SCRIPT_NAME'];
