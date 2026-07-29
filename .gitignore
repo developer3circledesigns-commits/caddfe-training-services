@@ -37,4 +37,5 @@ debug/
 # Environment / Config
 .env
 .env.local
+config/app.php
 
