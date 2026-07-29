@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin &bull; Enrollments &bull; Kanban Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', system-ui, sans-serif; }
+    body { background: #f0f2f5; }
+    .topbar {
+      background: #fff; padding: 1rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; border-bottom: 1px solid #e9edf4;
+    }
+    .topbar .page-title h4 { margin: 0; font-weight: 700; }
+    .content-body { padding: 1.5rem 2rem; max-width: 100%; overflow-x: hidden; }
+
+    .board {
+      display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 1rem;
+      min-height: calc(100vh - 160px); align-items: flex-start;
+    }
+    .board-col {
+      min-width: 300px; max-width: 340px; flex: 1; display: flex; flex-direction: column;
+    }
+    .board-col .col-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1rem; border-radius: 12px; margin-bottom: 0.75rem;
+      font-weight: 600; font-size: 0.9rem;
+    }
+    .board-col .col-header .count {
+      background: rgba(0,0,0,0.1); padding: 0.15rem 0.6rem; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .board-col .col-body {
+      display: flex; flex-direction: column; gap: 0.75rem; flex: 1;
+    }
+    .kanban-card {
+      background: #fff; border-radius: 12px; border: 1px solid #e9edf4;
+      padding: 1rem; cursor: pointer; transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .kanban-card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.06); transform: translateY(-1px); }
+    .kanban-card .kc-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem;
+    }
+    .kanban-card .kc-avatar {
+      width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+    }
+    .kanban-card .kc-name { font-weight: 600; font-size: 0.9rem; }
+    .kanban-card .kc-course {
+      font-size: 0.78rem; color: #6c757d; margin-top: 1px;
+    }
+    .kanban-card .kc-meta {
+      margin-top: 0.6rem; display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.75rem; color: #8892a4;
+    }
+    .kanban-card .kc-meta i { font-size: 0.8rem; }
+    .kanban-card .kc-actions {
+      margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px solid #f0f2f5;
+      display: flex; gap: 0.4rem;
+    }
+    .col-header-pending { background: #fff8e1; color: #856404; }
+    .col-header-contacted { background: #e3f0ff; color: #004085; }
+    .col-header-enrolled { background: #e6f7ee; color: #155724; }
+    .col-header-cancelled { background: #fce4e7; color: #721c24; }
+
+    .tag { font-size: 0.68rem; padding: 0.2em 0.55em; border-radius: 4px; background: #f0f2f5; color: #555; }
+    .tag-web { background: #e8f4ff; color: #4f8cff; }
+    .tag-whatsapp { background: #e6f7ee; color: #28a745; }
+
+    .btn-kanban-action { padding: 0.2rem 0.45rem; font-size: 0.75rem; border-radius: 6px; }
+
+    @media (max-width: 768px) {
+      .content-body { padding: 1rem; }
+      .board-col { min-width: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="page-title">
+    <h4><i class="bi bi-kanban-fill text-primary me-2"></i>Enrollment Board</h4>
+  </div>
+  <div>
+    <button class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-funnel"></i> Filter</button>
+    <button class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Add Enrollment</button>
+  </div>
+</div>
+
+<div class="content-body">
+  <!-- Summary -->
+  <div class="row g-2 mb-3 text-center">
+    <div class="col"><span class="badge bg-warning text-dark px-3 py-2 rounded-pill">38 Pending</span></div>
+    <div class="col"><span class="badge bg-info text-dark px-3 py-2 rounded-pill">22 Contacted</span></div>
+    <div class="col"><span class="badge bg-success px-3 py-2 rounded-pill">52 Enrolled</span></div>
+    <div class="col"><span class="badge bg-danger px-3 py-2 rounded-pill">12 Cancelled</span></div>
+  </div>
+
+  <!-- Board -->
+  <div class="board">
+    <!-- Pending Column -->
+    <div class="board-col">
+      <div class="col-header col-header-pending">
+        <span><i class="bi bi-clock-history me-2"></i>Pending</span>
+        <span class="count">38</span>
+      </div>
+      <div class="col-body">
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=ffc107&color=333&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">John Doe</div>
+              <div class="kc-course">Revit Architecture</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 234 567 890</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-28</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action" title="Mark Contacted"><i class="bi bi-telephone"></i></button>
+            <button class="btn btn-outline-success btn-kanban-action" title="Mark Enrolled"><i class="bi bi-check-lg"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto" title="Cancel"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Ali+Hassan&background=ffc107&color=333&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Ali Hassan</div>
+              <div class="kc-course">Revit Structure</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 777 888 999</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-24</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action"><i class="bi bi-telephone"></i></button>
+            <button class="btn btn-outline-success btn-kanban-action"><i class="bi bi-check-lg"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=David+Kim&background=ffc107&color=333&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">David Kim</div>
+              <div class="kc-course">AutoCAD 2D & 3D</div>
+            </div>
+            <span class="tag tag-whatsapp">WhatsApp</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 222 333 444</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-22</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action"><i class="bi bi-telephone"></i></button>
+            <button class="btn btn-outline-success btn-kanban-action"><i class="bi bi-check-lg"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:0.75rem;">
+          <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" style="font-size:0.8rem;">+ 35 more</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contacted Column -->
+    <div class="board-col">
+      <div class="col-header col-header-contacted">
+        <span><i class="bi bi-telephone me-2"></i>Contacted</span>
+        <span class="count">22</span>
+      </div>
+      <div class="col-body">
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Mike+Johnson&background=0dcaf0&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Mike Johnson</div>
+              <div class="kc-course">AutoCAD Civil</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 555 123 456</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-26</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-success btn-kanban-action" title="Mark Enrolled"><i class="bi bi-check-lg"></i></button>
+            <button class="btn btn-outline-warning btn-kanban-action" title="Move to Pending"><i class="bi bi-arrow-counterclockwise"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Maria+Garcia&background=0dcaf0&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Maria Garcia</div>
+              <div class="kc-course">Interior Design</div>
+            </div>
+            <span class="tag tag-whatsapp">WhatsApp</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 666 777 888</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-21</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-success btn-kanban-action"><i class="bi bi-check-lg"></i></button>
+            <button class="btn btn-outline-warning btn-kanban-action"><i class="bi bi-arrow-counterclockwise"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enrolled Column -->
+    <div class="board-col">
+      <div class="col-header col-header-enrolled">
+        <span><i class="bi bi-check-circle me-2"></i>Enrolled</span>
+        <span class="count">52</span>
+      </div>
+      <div class="col-body">
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Sarah+Smith&background=28a745&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Sarah Smith</div>
+              <div class="kc-course">Interior Design</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 987 654 321</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-27</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action" title="View"><i class="bi bi-eye"></i></button>
+            <button class="btn btn-outline-secondary btn-kanban-action ms-auto" title="Cancel Enrollment"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Lisa+Wong&background=28a745&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Lisa Wong</div>
+              <div class="kc-course">BIM Modeling</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 333 222 111</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-23</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action"><i class="bi bi-eye"></i></button>
+            <button class="btn btn-outline-secondary btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=James+Wilson&background=28a745&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">James Wilson</div>
+              <div class="kc-course">Revit MEP</div>
+            </div>
+            <span class="tag tag-whatsapp">WhatsApp</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 888 999 000</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-20</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-info btn-kanban-action"><i class="bi bi-eye"></i></button>
+            <button class="btn btn-outline-secondary btn-kanban-action ms-auto"><i class="bi bi-x-lg"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancelled Column -->
+    <div class="board-col">
+      <div class="col-header col-header-cancelled">
+        <span><i class="bi bi-x-circle me-2"></i>Cancelled</span>
+        <span class="count">12</span>
+      </div>
+      <div class="col-body">
+        <div class="kanban-card" style="opacity:0.75;">
+          <div class="kc-top">
+            <img src="https://ui-avatars.com/api/?name=Emily+Davis&background=dc3545&color=fff&size=36" class="kc-avatar" alt="">
+            <div>
+              <div class="kc-name">Emily Davis</div>
+              <div class="kc-course">3ds Max Visualization</div>
+            </div>
+            <span class="tag tag-web">Web</span>
+          </div>
+          <div class="kc-meta">
+            <span><i class="bi bi-telephone me-1"></i>+1 444 555 666</span>
+            <span><i class="bi bi-calendar3 me-1"></i>2026-07-25</span>
+          </div>
+          <div class="kc-actions">
+            <button class="btn btn-outline-secondary btn-kanban-action" title="Re-activate"><i class="bi bi-arrow-counterclockwise"></i></button>
+            <button class="btn btn-outline-danger btn-kanban-action ms-auto" title="Delete"><i class="bi bi-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

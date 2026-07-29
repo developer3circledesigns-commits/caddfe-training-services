@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Serve /admin/login, /admin/index, /admin/logout as .php files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(login|index|logout)$ $1.php [L,QSA]
+
+# Redirect .php URLs to clean URLs
+RewriteCond %{THE_REQUEST} \s/admin/(login|index|logout)\.php[\s?] [NC]
+RewriteRule ^ /admin/%1 [R=301,L,QSA]
+
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>

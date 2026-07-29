@@ -29,6 +29,7 @@
   RewriteRule ^ /%1 [R=301,L,QSA]
 
   # Internally rewrite clean URLs to .php files
+  RewriteCond %{REQUEST_URI} !^/admin/ [NC]
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}\.php -f
   RewriteRule ^(.+)$ $1.php [L,QSA]
