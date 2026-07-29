@@ -681,7 +681,7 @@ href="services.php">Services</a>
 
       <div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
-          <div class="modal-content rounded-0 border-0">
+          <div class="modal-content rounded-0" style="border-top:4px solid #198754;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
             <div class="modal-body text-center p-5">
               <div class="mb-3" style="font-size:3.5rem;color:#198754;"><i class="bi bi-check-circle-fill"></i></div>
               <h5 class="fw-bold" id="successModalLabel">Message Sent Successfully!</h5>
@@ -694,7 +694,7 @@ href="services.php">Services</a>
 
       <div id="errorModal" class="modal fade" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-keyboard="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
-          <div class="modal-content rounded-0 border-0">
+          <div class="modal-content rounded-0" style="border-top:4px solid #dc3545;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
             <div class="modal-body text-center p-5">
               <div class="mb-3" style="font-size:3.5rem;color:#dc3545;"><i class="bi bi-x-circle-fill"></i></div>
               <h5 class="fw-bold" id="errorModalLabel">Something Went Wrong</h5>
