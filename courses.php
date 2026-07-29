@@ -437,8 +437,7 @@
             </div>
           </li>
         <li class="nav-item">
-            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" 
-href="/services">Services</a>
+            <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="services.php">Services</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold small-hover" style="opacity:0.9;" href="projects.php">Projects</a>

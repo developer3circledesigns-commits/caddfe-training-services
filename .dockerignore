@@ -1,0 +1,12 @@
+.env
+.git/
+.gitignore
+.dockerignore
+vendor/
+node_modules/
+storage/framework/sessions/
+storage/logs/
+storage/cache/
+uploads/
+README.md
+composer.lock

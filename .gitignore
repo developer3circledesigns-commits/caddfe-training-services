@@ -35,13 +35,3 @@ uploads/
 .env
 .env.local
 
-# Shared hosting - bloat not needed on production
-docker/
-docker-compose.yml
-docker-compose.prod.yml
-.dockerignore
-.github/
-composer.json
-composer.lock
-deploy.sh
-custom-php.ini
