@@ -164,6 +164,9 @@
     .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
     .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
 
+    .filter-toggle { display: none; background: #fff; border: 1px solid #dee2e6; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; min-height:44px; width:100%; text-align:left; }
+    #filterChevron { transition: transform 0.25s ease; }
+    .filter-toggle:hover { border-color: #d8000d; color: #d8000d; }
     .pill-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill-nav button { padding: 0.6rem 1.5rem; border: 1px solid #dee2e6; background: #fff; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; cursor: pointer; }
     .pill-nav button:hover { border-color: #d8000d; color: #d8000d; }
@@ -172,7 +175,7 @@
     .course-card-modern { background: #fff; border-bottom: 3px solid #e9ecef; transition: all 0.3s; position: relative; display: flex; flex-direction: column; height: 100%; }
     .course-card-modern:hover { border-bottom-color: #d8000d; box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
 
-    .course-card-modern .card-img { height: 200px; object-fit: cover; width: 100%; flex-shrink: 0; }
+    .course-card-modern .card-img { height: 180px; object-fit: cover; width: 100%; flex-shrink: 0; }
     .course-card-modern .card-body-content { flex: 1; }
     .tag-modern { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.75rem; display: inline-block; }
     .stat-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: #64748b; }
@@ -190,6 +193,20 @@
     .footer-heading { font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
 
+    @media (max-width: 575.98px) {
+      #courseList { margin-left: 0; margin-right: 0; }
+      #courseList > div { flex: 0 0 100%; max-width: 100%; padding-left: 0.75rem; padding-right: 0.75rem; }
+      .filter-toggle { display: block; }
+      .pill-nav { display: none; flex-direction: column; gap: 0.35rem; }
+      .pill-nav.open { display: flex; }
+      .pill-nav button { width: 100%; text-align: left; white-space: normal; }
+      .search-box { max-width: 100% !important; width: 100% !important; font-size: 0.8rem; padding: 0.5rem 0.85rem; }
+    }
+    @media (min-width: 576px) and (max-width: 767px) {
+      .pill-nav { flex-direction: row; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0.4rem; padding-bottom: 4px; }
+      .pill-nav::-webkit-scrollbar { display: none; }
+      .pill-nav button { white-space: nowrap; flex-shrink: 0; min-height: 44px; }
+    }
     @media (max-width: 767px) {
       .hero-header .navbar-collapse {
         background: rgba(15, 23, 42, 0.85);
@@ -205,16 +222,21 @@
       .page-hero h1 { font-size: 2rem !important; }
       .container { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
-      .course-card-modern .card-img { height: 130px; }
-      .course-card-modern .card-body-inner { padding: 0.75rem !important; }
+      footer .col-6 { flex: 0 0 100%; max-width: 100%; }
+      footer .row > div { margin-bottom: 1.5rem; }
+      footer .row > div:last-child { margin-bottom: 0; }
+      footer ul[style*="column-count"] { column-count: 1 !important; }
+      footer > div { padding-top: 2.5rem !important; padding-bottom: 1.5rem !important; }
+      footer .footer-bottom .d-flex.gap-3 { flex-direction: column; gap: 0.25rem; align-items: center; }
+      footer .opacity-50 { display: none; }
+      footer { text-align: center; }
+      footer .d-flex { justify-content: center; }
+
       .py-20 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
-      .pill-nav { flex-direction: row; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0.4rem; padding-bottom: 4px; }
-      .pill-nav::-webkit-scrollbar { display: none; }
-      .pill-nav button { white-space: nowrap; flex-shrink: 0; min-height: 44px; }
-      .search-box { max-width: 100% !important; width: 100% !important; }
+      .search-box { display: none !important; }
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
     }
@@ -224,7 +246,7 @@
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
-      .course-card-modern .card-img { height: 180px; }
+
       [data-aos="fade-left"] { transform: translateX(0) !important; }
       [data-aos="fade-right"] { transform: translateX(0) !important; }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
@@ -478,12 +500,15 @@
 <section class="py-20">
   <div class="container" style="max-width:80rem;">
     <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
-      <div class="pill-nav" id="pillNav">
-        <button class="active" data-filter="all">All</button>
-        <button data-filter="architecture">Architecture</button>
-        <button data-filter="interior">Interior</button>
-        <button data-filter="bim">BIM</button>
-        <button data-filter="civil">Civil</button>
+      <div class="d-flex flex-column gap-2" style="min-width:0;">
+        <button class="filter-toggle py-2 px-3" id="filterToggle" onclick="toggleFilters()"><i class="bi bi-funnel me-2"></i>Filters <i class="bi bi-chevron-down float-end" id="filterChevron"></i></button>
+        <div class="pill-nav" id="pillNav">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="architecture">Architecture</button>
+          <button data-filter="interior">Interior</button>
+          <button data-filter="bim">BIM</button>
+          <button data-filter="civil">Civil</button>
+        </div>
       </div>
       <input class="search-box" type="text" placeholder="Search courses..." id="searchInput" oninput="filterCourses()" />
     </div>
@@ -612,7 +637,7 @@ function openWhatsAppEnquiry(el) {
   var text = "I'm interested in enrolling for " + name + " at CADDFE. Please share more details.";
   var encoded = encodeURIComponent(text);
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    window.location.href = 'https://wa.me/919952403574?text=' + encoded;
+    window.open('https://wa.me/919952403574?text=' + encoded, 'whatsapp');
   } else if (whatsappWin && !whatsappWin.closed) {
     whatsappWin.location.href = 'https://web.whatsapp.com/send?phone=919952403574&text=' + encoded;
     whatsappWin.focus();
@@ -684,6 +709,20 @@ function getActiveFilter() {
 function filterCourses() {
   renderCourses(getActiveFilter(), document.getElementById('searchInput').value);
 }
+
+function toggleFilters() {
+  var nav = document.getElementById('pillNav');
+  nav.classList.toggle('open');
+  document.getElementById('filterChevron').style.transform = nav.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+document.addEventListener('click', function(e) {
+  if (window.innerWidth > 575.98) return;
+  var btn = e.target.closest('#pillNav button');
+  if (!btn) return;
+  document.getElementById('pillNav').classList.remove('open');
+  document.getElementById('filterChevron').style.transform = '';
+});
 
 document.querySelectorAll('#pillNav button').forEach(function(btn) {
   btn.addEventListener('click', function() {

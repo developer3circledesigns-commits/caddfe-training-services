@@ -307,7 +307,7 @@
       .hero-section .display-4 { font-size: 2.25rem; }
       .hero-content { padding-top: 70px; }
       .hero-section .ms-5 { margin-left: 0 !important; }
-      .hero-section .d-flex.align-items-center.min-vh-100 { padding-left: 20px !important; padding-right: 20px !important; min-height: 90vh !important; }
+      .hero-section .d-flex.align-items-center.min-vh-100 { padding-left: 20px !important; padding-right: 20px !important; min-height: 90vh !important; justify-content: center !important; }
       .hero-section .ms-5.ms-sm-6.ms-lg-7 { max-width: 100% !important; margin-left: 0 !important; }
       .hero-section .ms-5.ms-sm-6.ms-lg-7 > .text-start { text-align: center !important; }
       .hero-section .ms-5.ms-sm-6.ms-lg-7 .d-flex.mt-4 { margin-left: auto !important; margin-right: auto !important; }
@@ -321,12 +321,18 @@
       .counter-card .counter-number { font-size: 2rem !important; }
       .counter-card { padding: 1rem 0.5rem; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
-      .footer .col-6 { flex: 0 0 50%; max-width: 50%; }
-      .footer .col-lg-4, .footer .col-lg-3, .footer .col-lg-2 { margin-bottom: 1.5rem; }
+      footer .col-6 { flex: 0 0 100%; max-width: 100%; }
+      footer .row > div { margin-bottom: 1.5rem; }
+      footer .row > div:last-child { margin-bottom: 0; }
+      footer ul[style*="column-count"] { column-count: 1 !important; }
+      footer > div { padding-top: 2.5rem !important; padding-bottom: 1.5rem !important; }
+      footer .footer-bottom .d-flex.gap-3 { flex-direction: column; gap: 0.25rem; align-items: center; }
+      footer .opacity-50 { display: none; }
+      footer { text-align: center; }
+      footer .d-flex { justify-content: center; }
       .scroll-arrow { width: 36px; height: 36px; font-size: 1.25rem; }
       .scroll-arrow-left { left: 4px; }
       .scroll-arrow-right { right: 4px; }
-      .card .card-img-top { height: 160px; }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
       #mobile-menu { max-width: 85vw; }
       #mobile-menu .offcanvas-body a:not(.btn):hover { background: rgba(255,255,255,0.08) !important; color: #fff !important; }
@@ -354,8 +360,6 @@
       [class*="col-"] { padding-left: 12px; padding-right: 12px; }
       img { max-width: 100%; height: auto; }
       .scroll-container > .scroll-inner { gap: 1rem; }
-      .scroll-inner .card { min-height: auto; }
-      .scroll-inner .card img { min-height: 120px; width: 100%; object-fit: cover; }
       .service-card-modern { padding: 1.25rem; }
       .feature-card { min-height: 200px; padding: 24px; }
       .feature-card .content .heading { font-size: 20px; }
@@ -377,9 +381,9 @@
       .about-section .card { margin-top: 5rem !important; max-height: 350px; }
       .about-section .col-lg-6:first-child { padding-right: 2rem !important; }
       .about-section .col-lg-6:last-child .card { margin-top: 6rem !important; }
-      .footer .col-lg-4 { flex: 0 0 100%; max-width: 100%; margin-bottom: 2rem; }
-      .footer .col-6.col-lg-2, .footer .col-6.col-lg-3 { flex: 0 0 50%; max-width: 50%; }
-      .footer .col-lg-3:last-child { flex: 0 0 100%; max-width: 100%; }
+      footer .col-lg-4 { flex: 0 0 100%; max-width: 100%; margin-bottom: 2rem; }
+      footer .col-6.col-lg-2, footer .col-6.col-lg-3 { flex: 0 0 50%; max-width: 50%; }
+      footer .col-lg-3:last-child { flex: 0 0 100%; max-width: 100%; }
       section.bg-danger.py-20 .display-5 { font-size: 2.25rem !important; }
       .scroll-arrow { width: 40px; height: 40px; }
       .hero-section .ms-5 { margin-left: 2rem !important; }

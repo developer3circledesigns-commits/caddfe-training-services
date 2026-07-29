@@ -172,6 +172,8 @@
     .project-card:hover { border-color: #d8000d; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
     .project-card img { height: 200px; object-fit: cover; width: 100%; }
     .card-horizontal-img { width:100%; height:100%; object-fit:cover; }
+    .service-card { transition: transform 0.15s ease; }
+    .service-card:hover { transform: scale(1.02); box-shadow: inset 0 0 0 2px #d8000d; }
     @media (max-width:767px) { .card-horizontal-img { height:220px; } }
     .hero-header .navbar { padding-top: 1rem !important; padding-bottom: 1rem !important; }
     .hero-header .navbar-brand { padding: 0.25rem !important; margin: 0 !important; }
@@ -198,6 +200,15 @@
       }
       .hero-header nav { padding-left: 16px !important; padding-right: 16px !important; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
+      footer .col-6 { flex: 0 0 100%; max-width: 100%; }
+      footer .row > div { margin-bottom: 1.5rem; }
+      footer .row > div:last-child { margin-bottom: 0; }
+      footer ul[style*="column-count"] { column-count: 1 !important; }
+      footer > div { padding-top: 2.5rem !important; padding-bottom: 1.5rem !important; }
+      footer .footer-bottom .d-flex.gap-3 { flex-direction: column; gap: 0.25rem; align-items: center; }
+      footer .opacity-50 { display: none; }
+      footer { text-align: center; }
+      footer .d-flex { justify-content: center; }
       body { overflow-x: hidden; }
       html { overflow-x: hidden; }
       img { max-width: 100%; height: auto; }
@@ -487,7 +498,7 @@
     <div class="text-center mb-5"><p class="section-tag" style="text-align:center;">What We Offer</p><h2 class="fw-bold" style="font-size:2rem;">Architectural Design Services</h2></div>
     <div class="row g-4">
       <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
               <img src="images/interior.jpg" class="card-horizontal-img" alt="Interior Design" loading="lazy">
@@ -502,7 +513,7 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
               <img src="images/structure.jpg" class="card-horizontal-img" alt="Structural Design" loading="lazy">
@@ -517,7 +528,7 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
               <img src="images/planlayout.jpg" class="card-horizontal-img" alt="Layout &amp; Plan" loading="lazy">
@@ -532,7 +543,7 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
               <img src="images/3dmodel.jpg" class="card-horizontal-img" alt="3D Modelling" loading="lazy">
@@ -547,7 +558,7 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="card h-100 border-0 shadow-sm">
+        <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
               <img src="images/elevation.jpg" class="card-horizontal-img" alt="Elevation Design" loading="lazy">

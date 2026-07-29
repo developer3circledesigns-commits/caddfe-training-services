@@ -353,6 +353,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
       .page-hero h1 { font-size: 2rem !important; }
       .container { padding-left: 20px; padding-right: 20px; }
       .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
+      footer .col-6 { flex: 0 0 100%; max-width: 100%; }
+      footer .row > div { margin-bottom: 1.5rem; }
+      footer .row > div:last-child { margin-bottom: 0; }
+      footer ul[style*="column-count"] { column-count: 1 !important; }
+      footer > div { padding-top: 2.5rem !important; padding-bottom: 1.5rem !important; }
+      footer .footer-bottom .d-flex.gap-3 { flex-direction: column; gap: 0.25rem; align-items: center; }
+      footer .opacity-50 { display: none; }
+      footer { text-align: center; }
+      footer .d-flex { justify-content: center; }
       .form-control, .form-select { min-height: 44px; }
       .btn, .btn-lg, .btn-sm { min-height: 44px; }
       body { overflow-x: hidden; }
