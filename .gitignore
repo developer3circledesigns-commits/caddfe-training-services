@@ -35,7 +35,7 @@ uploads/
 .env
 .env.local
 
-# Shared hosting — bloat not needed on production
+# Shared hosting - bloat not needed on production
 docker/
 docker-compose.yml
 docker-compose.prod.yml
