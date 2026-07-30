@@ -191,9 +191,10 @@
     .scroll-inner .card-text,
     .scroll-inner .card p { text-align: left; }
     .scroll-inner .card img { border-radius: 0 !important; }
-    .scroll-inner .card { min-height: 380px; }
-    .scroll-inner .card-body { display: flex; flex-direction: column; }
+    .scroll-inner .card { height: 400px; }
+    .scroll-inner .card-body { display: flex; flex-direction: column; overflow: hidden; }
     .scroll-inner .card-text { margin-top: auto; }
+    .scroll-inner .card-text { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
     .feature-card {
       position: relative;
       display: flex;
@@ -879,7 +880,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 370hrs<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 370hrs<br />Mode: Online<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -889,7 +890,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 200hrs<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -899,7 +900,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 100hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -909,7 +910,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 250hrs<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -919,7 +920,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 160hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
+            <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
@@ -929,7 +930,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 70hrs<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
+            <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
@@ -941,7 +942,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 370hrs<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 370hrs<br />Mode: Online<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -951,7 +952,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 200hrs<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -961,7 +962,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 100hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -971,7 +972,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 250hrs<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
         </a>
@@ -981,7 +982,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 160hrs<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
+            <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
@@ -991,7 +992,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
-            <p class="card-text small text-secondary">Duration: 70hrs<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
+            <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
@@ -1010,7 +1011,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready+ International Post Graduation Certification in BIM Management</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <p class="card-text small text-secondary">Duration: 10 Months<br />Mode: Online<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
           </div>
         </div>
         </a>
@@ -1020,7 +1021,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
-            <p class="card-text small text-secondary">Duration: 8 Months<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
+            <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
         </a>
@@ -1030,7 +1031,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1040,7 +1041,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Michigan State University Certification Program in BIM</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h3> -->
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 5 Months<br />Mode: Online<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1050,7 +1051,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1060,7 +1061,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+            <p class="card-text small text-secondary">Duration: 10 Days<br />Mode: Online<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
           </div>
         </div>
         </a>
@@ -1072,7 +1073,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready+ International Post Graduation Certification in BIM Management</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <p class="card-text small text-secondary">Duration: 10 Months<br />Mode: Online<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
           </div>
         </div>
         </a>
@@ -1082,7 +1083,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
-            <p class="card-text small text-secondary">Duration: 8 Months<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
+            <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
         </a>
@@ -1092,7 +1093,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1102,7 +1103,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Michigan State University Certification Program in BIM</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h3> -->
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 5 Months<br />Mode: Online<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1112,7 +1113,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
-            <p class="card-text small text-secondary">Duration: 6 Months<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1122,7 +1123,7 @@
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Days<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+            <p class="card-text small text-secondary">Duration: 10 Days<br />Mode: Online<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
           </div>
         </div>
         </a>

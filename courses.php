@@ -616,18 +616,18 @@
 </script>
 <script>
 const coursesData = [
-  { id: 1, name: 'Master Diploma in Architectural Design', category: 'architecture', hrs: 370, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-01.jpg', levelsDetail: 'Level 1: 2D Architectural Presentation<br>Level 2: Advanced 3D Modelling<br>Level 3: Advanced Architectural Visualisation' },
-  { id: 2, name: 'Advanced Diploma in Architectural Design', category: 'architecture', hrs: 200, levels: 2, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-02.jpg', levelsDetail: 'Level 1: Advanced 3D Modelling<br>Level 2: Advanced Architectural Visualisation' },
-  { id: 3, name: 'Diploma in Architectural Design', category: 'architecture', hrs: 100, levels: 3, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-03.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Basic 3D Modelling<br>Level 3: Basic Architectural Visualisation' },
-  { id: 4, name: 'Master Diploma in Interior Design', category: 'interior', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-04.jpg', levelsDetail: 'Level 1: 2D Space Planning<br>Level 2: 3D Modelling<br>Level 3: Architectural Visualisation' },
-  { id: 5, name: 'Advanced Diploma in Interior Design', category: 'interior', hrs: 160, levels: 3, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-05.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Advanced 3D Modelling (Interior)<br>Level 3: Advanced Architectural Visualisation (Interior)' },
-  { id: 6, name: 'Diploma in Interior Design', category: 'interior', hrs: 70, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-06.jpg', levelsDetail: 'Level 1: Basic 3D Modelling (Interior)<br>Level 2: Basic Architectural Visualisation (Interior)' },
-  { id: 7, name: 'BIM-Ready+ International Post Graduation Certification in BIM Management', category: 'bim', duration: '10 Months', hrs: 200, modules: 10, assessments: 8, tag: 'Post Graduate', tagColor: 'dark', img: 'images/courses_first/cad-course-clean-07.jpg' },
-  { id: 8, name: 'BIM-Ready Architecture Advanced', category: 'bim', duration: '8 Months', hrs: 160, modules: 14, assessments: 5, tag: 'Architecture', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-08.jpg' },
-  { id: 9, name: 'BIM-Ready Civil Course', category: 'civil', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Civil', tagColor: 'success', img: 'images/courses_first/cad-course-clean-09.jpg' },
-  { id: 10, name: 'Michigan State University Certification Program in BIM', category: 'bim', duration: '5 Months', hrs: 100, modules: 11, assessments: 3, tag: 'University Program', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg' },
-  { id: 11, name: 'BIM-Ready Complete \u2013 International Certification in BIM Modeling & Coordination', category: 'bim', duration: '6 Months', hrs: 120, modules: 9, assessments: 3, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-11.jpg' },
-  { id: 12, name: 'Building - SMART BIM Professional Certification', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg' },
+  { id: 1, name: 'Master Diploma in Architectural Design', category: 'architecture', hrs: 370, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-01.jpg', levelsDetail: 'Level 1: 2D Architectural Presentation<br>Level 2: Advanced 3D Modelling<br>Level 3: Advanced Architectural Visualisation', mode: 'Online' },
+  { id: 2, name: 'Advanced Diploma in Architectural Design', category: 'architecture', hrs: 200, levels: 2, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-02.jpg', levelsDetail: 'Level 1: Advanced 3D Modelling<br>Level 2: Advanced Architectural Visualisation', mode: 'Online' },
+  { id: 3, name: 'Diploma in Architectural Design', category: 'architecture', hrs: 100, levels: 3, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-03.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Basic 3D Modelling<br>Level 3: Basic Architectural Visualisation', mode: 'Online' },
+  { id: 4, name: 'Master Diploma in Interior Design', category: 'interior', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-04.jpg', levelsDetail: 'Level 1: 2D Space Planning<br>Level 2: 3D Modelling<br>Level 3: Architectural Visualisation', mode: 'Online' },
+  { id: 5, name: 'Advanced Diploma in Interior Design', category: 'interior', hrs: 160, levels: 3, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-05.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Advanced 3D Modelling (Interior)<br>Level 3: Advanced Architectural Visualisation (Interior)', mode: 'Online' },
+  { id: 6, name: 'Diploma in Interior Design', category: 'interior', hrs: 70, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-06.jpg', levelsDetail: 'Level 1: Basic 3D Modelling (Interior)<br>Level 2: Basic Architectural Visualisation (Interior)', mode: 'Online' },
+  { id: 7, name: 'BIM-Ready+ International Post Graduation Certification in BIM Management', category: 'bim', duration: '10 Months', hrs: 200, modules: 10, assessments: 8, tag: 'Post Graduate', tagColor: 'dark', img: 'images/courses_first/cad-course-clean-07.jpg', mode: 'Online' },
+  { id: 8, name: 'BIM-Ready Architecture Advanced', category: 'bim', duration: '8 Months', hrs: 160, modules: 14, assessments: 5, tag: 'Architecture', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-08.jpg', mode: 'Online' },
+  { id: 9, name: 'BIM-Ready Civil Course', category: 'civil', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Civil', tagColor: 'success', img: 'images/courses_first/cad-course-clean-09.jpg', mode: 'Online' },
+  { id: 10, name: 'Michigan State University Certification Program in BIM', category: 'bim', duration: '5 Months', hrs: 100, modules: 11, assessments: 3, tag: 'University Program', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg', mode: 'Online' },
+  { id: 11, name: 'BIM-Ready Complete \u2013 International Certification in BIM Modeling & Coordination', category: 'bim', duration: '6 Months', hrs: 120, modules: 9, assessments: 3, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-11.jpg', mode: 'Online' },
+  { id: 12, name: 'Building - SMART BIM Professional Certification', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg', mode: 'Online' },
 ];
 
 let whatsappWin = null;
@@ -683,6 +683,7 @@ function renderCourses(filter, query) {
             <div class="card-details">
               <div class="d-flex flex-wrap gap-3">
                 <span class="stat-item"><i class="bi bi-clock"></i> ${c.hrs} hrs</span>
+                <span class="stat-item"><i class="bi bi-globe"></i> Mode - ${c.mode}</span>
                 ${durationHtml}
                 ${detailsHtml}
               </div>
