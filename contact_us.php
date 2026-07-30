@@ -313,6 +313,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)); }
     [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
     [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    .contact-info-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .contact-info-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.12) !important; }
 
 
 
@@ -611,28 +613,28 @@ href="/services">Services</a>
   <div data-aos="fade-up" class="container pb-5" style="max-width:72rem;margin-top:-3rem;">
     <div class="row g-3 mb-5">
       <div class="col-md-3">
-        <div class="bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
+        <div class="contact-info-card bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
         <div style="font-size:2rem;color:#d8000d;" class="mb-2"><i class="bi bi-geo-alt"></i></div>
         <h6 class="fw-bold">Address</h6>
         <p class="small text-secondary mb-0">No:23, Thiruvasagam St, Avadi, Chennai - 600072</p>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
+      <div class="contact-info-card bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
         <div style="font-size:2rem;color:#d8000d;" class="mb-2"><i class="bi bi-telephone"></i></div>
         <h6 class="fw-bold">Phone</h6>
         <p class="small text-secondary mb-0">+91 99524 03574</p>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
+      <div class="contact-info-card bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
         <div style="font-size:2rem;color:#d8000d;" class="mb-2"><i class="bi bi-envelope"></i></div>
         <h6 class="fw-bold">Email</h6>
         <p class="small text-secondary mb-0">Caddfe90@gmail.com</p>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
+      <div class="contact-info-card bg-white rounded-3 shadow-sm text-center p-4 h-100 border-bottom border-3 border-danger">
         <div style="font-size:2rem;color:#d8000d;" class="mb-2"><i class="bi bi-clock"></i></div>
         <h6 class="fw-bold">Hours</h6>
         <p class="small text-secondary mb-0">Mon &ndash; Sat: 9 AM &ndash; 8 PM</p>

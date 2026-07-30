@@ -13,28 +13,48 @@ if (empty($_SESSION['admin_id'])) {
 $message = '';
 $msg_type = '';
 
+function csrf_token(): string {
+    return hash_hmac('sha256', session_id(), 'caddfe_admin_csrf');
+}
+
+function validate_csrf(string $token): bool {
+    return hash_equals(csrf_token(), $token);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     try {
         if ($pdo === null) throw new \RuntimeException('DB unavailable');
 
+        if (!isset($_POST['csrf_token']) || !validate_csrf($_POST['csrf_token'])) {
+            error_log('Admin CSRF mismatch: SID=' . session_id());
+            throw new \RuntimeException('Invalid or expired form. Please reload the page.');
+        }
+
         $id = (int)($_POST['id'] ?? 0);
         if ($id <= 0) throw new \InvalidArgumentException('Invalid ID');
+
+        $record_type = $_POST['record_type'] ?? 'enrollment';
+        if (!in_array($record_type, ['enrollment', 'enquiry'], true)) {
+            throw new \InvalidArgumentException('Invalid record type');
+        }
+        $table = $record_type === 'enrollment' ? 'enrollments' : 'contact_submissions';
+        $label = $record_type === 'enrollment' ? 'Enrollment' : 'Enquiry';
 
         if ($_POST['action'] === 'update_status') {
             $status = $_POST['status'] ?? '';
             $allowed = ['pending', 'contacted', 'enrolled', 'cancelled'];
             if (!in_array($status, $allowed)) throw new \InvalidArgumentException('Invalid status');
 
-            $pdo->prepare('UPDATE enrollments SET status = :status WHERE id = :id')
+            $pdo->prepare("UPDATE $table SET status = :status WHERE id = :id")
                 ->execute([':status' => $status, ':id' => $id]);
 
-            $message = 'Enrollment status updated successfully.';
+            $message = "$label status updated successfully.";
             $msg_type = 'success';
         } elseif ($_POST['action'] === 'delete') {
-            $pdo->prepare('DELETE FROM enrollments WHERE id = :id')
+            $pdo->prepare("DELETE FROM $table WHERE id = :id")
                 ->execute([':id' => $id]);
 
-            $message = 'Enrollment deleted successfully.';
+            $message = "$label deleted successfully.";
             $msg_type = 'success';
         }
     } catch (\Throwable $e) {
@@ -45,63 +65,162 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 }
 
 $search = trim($_GET['search'] ?? '');
+$allowed_statuses = ['pending', 'contacted', 'enrolled', 'cancelled'];
 $status_filter = $_GET['status'] ?? '';
+if ($status_filter !== '' && !in_array($status_filter, $allowed_statuses, true)) {
+    $status_filter = '';
+}
 $course_filter = trim($_GET['course'] ?? '');
 $page = max(1, (int)($_GET['page'] ?? 1));
 $per_page = 12;
 $offset = ($page - 1) * $per_page;
 
-$where = [];
-$params = [];
+$search_params = [];
+$search_where = '';
 
 if ($search !== '') {
-    $where[] = '(e.full_name LIKE :search OR e.email LIKE :search2 OR e.phone LIKE :search3)';
-    $params[':search'] = "%$search%";
-    $params[':search2'] = "%$search%";
-    $params[':search3'] = "%$search%";
+    $search_where = 'AND (e.full_name LIKE :search OR e.email LIKE :search2 OR e.phone LIKE :search3)';
+    $search_params[':search'] = "%$search%";
+    $search_params[':search2'] = "%$search%";
+    $search_params[':search3'] = "%$search%";
 }
+
+$status_where = '';
+$status_params = [];
 if ($status_filter !== '') {
-    $where[] = 'e.status = :status';
-    $params[':status'] = $status_filter;
+    $status_where = 'AND e.status = :status';
+    $status_params[':status'] = $status_filter;
 }
+
+$course_where = '';
+$course_params = [];
 if ($course_filter !== '') {
-    $where[] = 'e.course_name LIKE :course';
-    $params[':course'] = "%$course_filter%";
+    $course_where = 'AND e.course_name LIKE :course';
+    $course_params[':course'] = "%$course_filter%";
 }
-$where_sql = count($where) > 0 ? 'WHERE ' . implode(' AND ', $where) : '';
 
 try {
     if ($pdo === null) throw new \RuntimeException('Database connection not available');
 
     $stats = [];
-    $stmt = $pdo->query("SELECT COUNT(*) as total,
-        SUM(status='pending') as pending,
-        SUM(status='contacted') as contacted,
-        SUM(status='enrolled') as enrolled,
-        SUM(status='cancelled') as cancelled
-        FROM enrollments");
-    $stats = $stmt->fetch();
+    $has_status_c = $has_status ?? false;
+    if (!$has_status_c) {
+        try {
+            $check = $pdo->query("SHOW COLUMNS FROM contact_submissions LIKE 'status'");
+            $has_status_c = (bool)$check->fetch();
+        } catch (\Throwable $e) {}
+    }
+    $total_stmt = $pdo->query('SELECT COUNT(*) FROM enrollments');
+    $enr_total = (int)$total_stmt->fetchColumn();
+    $enq_total_stmt = $pdo->query('SELECT COUNT(*) FROM contact_submissions');
+    $enq_total = (int)$enq_total_stmt->fetchColumn();
+    $stats['total'] = $enr_total + $enq_total;
+    $stats['total_enquiries'] = $enq_total;
 
-    $count_stmt = $pdo->prepare("SELECT COUNT(*) FROM enrollments e $where_sql");
-    $count_stmt->execute($params);
+    $enr_stats = $pdo->query("SELECT
+        SUM(status='pending') as pending, SUM(status='contacted') as contacted,
+        SUM(status='enrolled') as enrolled, SUM(status='cancelled') as cancelled
+        FROM enrollments")->fetch();
+
+    if ($has_status_c) {
+        $enq_stats = $pdo->query("SELECT
+            SUM(status='pending') as pending, SUM(status='contacted') as contacted,
+            SUM(status='enrolled') as enrolled, SUM(status='cancelled') as cancelled
+            FROM contact_submissions")->fetch();
+    } else {
+        $enq_stats = ['pending' => 0, 'contacted' => 0, 'enrolled' => 0, 'cancelled' => 0];
+    }
+
+    $stats['pending'] = (int)$enr_stats['pending'] + (int)$enq_stats['pending'];
+    $stats['contacted'] = (int)$enr_stats['contacted'] + (int)$enq_stats['contacted'];
+    $stats['enrolled'] = (int)$enr_stats['enrolled'] + (int)$enq_stats['enrolled'];
+    $stats['cancelled'] = (int)$enr_stats['cancelled'] + (int)$enq_stats['cancelled'];
+
+    $enq_stmt = $pdo->query('SELECT COUNT(*) FROM contact_submissions');
+    $stats['total_enquiries'] = (int)$enq_stmt->fetchColumn();
+
+    $c_status_where = '';
+    if ($status_filter !== '') {
+        if ($has_status_c) {
+            $c_status_where = 'AND c.status = :c_status';
+        } elseif ($status_filter === 'pending') {
+            $c_status_where = 'AND 1=1';
+        } else {
+            $c_status_where = 'AND 1=0';
+        }
+    }
+    $c_course_where = '';
+    if ($course_filter !== '') {
+        $c_course_where = 'AND c.subject LIKE :c_course';
+    }
+
+    $count_params = array_merge($search_params, $status_params, $course_params);
+    $count_sql = "SELECT COUNT(*) FROM (
+        SELECT id, created_at FROM enrollments e WHERE 1=1 $search_where $status_where $course_where
+        UNION ALL
+        SELECT id, created_at FROM contact_submissions c WHERE 1=1 " . ($search !== '' ? 'AND (c.full_name LIKE :search_c OR c.email LIKE :search2_c OR c.phone LIKE :search3_c)' : '') . " $c_status_where $c_course_where
+    ) combined";
+    if ($search !== '') {
+        $count_params[':search_c'] = "%$search%";
+        $count_params[':search2_c'] = "%$search%";
+        $count_params[':search3_c'] = "%$search%";
+    }
+    if ($status_filter !== '' && $has_status_c) {
+        $count_params[':c_status'] = $status_filter;
+    }
+    if ($course_filter !== '') {
+        $count_params[':c_course'] = "%$course_filter%";
+    }
+    $count_stmt = $pdo->prepare($count_sql);
+    $count_stmt->execute($count_params);
     $total_records = (int)$count_stmt->fetchColumn();
     $total_pages = max(1, ceil($total_records / $per_page));
 
-    $sql = "SELECT e.*, c.name as course_display
-            FROM enrollments e
-            LEFT JOIN courses c ON e.course_id = c.id
-            $where_sql
-            ORDER BY e.created_at DESC
-            LIMIT $per_page OFFSET $offset";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($params);
-    $enrollments = $stmt->fetchAll();
+    $has_status = false;
+    try {
+        $check = $pdo->query("SHOW COLUMNS FROM contact_submissions LIKE 'status'");
+        $has_status = (bool)$check->fetch();
+    } catch (\Throwable $e) {}
+
+    $enquiry_status_col = $has_status ? 'c.status' : "'pending' as status";
+
+    $union_params = array_merge($search_params, $status_params, $course_params);
+    $union_sql = "
+        (SELECT 'enrollment' as record_type, e.id, e.full_name, e.email, e.phone, e.created_at,
+                e.status, e.course_name, e.education, e.dob, e.address,
+                e.photo_data, e.photo_mime, e.enquiry_source, e.ip_address, e.user_agent,
+                NULL as subject, NULL as message, NULL as enquiry_id
+         FROM enrollments e
+         WHERE 1=1 $search_where $status_where $course_where)
+        UNION ALL
+        (SELECT 'enquiry' as record_type, c.id, c.full_name, c.email, c.phone, c.created_at,
+                $enquiry_status_col, NULL as course_name, NULL as education, NULL as dob, NULL as address,
+                NULL as photo_data, NULL as photo_mime, NULL as enquiry_source, c.ip_address, c.user_agent,
+                c.subject, c.message, c.id as enquiry_id
+         FROM contact_submissions c
+         WHERE 1=1 " . ($search !== '' ? 'AND (c.full_name LIKE :search_c2 OR c.email LIKE :search2_c2 OR c.phone LIKE :search3_c2)' : '') . " $c_status_where $c_course_where)
+        ORDER BY created_at DESC
+        LIMIT $per_page OFFSET $offset";
+    if ($search !== '') {
+        $union_params[':search_c2'] = "%$search%";
+        $union_params[':search2_c2'] = "%$search%";
+        $union_params[':search3_c2'] = "%$search%";
+    }
+    if ($status_filter !== '' && $has_status_c) {
+        $union_params[':c_status'] = $status_filter;
+    }
+    if ($course_filter !== '') {
+        $union_params[':c_course'] = "%$course_filter%";
+    }
+    $stmt = $pdo->prepare($union_sql);
+    $stmt->execute($union_params);
+    $records = $stmt->fetchAll();
 } catch (\Throwable $e) {
-    $message = 'Failed to load enrollments: ' . $e->getMessage();
+    $message = 'Failed to load records: ' . $e->getMessage();
     $msg_type = 'danger';
-    error_log('Admin enrollments fetch: ' . $e->getMessage());
-    $enrollments = [];
-    $stats = ['total' => 0, 'pending' => 0, 'contacted' => 0, 'enrolled' => 0, 'cancelled' => 0];
+    error_log('Admin fetch error: ' . $e->getMessage());
+    $records = [];
+    $stats = ['total' => 0, 'pending' => 0, 'contacted' => 0, 'enrolled' => 0, 'cancelled' => 0, 'total_enquiries' => 0];
     $total_records = 0;
     $total_pages = 1;
 }
@@ -109,7 +228,7 @@ try {
 $courses_filter_list = [];
 try {
     if ($pdo !== null) {
-        $stmt = $pdo->query('SELECT DISTINCT course_name FROM enrollments ORDER BY course_name');
+        $stmt = $pdo->query('SELECT name FROM courses WHERE is_active = 1 ORDER BY display_order ASC');
         $courses_filter_list = $stmt->fetchAll(\PDO::FETCH_COLUMN);
     }
 } catch (\Throwable $e) {}
@@ -283,29 +402,30 @@ function getStatusBadge(string $status): string {
     </div>
   <?php endif; ?>
 
+
   <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
       <div class="stat-pill">
-        <div class="sp-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-people"></i></div>
-        <div><div class="sp-number"><?= (int)$stats['total'] ?></div><div class="sp-label">Total Enrollments</div></div>
+        <div class="sp-icon" style="background:#fef2f2;color:#d8000d;"><i class="bi bi-envelope-open"></i></div>
+        <div><div class="sp-number"><?= (int)$stats['total_enquiries'] ?></div><div class="sp-label">Total Enquiries</div></div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-pill">
-        <div class="sp-icon" style="background:#fff3cd;color:#856404;"><i class="bi bi-clock-history"></i></div>
-        <div><div class="sp-number"><?= (int)$stats['pending'] ?></div><div class="sp-label">Pending</div></div>
+        <div class="sp-icon" style="background:#f8d7da;color:#721c24;"><i class="bi bi-clock-history"></i></div>
+        <div><div class="sp-number"><?= (int)$stats['pending'] ?></div><div class="sp-label">Not Contacted</div></div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-pill">
+        <div class="sp-icon" style="background:#cce5ff;color:#004085;"><i class="bi bi-telephone"></i></div>
+        <div><div class="sp-number"><?= (int)$stats['contacted'] ?></div><div class="sp-label">Contacted</div></div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-pill">
         <div class="sp-icon" style="background:#d4edda;color:#155724;"><i class="bi bi-check-circle"></i></div>
         <div><div class="sp-number"><?= (int)$stats['enrolled'] ?></div><div class="sp-label">Enrolled</div></div>
-      </div>
-    </div>
-    <div class="col-6 col-md-3">
-      <div class="stat-pill">
-        <div class="sp-icon" style="background:#f8d7da;color:#721c24;"><i class="bi bi-x-circle"></i></div>
-        <div><div class="sp-number"><?= (int)$stats['contacted'] + (int)$stats['cancelled'] ?></div><div class="sp-label">Contacted / Cancelled</div></div>
       </div>
     </div>
   </div>
@@ -335,45 +455,74 @@ function getStatusBadge(string $status): string {
     <a href="index" class="btn btn-outline-secondary" style="border-radius:10px;"><i class="bi bi-arrow-counterclockwise"></i></a>
   </form>
 
-  <?php if (count($enrollments) > 0): ?>
+  <?php if (count($records) > 0): ?>
     <div class="row g-3">
-      <?php foreach ($enrollments as $e): ?>
+      <?php foreach ($records as $r): ?>
         <div class="col-xl-4 col-md-6">
           <div class="enrollment-card">
             <div class="card-header">
-              <?php if (!empty($e['photo_data']) && !empty($e['photo_mime'])): ?>
-                <img src="photo.php?id=<?= (int)$e['id'] ?>" class="e-avatar" alt="">
+              <?php if ($r['record_type'] === 'enrollment'): ?>
+                <?php if (!empty($r['photo_data']) && !empty($r['photo_mime'])): ?>
+                  <img src="photo.php?id=<?= (int)$r['id'] ?>" class="e-avatar" alt="">
+                <?php else: ?>
+                  <img src="https://ui-avatars.com/api/?name=<?= urlencode($r['full_name']) ?>&background=d8000d&color=fff&size=44" class="e-avatar" alt="">
+                <?php endif; ?>
               <?php else: ?>
-                <img src="https://ui-avatars.com/api/?name=<?= urlencode($e['full_name']) ?>&background=d8000d&color=fff&size=44" class="e-avatar" alt="">
+                <div class="e-avatar d-flex align-items-center justify-content-center" style="background:#fef2f2;color:#d8000d;font-size:1.2rem;">
+                  <i class="bi bi-envelope"></i>
+                </div>
               <?php endif; ?>
               <div style="overflow:hidden;">
-                <div class="e-name text-truncate"><?= htmlspecialchars($e['full_name']) ?></div>
-                <div class="e-email text-truncate"><?= htmlspecialchars($e['email']) ?></div>
+                <div class="e-name text-truncate"><?= htmlspecialchars($r['full_name']) ?></div>
+                <div class="e-email text-truncate"><?= htmlspecialchars($r['email']) ?></div>
               </div>
-              <span class="badge-status <?= getStatusBadge($e['status']) ?> ms-auto"><?= ucfirst(htmlspecialchars($e['status'])) ?></span>
+              <span class="badge-status <?= getStatusBadge($r['status']) ?> ms-auto"><?= ucfirst(htmlspecialchars($r['status'])) ?></span>
             </div>
             <div class="card-body">
-              <div class="e-detail"><span class="e-label">Phone</span><span><?= htmlspecialchars($e['phone']) ?></span></div>
-              <div class="e-detail"><span class="e-label">Course</span><span><?= htmlspecialchars($e['course_name']) ?></span></div>
-              <div class="e-detail"><span class="e-label">Education</span><span><?= htmlspecialchars($e['education'] ?? '-') ?></span></div>
-              <div class="e-detail"><span class="e-label">DOB</span><span><?= $e['dob'] ? htmlspecialchars($e['dob']) : '-' ?></span></div>
-              <div class="e-detail"><span class="e-label">Submitted</span><span><?= date('Y-m-d h:i A', strtotime($e['created_at'])) ?></span></div>
-              <?php if (!empty($e['address'])): ?>
-                <div class="e-detail"><span class="e-label">Address</span><span class="text-truncate"><?= htmlspecialchars($e['address']) ?></span></div>
+              <div class="e-detail"><span class="e-label">Phone</span><span><?= htmlspecialchars($r['phone']) ?></span></div>
+              <?php if ($r['record_type'] === 'enrollment'): ?>
+                <div class="e-detail"><span class="e-label">Course</span><span><?= htmlspecialchars($r['course_name']) ?></span></div>
+                <div class="e-detail"><span class="e-label">Education</span><span><?= htmlspecialchars($r['education'] ?? '-') ?></span></div>
+                <div class="e-detail"><span class="e-label">DOB</span><span><?= $r['dob'] ? htmlspecialchars($r['dob']) : '-' ?></span></div>
+                <?php if (!empty($r['address'])): ?>
+                  <div class="e-detail"><span class="e-label">Address</span><span class="text-truncate"><?= htmlspecialchars($r['address']) ?></span></div>
+                <?php endif; ?>
+              <?php else: ?>
+                <div class="e-detail"><span class="e-label">Subject</span><span><?= htmlspecialchars($r['subject'] ?? '-') ?></span></div>
+                <div class="e-detail"><span class="e-label">Message</span><span class="text-truncate"><?= htmlspecialchars(mb_substr($r['message'], 0, 100)) ?><?= mb_strlen($r['message']) > 100 ? '...' : '' ?></span></div>
               <?php endif; ?>
+              <div class="e-detail"><span class="e-label">Submitted</span><span><?= date('Y-m-d h:i A', strtotime($r['created_at'])) ?></span></div>
             </div>
             <div class="card-footer">
-              <span class="source-tag source-tag-<?= htmlspecialchars($e['enquiry_source']) ?>">
-                <i class="bi bi-<?= $e['enquiry_source'] === 'whatsapp' ? 'whatsapp' : 'globe' ?> me-1"></i><?= ucfirst(htmlspecialchars($e['enquiry_source'] ?? 'web')) ?>
-              </span>
+              <?php if ($r['record_type'] === 'enrollment'): ?>
+                <span class="source-tag source-tag-<?= htmlspecialchars($r['enquiry_source']) ?>">
+                  <i class="bi bi-<?= $r['enquiry_source'] === 'whatsapp' ? 'whatsapp' : 'globe' ?> me-1"></i><?= ucfirst(htmlspecialchars($r['enquiry_source'] ?? 'web')) ?>
+                </span>
+              <?php else: ?>
+                <span class="source-tag" style="background:#f1f5f9;color:#475569;">
+                  <i class="bi bi-globe me-1"></i>Web
+                </span>
+              <?php endif; ?>
               <div class="d-flex gap-1">
-                <button class="btn btn-outline-primary-custom btn-action-sm" data-bs-toggle="modal" data-bs-target="#viewModal<?= (int)$e['id'] ?>" title="View Details"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-primary-custom btn-action-sm" data-bs-toggle="modal" data-bs-target="#detailModal<?= (int)$r['id'] ?>_<?= $r['record_type'] ?>" title="View Details"><i class="bi bi-eye"></i></button>
                 <div class="btn-group">
                   <button class="btn btn-outline-secondary btn-action-sm dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <form method="post" class="d-inline">
-                        <input type="hidden" name="id" value="<?= (int)$e['id'] ?>">
+                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                        <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
+                        <input type="hidden" name="action" value="update_status">
+                        <input type="hidden" name="status" value="pending">
+                        <button type="submit" class="dropdown-item"><i class="bi bi-clock-history me-2"></i>Mark Not Contacted</button>
+                      </form>
+                    </li>
+                    <li>
+                      <form method="post" class="d-inline">
+                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                        <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                         <input type="hidden" name="action" value="update_status">
                         <input type="hidden" name="status" value="contacted">
                         <button type="submit" class="dropdown-item"><i class="bi bi-telephone me-2"></i>Mark Contacted</button>
@@ -381,16 +530,30 @@ function getStatusBadge(string $status): string {
                     </li>
                     <li>
                       <form method="post" class="d-inline">
-                        <input type="hidden" name="id" value="<?= (int)$e['id'] ?>">
+                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                        <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                         <input type="hidden" name="action" value="update_status">
                         <input type="hidden" name="status" value="enrolled">
                         <button type="submit" class="dropdown-item"><i class="bi bi-check-circle me-2"></i>Mark Enrolled</button>
                       </form>
                     </li>
+                    <li>
+                      <form method="post" class="d-inline">
+                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                        <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
+                        <input type="hidden" name="action" value="update_status">
+                        <input type="hidden" name="status" value="cancelled">
+                        <button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#confirmCancelModal"><i class="bi bi-x-circle me-2"></i>Cancelled / Not Interested</button>
+                      </form>
+                    </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                      <form method="post" class="d-inline" onsubmit="return confirm('Delete this enrollment record?')">
-                        <input type="hidden" name="id" value="<?= (int)$e['id'] ?>">
+                      <form method="post" class="d-inline" onsubmit="return confirm('Delete this record?')">
+                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                        <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                        <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                         <input type="hidden" name="action" value="delete">
                         <button type="submit" class="dropdown-item text-danger"><i class="bi bi-trash me-2"></i>Delete</button>
                       </form>
@@ -402,58 +565,93 @@ function getStatusBadge(string $status): string {
           </div>
         </div>
 
-        <div class="modal fade" id="viewModal<?= (int)$e['id'] ?>" tabindex="-1">
+        <div class="modal fade" id="detailModal<?= (int)$r['id'] ?>_<?= $r['record_type'] ?>" tabindex="-1">
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" style="color:#1e293b;">Enrollment Details</h5>
+                <h5 class="modal-title" style="color:#1e293b;"><?= $r['record_type'] === 'enrollment' ? 'Enrollment' : 'Enquiry' ?> Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
+                <?php if ($r['record_type'] === 'enrollment'): ?>
                 <div class="row g-3">
                   <div class="col-md-4 text-center mb-3">
-                    <?php if (!empty($e['photo_data']) && !empty($e['photo_mime'])): ?>
-                      <img src="photo.php?id=<?= (int)$e['id'] ?>" alt="" style="width:120px;height:120px;border-radius:50%;object-fit:cover;background:#e9ecef;">
+                    <?php if (!empty($r['photo_data']) && !empty($r['photo_mime'])): ?>
+                      <img src="photo.php?id=<?= (int)$r['id'] ?>" alt="" style="width:120px;height:120px;border-radius:50%;object-fit:cover;background:#e9ecef;">
                     <?php else: ?>
-                      <img src="https://ui-avatars.com/api/?name=<?= urlencode($e['full_name']) ?>&background=d8000d&color=fff&size=120" alt="" style="width:120px;height:120px;border-radius:50%;">
+                      <img src="https://ui-avatars.com/api/?name=<?= urlencode($r['full_name']) ?>&background=d8000d&color=fff&size=120" alt="" style="width:120px;height:120px;border-radius:50%;">
                     <?php endif; ?>
                     <div class="mt-2">
-                      <span class="badge-status <?= getStatusBadge($e['status']) ?>"><?= ucfirst(htmlspecialchars($e['status'])) ?></span>
+                      <span class="badge-status <?= getStatusBadge($r['status']) ?>"><?= ucfirst(htmlspecialchars($r['status'])) ?></span>
                     </div>
                   </div>
                   <div class="col-md-8">
                     <table class="table table-sm table-borderless" style="font-size:0.88rem;">
-                      <tr><td class="text-muted" style="width:120px;color:#64748b;">Full Name</td><td style="color:#1e293b;"><strong><?= htmlspecialchars($e['full_name']) ?></strong></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Email</td><td style="color:#1e293b;"><?= htmlspecialchars($e['email']) ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Phone</td><td style="color:#1e293b;"><?= htmlspecialchars($e['phone']) ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Date of Birth</td><td style="color:#1e293b;"><?= $e['dob'] ? htmlspecialchars($e['dob']) : '-' ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Course</td><td style="color:#1e293b;"><?= htmlspecialchars($e['course_name']) ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Education</td><td style="color:#1e293b;"><?= htmlspecialchars($e['education'] ?? '-') ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Source</td><td style="color:#1e293b;"><?= ucfirst(htmlspecialchars($e['enquiry_source'] ?? 'web')) ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">Submitted</td><td style="color:#1e293b;"><?= date('Y-m-d h:i A', strtotime($e['created_at'])) ?></td></tr>
-                      <tr><td class="text-muted" style="color:#64748b;">IP Address</td><td style="color:#1e293b;" class="small"><?= htmlspecialchars($e['ip_address'] ?? '-') ?></td></tr>
+                      <tr><td class="text-muted" style="width:120px;color:#64748b;">Full Name</td><td style="color:#1e293b;"><strong><?= htmlspecialchars($r['full_name']) ?></strong></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Email</td><td style="color:#1e293b;"><?= htmlspecialchars($r['email']) ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Phone</td><td style="color:#1e293b;"><?= htmlspecialchars($r['phone']) ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Date of Birth</td><td style="color:#1e293b;"><?= $r['dob'] ? htmlspecialchars($r['dob']) : '-' ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Course</td><td style="color:#1e293b;"><?= htmlspecialchars($r['course_name']) ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Education</td><td style="color:#1e293b;"><?= htmlspecialchars($r['education'] ?? '-') ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Source</td><td style="color:#1e293b;"><?= ucfirst(htmlspecialchars($r['enquiry_source'] ?? 'web')) ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">Submitted</td><td style="color:#1e293b;"><?= date('Y-m-d h:i A', strtotime($r['created_at'])) ?></td></tr>
+                      <tr><td class="text-muted" style="color:#64748b;">IP Address</td><td style="color:#1e293b;" class="small"><?= htmlspecialchars($r['ip_address'] ?? '-') ?></td></tr>
                     </table>
                   </div>
                 </div>
-                <?php if (!empty($e['address'])): ?>
+                <?php if (!empty($r['address'])): ?>
                   <div class="mt-2 pt-2 border-top" style="border-color:#f1f5f9 !important;">
                     <small style="color:#64748b;">Address:</small>
-                    <p class="mb-0" style="color:#1e293b;"><?= nl2br(htmlspecialchars($e['address'])) ?></p>
+                    <p class="mb-0" style="color:#1e293b;"><?= nl2br(htmlspecialchars($r['address'])) ?></p>
                   </div>
+                <?php endif; ?>
+                <?php else: ?>
+                <table class="table table-sm table-borderless" style="font-size:0.88rem;">
+                  <tr><td class="text-muted" style="width:120px;color:#64748b;">Full Name</td><td style="color:#1e293b;"><strong><?= htmlspecialchars($r['full_name']) ?></strong></td></tr>
+                  <tr><td class="text-muted" style="color:#64748b;">Email</td><td style="color:#1e293b;"><?= htmlspecialchars($r['email']) ?></td></tr>
+                  <tr><td class="text-muted" style="color:#64748b;">Phone</td><td style="color:#1e293b;"><?= htmlspecialchars($r['phone'] ?? '-') ?></td></tr>
+                  <tr><td class="text-muted" style="color:#64748b;">Subject</td><td style="color:#1e293b;"><?= htmlspecialchars($r['subject'] ?? '-') ?></td></tr>
+                  <tr><td class="text-muted" style="color:#64748b;">Submitted</td><td style="color:#1e293b;"><?= date('Y-m-d h:i A', strtotime($r['created_at'])) ?></td></tr>
+                  <tr><td class="text-muted" style="color:#64748b;">IP Address</td><td style="color:#1e293b;" class="small"><?= htmlspecialchars($r['ip_address'] ?? '-') ?></td></tr>
+                </table>
+                <div class="mt-2 pt-2 border-top" style="border-color:#f1f5f9 !important;">
+                  <small style="color:#64748b;">Message:</small>
+                  <p class="mb-0 mt-1" style="color:#1e293b;white-space:pre-wrap;"><?= htmlspecialchars($r['message']) ?></p>
+                </div>
                 <?php endif; ?>
               </div>
               <div class="modal-footer">
                 <form method="post" class="d-inline">
-                  <input type="hidden" name="id" value="<?= (int)$e['id'] ?>">
+                  <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                  <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                  <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
+                  <input type="hidden" name="action" value="update_status">
+                  <input type="hidden" name="status" value="pending">
+                  <button type="submit" class="btn btn-sm" style="background:#fff3cd;border-color:#ffeeba;color:#856404;border-radius:8px;"><i class="bi bi-clock-history me-1"></i>Mark Not Contacted</button>
+                </form>
+                <form method="post" class="d-inline">
+                  <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                  <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                  <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                   <input type="hidden" name="action" value="update_status">
                   <input type="hidden" name="status" value="contacted">
                   <button type="submit" class="btn btn-sm" style="background:#cce5ff;border-color:#b8daff;color:#004085;border-radius:8px;"><i class="bi bi-telephone me-1"></i>Mark Contacted</button>
                 </form>
                 <form method="post" class="d-inline">
-                  <input type="hidden" name="id" value="<?= (int)$e['id'] ?>">
+                  <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                  <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                  <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                   <input type="hidden" name="action" value="update_status">
                   <input type="hidden" name="status" value="enrolled">
                   <button type="submit" class="btn btn-sm" style="background:#d4edda;border-color:#c3e6cb;color:#155724;border-radius:8px;"><i class="bi bi-check-circle me-1"></i>Mark Enrolled</button>
+                </form>
+                <form method="post" class="d-inline">
+                  <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                  <input type="hidden" name="record_type" value="<?= $r['record_type'] ?>">
+                  <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
+                  <input type="hidden" name="action" value="update_status">
+                  <input type="hidden" name="status" value="cancelled">
+                  <button type="button" class="btn btn-sm" style="background:#f8d7da;border-color:#f5c6cb;color:#721c24;border-radius:8px;" data-bs-toggle="modal" data-bs-target="#confirmCancelModal"><i class="bi bi-x-circle me-1"></i>Cancelled / Not Interested</button>
                 </form>
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" style="border-radius:8px;">Close</button>
               </div>
@@ -466,7 +664,7 @@ function getStatusBadge(string $status): string {
     <?php if ($total_pages > 1): ?>
       <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mt-4 gap-2">
         <div style="color:#64748b;font-size:0.8rem;">
-          Showing <?= $offset + 1 ?>–<?= min($offset + $per_page, $total_records) ?> of <?= $total_records ?> enrollment<?= $total_records !== 1 ? 's' : '' ?>
+          Showing <?= $offset + 1 ?>–<?= min($offset + $per_page, $total_records) ?> of <?= $total_records ?> record<?= $total_records !== 1 ? 's' : '' ?>
         </div>
         <nav>
           <ul class="pagination pagination-sm mb-0">
@@ -490,20 +688,39 @@ function getStatusBadge(string $status): string {
       </div>
     <?php else: ?>
       <div class="text-center mt-3" style="color:#94a3b8;font-size:0.85rem;">
-        Showing all <?= $total_records ?> enrollment<?= $total_records !== 1 ? 's' : '' ?>
+        Showing all <?= $total_records ?> record<?= $total_records !== 1 ? 's' : '' ?>
       </div>
     <?php endif; ?>
 
   <?php else: ?>
     <div class="empty-state">
       <i class="bi bi-inbox"></i>
-      <h5>No enrollments found</h5>
+      <h5>No records found</h5>
       <p>Try adjusting your search or filter criteria.</p>
       <?php if ($search || $status_filter || $course_filter): ?>
         <a href="index" class="btn btn-outline-primary-custom btn-sm rounded-pill px-3"><i class="bi bi-arrow-counterclockwise me-1"></i>Clear Filters</a>
       <?php endif; ?>
     </div>
   <?php endif; ?>
+</div>
+
+
+
+<!-- Confirm Cancel Modal -->
+<div class="modal fade" id="confirmCancelModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body text-center py-4">
+        <i class="bi bi-x-circle fs-1 text-danger mb-3 d-block"></i>
+        <h6 style="color:#1e293b;">Confirm Cancellation</h6>
+        <p class="small" style="color:#64748b;">Mark this record as cancelled / not interested?</p>
+        <div class="d-flex gap-2 justify-content-center mt-3">
+          <button type="button" class="btn btn-sm btn-secondary px-3" data-bs-dismiss="modal" style="border-radius:8px;">No</button>
+          <button type="button" id="confirmCancelBtn" class="btn btn-sm px-3 text-white" style="background:#d8000d;border-color:#d8000d;border-radius:8px;">Yes, Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Logout Confirmation Modal -->
@@ -523,6 +740,16 @@ function getStatusBadge(string $status): string {
   </div>
 </div>
 
+<script>
+var cancelForm = null;
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-bs-target="#confirmCancelModal"]');
+  if (btn) cancelForm = btn.closest('form');
+});
+document.getElementById('confirmCancelBtn')?.addEventListener('click', function() {
+  if (cancelForm) cancelForm.submit();
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
