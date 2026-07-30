@@ -57,6 +57,9 @@ RedirectMatch 404 /\.env
 </IfModule>
 
 <IfModule mod_headers.c>
+  # HSTS: force HTTPS on repeat visits (eliminates redirect)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=!IS_LOCAL
+
   <FilesMatch "\.(jpg|jpeg|webp|png|svg|gif|ico)$">
     Header set Cache-Control "public, immutable, max-age=31536000"
   </FilesMatch>

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://esm.sh" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
@@ -1493,7 +1493,7 @@
 })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
 <footer style="background:#0f172a;color:#cbd5e1;">
   <div style="padding:4rem 0 2.5rem;">
@@ -1576,11 +1576,8 @@
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
-  var start = performance.now();
   function show(){ loader.classList.remove('hidden'); }
   function hide(){
-    var elapsed = performance.now() - start;
-    if (elapsed < 2000) { setTimeout(hide, 2000 - elapsed); return; }
     loader.classList.add('hidden');
   }
   hide();
@@ -1590,7 +1587,6 @@
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
     show();
-    start = performance.now();
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {
