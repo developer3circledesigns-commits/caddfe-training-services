@@ -602,7 +602,7 @@ href="/services">Services</a>
 
 <div class="page-hero hero-content">
   <div class="page-hero-bg">
-    <img src="images/contact-hero.png" alt="Contact CADDFE" loading="eager" fetchpriority="high" />
+    <img src="images/contact-hero.png" alt="Contact CADDFE" width="1920" height="500" loading="eager" fetchpriority="high" />
     <div class="page-hero-overlay"></div>
   </div>
   <div class="container text-center text-white position-relative">
@@ -876,8 +876,8 @@ href="/services">Services</a>
   });
 })();
 
+document.addEventListener('DOMContentLoaded', function(){
 <?php if ($show_success_modal): ?>
-(function(){
   var modal = new bootstrap.Modal(document.getElementById('successModal'));
   modal.show();
   document.getElementById('successModal').addEventListener('hidden.bs.modal', function() {
@@ -892,9 +892,7 @@ href="/services">Services</a>
     if (contactForm) contactForm.submitting = false;
     btn.innerHTML = 'Send <i class="bi bi-send ms-1"></i>';
   });
-})();
 <?php elseif ($form_submitted): ?>
-(function(){
   var modal = new bootstrap.Modal(document.getElementById('errorModal'));
   var list = document.getElementById('errorList');
   list.innerHTML = '';
@@ -911,8 +909,8 @@ href="/services">Services</a>
     btn.innerHTML = 'Send <i class="bi bi-send ms-1"></i>';
     document.getElementById('contactForm').querySelectorAll('.is-invalid, .is-valid').forEach(function(el){ el.classList.remove('is-invalid', 'is-valid'); });
   });
-})();
 <?php endif; ?>
+});
 </script>
 
 <footer style="background:#0f172a;color:#cbd5e1;">
