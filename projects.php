@@ -398,7 +398,7 @@
 <header class="hero-header">
   <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
     <a href="/" class="navbar-brand p-1">
-        <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
+        <img src="images/Caddfe Logo 300x150.png" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
       </a>
 
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

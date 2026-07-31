@@ -21,7 +21,7 @@ function validate_csrf(string $token): bool {
     return hash_equals(csrf_token(), $token);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['action'])) {
     try {
         if ($pdo === null) throw new \RuntimeException('DB unavailable');
 
@@ -372,7 +372,7 @@ function getStatusBadge(string $status): string {
 
 <div class="topbar">
   <div class="d-flex align-items-center gap-3">
-    <img src="../images/logo.png" alt="CADDFE" style="height:32px;width:auto;">
+    <img src="../images/Caddfe Logo 300x150.png" alt="CADDFE" style="height:32px;width:auto;">
     <!-- <div class="page-title">
       <h5 style="color:#fff;margin:0;font-weight:700;">Enrollments</h5>
       <small style="color:#94a3b8;font-size:0.8rem;">Manage all student enrollment submissions</small>

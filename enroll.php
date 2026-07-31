@@ -44,7 +44,7 @@ function getClientIP(): string
     return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_submit'])) {
     $form_submitted = true;
 
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -540,10 +540,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enroll_submit'])) {
   </div>
 </div>
 
-<header class="hero-header">
-  <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
+  <header class="hero-header">
+    <nav class="navbar navbar-expand-lg navbar-dark px-4 px-lg-5 py-3" aria-label="Global">
     <a href="/" class="navbar-brand p-1">
-      <img src="images/logo.png" srcset="images/logo.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
+      <img src="images/Caddfe Logo 300x150.png" srcset="images/Caddfe Logo 300x150.png 1x, images/logo_2x.png 2x" alt="CADDFE" height="48" style="filter:brightness(1.2)" loading="eager" width="180">
     </a>
     <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="24" height="24">
