@@ -3,31 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; frame-src 'none'; object-src 'none';" />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <meta name="description" content="CADDFE offers professional architectural design services — 2D drafting, 3D modeling, rendering, and structural documentation for residential and commercial projects." />
   <title>Architectural Design Services - CADDFE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
+  <script>document.documentElement.className += ' js';</script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
-    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
-    [data-aos="fade-left"] { transform: translateX(-50px); }
-    [data-aos="fade-left"].aos-animate { transform: translateX(0); }
-    [data-aos="fade-right"] { transform: translateX(50px); }
-    [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    html.js [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    html.js [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    html.js [data-aos="fade-left"] { transform: translateX(-50px); }
+    html.js [data-aos="fade-left"].aos-animate { transform: translateX(0); }
+    html.js [data-aos="fade-right"] { transform: translateX(50px); }
+    html.js [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html.js [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
@@ -184,7 +180,7 @@
     .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
     .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
     .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.82), rgba(0,0,0,0.52)); }
     .hero-content { padding-top: 76px; }
     p, .card-text, dd { text-align: justify; }
     .card-body .fw-bold { color: #d8000d; }
@@ -249,6 +245,7 @@
       background: #fff; transition: opacity 0.35s ease;
     }
     .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .page-loader.hidden .banter-loader__box { animation-play-state: paused; }
     .banter-loader {
       position: relative;
       width: 72px; height: 72px;
@@ -469,7 +466,7 @@
     <picture>
       <source srcset="images/hero-section-960.webp 960w, images/hero-section-1920.webp 1920w" type="image/webp" sizes="100vw" />
       <source srcset="images/hero-section-960.jpg 960w, images/hero-section-1920.jpg 1920w" type="image/jpeg" sizes="100vw" />
-      <img src="images/hero-section-1920.jpg" alt="Architectural Design" width="1920" height="1080" loading="eager" fetchpriority="high" />
+      <img src="images/hero-section-1920.jpg" alt="Architectural Design" width="1920" height="799" loading="eager" fetchpriority="high" />
     </picture>
     <div class="page-hero-overlay"></div>
   </div>
@@ -482,7 +479,7 @@
 <section data-aos="fade-up" class="py-5 bg-light">
   <div class="container" style="max-width:72rem;">
     <div class="row align-items-center g-5">
-      <div class="col-lg-6"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=700&q=80" class="w-100" alt="" loading="lazy" style="height:400px;object-fit:cover;" /></div>
+      <div class="col-lg-6"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=700&q=80" class="w-100" alt="Modern architectural building design" loading="lazy" style="height:400px;object-fit:cover;" /></div>
       <div class="col-lg-6">
         <p class="section-tag">Overview</p>
         <h2 class="fw-bold mb-3" style="font-size:2rem;letter-spacing:-0.02em;">Complete Architectural Solutions</h2>
@@ -501,7 +498,7 @@
         <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
-              <img src="images/interior.jpg" class="card-horizontal-img" alt="Interior Design" loading="lazy">
+              <img src="images/interior.jpg" class="card-horizontal-img" alt="Interior Design" width="1600" height="897" loading="lazy">
             </div>
             <div class="col-md-7">
               <div class="card-body">
@@ -517,7 +514,7 @@
         <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
-              <img src="images/structure.jpg" class="card-horizontal-img" alt="Structural Design" loading="lazy">
+              <img src="images/structure.jpg" class="card-horizontal-img" alt="Structural Design" width="1600" height="1067" loading="lazy">
             </div>
             <div class="col-md-7">
               <div class="card-body">
@@ -533,7 +530,7 @@
         <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
-              <img src="images/planlayout.jpg" class="card-horizontal-img" alt="Layout &amp; Plan" loading="lazy">
+              <img src="images/planlayout.jpg" class="card-horizontal-img" alt="Layout &amp; Plan" width="1600" height="1068" loading="lazy">
             </div>
             <div class="col-md-7">
               <div class="card-body">
@@ -549,7 +546,7 @@
         <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
-              <img src="images/3dmodel.jpg" class="card-horizontal-img" alt="3D Modelling" loading="lazy">
+              <img src="images/3dmodel.jpg" class="card-horizontal-img" alt="3D Modelling" width="1600" height="1067" loading="lazy">
             </div>
             <div class="col-md-7">
               <div class="card-body">
@@ -565,7 +562,7 @@
         <div class="card h-100 border-0 shadow-sm service-card">
           <div class="row g-0 h-100">
             <div class="col-md-5">
-              <img src="images/elevation.jpg" class="card-horizontal-img" alt="Elevation Design" loading="lazy">
+              <img src="images/elevation.jpg" class="card-horizontal-img" alt="Elevation Design" width="1600" height="941" loading="lazy">
             </div>
             <div class="col-md-7">
               <div class="card-body">
@@ -585,9 +582,9 @@
   <div class="container" style="max-width:72rem;">
     <div class="text-center mb-5"><p class="section-tag" style="text-align:center;">Recent Work</p><h2 class="fw-bold" style="font-size:2rem;">Our Project Portfolio</h2></div>
     <div class="row g-4">
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&h=250&fit=crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Interior</span><h3 class="fw-bold mt-2 mb-1">Modern Living Room</h3><p class="small text-secondary mb-0">Complete interior design with custom joinery, ambient lighting, and contemporary furniture layout.</p></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Residential</span><h3 class="fw-bold mt-2 mb-1">G+2 Villa</h3><p class="small text-secondary mb-0">Architectural design including floor plans, elevations, sections, and 3D walkthrough for a modern villa.</p></div></div></div>
-      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit crop" alt="" loading="lazy" /><div class="p-3"><span class="code-badge">Commercial</span><h3 class="fw-bold mt-2 mb-1">Office Interior</h3><p class="small text-secondary mb-0">Space planning, 3D modelling, and elevation design for a 2,000 sq.ft corporate office.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&h=250&fit=crop" alt="Modern living room interior design project" width="400" height="250" loading="lazy" /><div class="p-3"><span class="code-badge">Interior</span><h3 class="fw-bold mt-2 mb-1">Modern Living Room</h3><p class="small text-secondary mb-0">Complete interior design with custom joinery, ambient lighting, and contemporary furniture layout.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" alt="G+2 villa residential architectural design" width="400" height="250" loading="lazy" /><div class="p-3"><span class="code-badge">Residential</span><h3 class="fw-bold mt-2 mb-1">G+2 Villa</h3><p class="small text-secondary mb-0">Architectural design including floor plans, elevations, sections, and 3D walkthrough for a modern villa.</p></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="project-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="Office interior design project" width="400" height="250" loading="lazy" /><div class="p-3"><span class="code-badge">Commercial</span><h3 class="fw-bold mt-2 mb-1">Office Interior</h3><p class="small text-secondary mb-0">Space planning, 3D modelling, and elevation design for a 2,000 sq.ft corporate office.</p></div></div></div>
     </div>
   </div>
 </section> -->
@@ -623,7 +620,7 @@
 })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
 
 <footer style="background:#0f172a;color:#cbd5e1;">
   <div style="padding:4rem 0 2.5rem;">
@@ -655,19 +652,19 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -708,15 +705,18 @@
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
+  var showTimer = null;
   function show(){ loader.classList.remove('hidden'); }
-  function hide(){ loader.classList.add('hidden'); }
+  function hide(){ if (showTimer) { clearTimeout(showTimer); showTimer = null; } loader.classList.add('hidden'); }
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if (!a || a.hostname !== location.hostname) return;
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
+    try { if (new URL(a.href).pathname === location.pathname) return; } catch (err) {}
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {

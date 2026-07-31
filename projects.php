@@ -3,21 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; frame-src 'none'; object-src 'none';" />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>Our Projects - CADDFE Training Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
+  <script>document.documentElement.className += ' js';</script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
@@ -160,7 +153,7 @@
     .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
     .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
     .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.82), rgba(0,0,0,0.52)); }
     .hero-content { padding-top: 76px; }
     .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
@@ -213,6 +206,7 @@
       background: #fff; transition: opacity 0.35s ease;
     }
     .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .page-loader.hidden .banter-loader__box { animation-play-state: paused; }
     .banter-loader {
       position: relative;
       width: 72px; height: 72px;
@@ -358,12 +352,15 @@
       100% { transform: translate(0px, 0); }
     }
     .banter-loader__box:nth-child(9) { animation: moveBox-9 4s infinite; }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform, opacity; }
-    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
-    [data-aos="fade-left"] { transform: translateX(-60px); }
-    [data-aos="fade-left"].aos-animate { transform: translateX(0); }
-    [data-aos="fade-right"] { transform: translateX(60px); }
-    [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    html.js [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform, opacity; }
+    html.js [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    html.js [data-aos="fade-left"] { transform: translateX(-60px); }
+    html.js [data-aos="fade-left"].aos-animate { transform: translateX(0); }
+    html.js [data-aos="fade-right"] { transform: translateX(60px); }
+    html.js [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html.js [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
     .proj-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0; margin-bottom: 4rem; }
     .proj-row:last-child { margin-bottom: 0; }
     .proj-row .img-side { flex: 1 1 48%; overflow: hidden; }
@@ -458,7 +455,10 @@ href="/services">Services</a>
 
 <div class="page-hero hero-content">
   <div class="page-hero-bg">
-    <img src="images/projects-hero.png" alt="Our Projects" loading="eager" fetchpriority="high" />
+    <picture>
+      <source srcset="images/projects-hero.webp" type="image/webp" />
+      <img src="images/projects-hero.jpg" alt="Our Projects" width="1792" height="1024" loading="eager" fetchpriority="high" />
+    </picture>
     <div class="page-hero-overlay"></div>
   </div>
   <div class="container text-center text-white position-relative">
@@ -473,7 +473,7 @@ href="/services">Services</a>
 
     <div class="proj-row">
       <div class="img-side" data-aos="fade-left">
-        <img src="images/projects/modern-residential-elevation.jpg" class="proj-img" alt="Building Elevation Design" loading="lazy" />
+        <img src="images/projects/modern-residential-elevation.jpg" class="proj-img" alt="Building Elevation Design" width="1536" height="1024" loading="lazy" />
       </div>
       <div class="txt-side">
         <span class="proj-cat">Building Elevation Design</span>
@@ -490,7 +490,7 @@ href="/services">Services</a>
 
     <div class="proj-row right">
       <div class="img-side" data-aos="fade-right">
-        <img src="images/projects/living-room-interior-design.jpg" class="proj-img" alt="Living Room Interior" loading="lazy" />
+        <img src="images/projects/living-room-interior-design.jpg" class="proj-img" alt="Living Room Interior" width="1344" height="1024" loading="lazy" />
       </div>
       <div class="txt-side">
         <span class="proj-cat">Building Interior Design</span>
@@ -507,7 +507,7 @@ href="/services">Services</a>
 
     <div class="proj-row">
       <div class="img-side" data-aos="fade-left">
-        <img src="images/projects/modular-kitchen-interior-design.jpg" class="proj-img" alt="Kitchen Interior" loading="lazy" />
+        <img src="images/projects/modular-kitchen-interior-design.jpg" class="proj-img" alt="Kitchen Interior" width="1344" height="1024" loading="lazy" />
       </div>
       <div class="txt-side">
         <span class="proj-cat">Building Interior Design</span>
@@ -524,7 +524,7 @@ href="/services">Services</a>
 
     <div class="proj-row right">
       <div class="img-side" data-aos="fade-right">
-        <img src="images/projects/3d-floor-plan-rendering.jpg" class="proj-img" alt="3D Floor Plan" loading="lazy" />
+        <img src="images/projects/3d-floor-plan-rendering.jpg" class="proj-img" alt="3D Floor Plan" width="1536" height="1024" loading="lazy" />
       </div>
       <div class="txt-side">
         <span class="proj-cat">3D Floor Plan</span>
@@ -541,7 +541,7 @@ href="/services">Services</a>
 
     <div class="proj-row">
       <div class="img-side" data-aos="fade-left">
-        <img src="images/projects/4d-phased-floor-plan-simulation-v2.jpg" class="proj-img" alt="4D Floor Plan" loading="lazy" />
+        <img src="images/projects/4d-phased-floor-plan-simulation-v2.jpg" class="proj-img" alt="4D Floor Plan" width="1344" height="1024" loading="lazy" />
       </div>
       <div class="txt-side">
         <span class="proj-cat">4D Floor Plan</span>
@@ -588,19 +588,19 @@ href="/services">Services</a>
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -637,7 +637,7 @@ href="/services">Services</a>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
 <script>
 (function(){
   var header = document.querySelector('.hero-header');
@@ -658,15 +658,18 @@ href="/services">Services</a>
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
+  var showTimer = null;
   function show(){ loader.classList.remove('hidden'); }
-  function hide(){ loader.classList.add('hidden'); }
+  function hide(){ if (showTimer) { clearTimeout(showTimer); showTimer = null; } loader.classList.add('hidden'); }
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if (!a || a.hostname !== location.hostname) return;
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
+    try { if (new URL(a.href).pathname === location.pathname) return; } catch (err) {}
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {

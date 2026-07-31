@@ -3,22 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://esm.sh; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; frame-src 'none'; object-src 'none';" />
   <meta name="description" content="Browse CADDFE&#39;s professional Civil CAD training programs — AutoCAD, Revit, Staad Pro, 3ds Max, and more. Flexible schedules for students and professionals." />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>Pick Your Course - CADDFE Training Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
+  <script>document.documentElement.className += ' js';</script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
@@ -162,7 +155,7 @@
     .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
     .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
     .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.82), rgba(0,0,0,0.52)); }
 
     .filter-toggle { display: none; background: #fff; border: 1px solid #dee2e6; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; min-height:44px; width:100%; text-align:left; }
     #filterChevron { transition: transform 0.25s ease; }
@@ -180,6 +173,14 @@
     .tag-modern { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.75rem; display: inline-block; }
     .stat-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: #64748b; }
 
+    #courseList { display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem; grid-auto-rows: 1fr; }
+    #courseList > div { display: flex; min-width: 0; }
+    .course-card-modern { width: 100%; }
+    .course-card-modern h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    @media (min-width: 576px) { #courseList { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 992px) { #courseList { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1200px) { #courseList { grid-template-columns: repeat(4, 1fr); } }
+
 
     .search-box { border: 1px solid #e9ecef; padding: 0.75rem 1.25rem; font-size: 0.9rem; width: 100%; max-width: 400px; outline: none; transition: border 0.2s; }
     .search-box:focus { border-color: #d8000d; }
@@ -194,8 +195,6 @@
     .footer-bottom { border-top: 1px solid; padding-top: 1.5rem; margin-top: 2.5rem; }
 
     @media (max-width: 575.98px) {
-      #courseList { margin-left: 0; margin-right: 0; }
-      #courseList > div { flex: 0 0 100%; max-width: 100%; padding-left: 0.75rem; padding-right: 0.75rem; }
       .filter-toggle { display: block; }
       .pill-nav { display: none; flex-direction: column; gap: 0.35rem; }
       .pill-nav.open { display: flex; }
@@ -266,6 +265,7 @@
       background: #fff; transition: opacity 0.35s ease;
     }
     .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .page-loader.hidden .banter-loader__box { animation-play-state: paused; }
     .banter-loader {
       position: relative;
       width: 72px; height: 72px;
@@ -487,7 +487,7 @@
     <picture>
       <source srcset="images/hero3-960.webp 960w, images/hero3-1920.webp 1920w" type="image/webp" sizes="100vw" />
       <source srcset="images/hero3-960.jpg 960w, images/hero3-1920.jpg 1920w" type="image/jpeg" sizes="100vw" />
-      <img src="images/hero3-1920.jpg" alt="CADDFE Training Services" width="1920" height="1080" loading="eager" fetchpriority="high" />
+      <img src="images/hero3-1920.jpg" alt="CADDFE Training Services" width="1920" height="1281" loading="eager" fetchpriority="high" />
     </picture>
     <div class="page-hero-overlay"></div>
   </div>
@@ -514,7 +514,7 @@
     </div>
 
     <h2 class="visually-hidden">Available Courses</h2>
-    <div class="row g-4" id="courseList">
+    <div id="courseList">
     </div>
   </div>
 </section>
@@ -549,19 +549,19 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -598,7 +598,7 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
 <script>
 (function(){
   var header = document.querySelector('.hero-header');
@@ -619,19 +619,19 @@
 <script>
 const coursesData = [
   { id: 1, name: 'Master Diploma in Architectural Design With AI', category: 'architecture', hrs: 370, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-01.jpg', levelsDetail: 'Level 1: 2D Architectural Presentation<br>Level 2: Advanced 3D Modelling<br>Level 3: Advanced Architectural Visualisation', mode: 'Online' },
-  { id: 2, name: 'Advanced Diploma in Architectural Design With AI', category: 'architecture', hrs: 200, levels: 2, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-02.jpg', levelsDetail: 'Level 1: Advanced 3D Modelling<br>Level 2: Advanced Architectural Visualisation', mode: 'Online' },
-  { id: 3, name: 'Diploma in Architectural Design With AI', category: 'architecture', hrs: 100, levels: 3, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-03.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Basic 3D Modelling<br>Level 3: Basic Architectural Visualisation', mode: 'Online' },
+  { id: 2, name: 'Advanced Diploma in Architectural Design', category: 'architecture', hrs: 200, levels: 2, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-02.jpg', levelsDetail: 'Level 1: Advanced 3D Modelling<br>Level 2: Advanced Architectural Visualisation', mode: 'Online' },
+  { id: 3, name: 'Diploma in Architectural Design', category: 'architecture', hrs: 100, levels: 3, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-03.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Basic 3D Modelling<br>Level 3: Basic Architectural Visualisation', mode: 'Online' },
   { id: 4, name: 'Master Diploma in Interior Design With AI', category: 'interior', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-04.jpg', levelsDetail: 'Level 1: 2D Space Planning<br>Level 2: 3D Modelling<br>Level 3: Architectural Visualisation', mode: 'Online' },
-  { id: 5, name: 'Advanced Diploma in Interior Design With AI', category: 'interior', hrs: 160, levels: 3, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-05.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Advanced 3D Modelling (Interior)<br>Level 3: Advanced Architectural Visualisation (Interior)', mode: 'Online' },
-  { id: 6, name: 'Diploma in Interior Design With AI', category: 'interior', hrs: 70, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-06.jpg', levelsDetail: 'Level 1: Basic 3D Modelling (Interior)<br>Level 2: Basic Architectural Visualisation (Interior)', mode: 'Online' },
-  { id: 7, name: 'BIM Ready Structure Course With AI', category: 'bim', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Structure', tagColor: 'success', img: 'images/courses_first/cad-course-clean-07.jpg', mode: 'Online' },
-  { id: 8, name: 'BIM-Ready Architecture Advanced With AI', category: 'bim', duration: '8 Months', hrs: 160, modules: 14, assessments: 5, tag: 'Architecture', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-08.jpg', mode: 'Online' },
-  { id: 9, name: 'BIM-Ready Civil Course With AI', category: 'civil', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Civil', tagColor: 'success', img: 'images/courses_first/cad-course-clean-09.jpg', mode: 'Online' },
-  { id: 10, name: 'BIM Ready Interior Course With AI', category: 'bim', duration: '4 Months', hrs: 80, modules: 6, assessments: 3, tag: 'Interior', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg', mode: 'Online' },
-  { id: 11, name: 'BIM-Ready Complete \u2013 International Certification in BIM Modeling & Coordination With AI', category: 'bim', duration: '6 Months', hrs: 120, modules: 9, assessments: 3, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-11.jpg', mode: 'Online' },
-  { id: 12, name: 'Building - SMART BIM Professional Certification With AI', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg', mode: 'Online' },
+  { id: 5, name: 'Advanced Diploma in Interior Design', category: 'interior', hrs: 160, levels: 3, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-05.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Advanced 3D Modelling (Interior)<br>Level 3: Advanced Architectural Visualisation (Interior)', mode: 'Online' },
+  { id: 6, name: 'Diploma in Interior Design', category: 'interior', hrs: 70, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-06.jpg', levelsDetail: 'Level 1: Basic 3D Modelling (Interior)<br>Level 2: Basic Architectural Visualisation (Interior)', mode: 'Online' },
+  { id: 7, name: 'BIM Ready Structure Course', category: 'bim', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Structure', tagColor: 'success', img: 'images/courses_first/cad-course-clean-07.jpg', mode: 'Online' },
+  { id: 8, name: 'BIM-Ready Architecture Advanced', category: 'bim', duration: '8 Months', hrs: 160, modules: 14, assessments: 5, tag: 'Architecture', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-08.jpg', mode: 'Online' },
+  { id: 9, name: 'BIM-Ready Civil Course', category: 'civil', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Civil', tagColor: 'success', img: 'images/courses_first/cad-course-clean-09.jpg', mode: 'Online' },
+  { id: 10, name: 'BIM Ready Interior Course', category: 'bim', duration: '4 Months', hrs: 80, modules: 6, assessments: 3, tag: 'Interior', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg', mode: 'Online' },
+  { id: 11, name: 'BIM-Ready Complete \u2013 International Certification in BIM Modeling & Coordination', category: 'bim', duration: '6 Months', hrs: 120, modules: 9, assessments: 3, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-11.jpg', mode: 'Online' },
+  { id: 12, name: 'Building - SMART BIM Professional Certification', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg', mode: 'Online' },
   { id: 13, name: 'Master Diploma Structure Course With AI', category: 'civil', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-09.jpg', levelsDetail: 'Level 1: 2D Structural Drafting<br>Level 2: Advanced 3D Modelling<br>Level 3: Structural Visualisation', mode: 'Online' },
-  { id: 14, name: 'Diploma in Project Management With AI', category: 'civil', hrs: 100, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-11.jpg', levelsDetail: 'Level 1: Project Planning &amp; Scheduling<br>Level 2: Project Execution &amp; Monitoring', mode: 'Online' },
+  { id: 14, name: 'Diploma in Project Management', category: 'civil', hrs: 100, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-11.jpg', levelsDetail: 'Level 1: Project Planning &amp; Scheduling<br>Level 2: Project Execution &amp; Monitoring', mode: 'Online' },
 ];
 
 let whatsappWin = null;
@@ -677,7 +677,7 @@ function renderCourses(filter, query) {
       detailsHtml = '<span class="stat-item"><i class="bi bi-journal-text"></i> ' + c.modules + ' Modules</span><span class="stat-item"><i class="bi bi-pencil-square"></i> ' + c.assessments + ' Assessments</span>';
     }
     var durationHtml = c.duration ? '<span class="stat-item"><i class="bi bi-calendar-week"></i> ' + c.duration + '</span>' : '';
-    return `<div class="col-6 col-sm-6 col-lg-4 col-xl-3 d-flex">
+    return `<div>
       <div class="course-card-modern rounded-0">
         <img src="${c.img}" alt="${c.name}" class="card-img" loading="lazy" />
         <div class="card-body-content">
@@ -749,15 +749,18 @@ renderCourses(currentFilter);
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
+  var showTimer = null;
   function show(){ loader.classList.remove('hidden'); }
-  function hide(){ loader.classList.add('hidden'); }
+  function hide(){ if (showTimer) { clearTimeout(showTimer); showTimer = null; } loader.classList.add('hidden'); }
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if (!a || a.hostname !== location.hostname) return;
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
+    try { if (new URL(a.href).pathname === location.pathname) return; } catch (err) {}
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {

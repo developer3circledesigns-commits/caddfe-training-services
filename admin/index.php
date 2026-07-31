@@ -248,9 +248,9 @@ function getStatusBadge(string $status): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - CADDFE Training Services</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
+  <link href="../css/inter.css" rel="stylesheet">
   <style>
     * { font-family: 'Inter', system-ui, sans-serif; }
     body { background: #f8fafc; }
@@ -750,6 +750,6 @@ document.getElementById('confirmCancelBtn')?.addEventListener('click', function(
   if (cancelForm) cancelForm.submit();
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="../js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>

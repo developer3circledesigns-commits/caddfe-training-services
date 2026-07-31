@@ -3,31 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http: https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com data:; connect-src 'self' https://cdn.jsdelivr.net https://esm.sh; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://images.unsplash.com data:; connect-src 'self'; frame-src 'none'; object-src 'none';" />
   <meta name="description" content="CADDFE Training Services — Professional Civil CAD training and architectural design services. Hands-on courses, industry-certified instructors, and career-ready programs." />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>CADDFE — Civil CAD Training &amp; Design Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://esm.sh" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
+  <script>document.documentElement.className += ' js';</script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
-    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
-    [data-aos="fade-left"] { transform: translateX(-50px); }
-    [data-aos="fade-left"].aos-animate { transform: translateX(0); }
-    [data-aos="fade-right"] { transform: translateX(50px); }
-    [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    html.js [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    html.js [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    html.js [data-aos="fade-left"] { transform: translateX(-50px); }
+    html.js [data-aos="fade-left"].aos-animate { transform: translateX(0); }
+    html.js [data-aos="fade-right"] { transform: translateX(50px); }
+    html.js [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html.js [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
     .scroll-row { position: relative; }
     .scroll-container { display: flex; gap: 1.5rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
     .scroll-container::-webkit-scrollbar { display: none; }
@@ -49,7 +45,7 @@
     .hero-section { position: relative; min-height: 100vh; }
     .hero-bg { position: absolute; inset: 0; z-index: -10; }
     .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4)); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.78), rgba(0,0,0,0.5)); }
     .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
     .hero-header.scrolled { background: rgba(15,23,42,0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
     .small-hover { position: relative; text-decoration: none !important; }
@@ -426,6 +422,7 @@
       background: #fff; transition: opacity 0.35s ease;
     }
     .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .page-loader.hidden .banter-loader__box { animation-play-state: paused; }
     .banter-loader {
       position: relative;
       width: 72px; height: 72px;
@@ -587,7 +584,7 @@
     <picture>
       <source srcset="images/hero3-960.webp 960w, images/hero3-1920.webp 1920w" type="image/webp" sizes="100vw" />
       <source srcset="images/hero3-960.jpg 960w, images/hero3-1920.jpg 1920w" type="image/jpeg" sizes="100vw" />
-      <img src="images/hero3-1920.jpg" alt="CADDFE Training Services - Professional Engineering Solutions - Image by Freepik" width="1920" height="1080" loading="eager" fetchpriority="high" />
+      <img src="images/hero3-1920.jpg" alt="CADDFE Training Services - Professional Engineering Solutions - Image by Freepik" width="1920" height="1281" loading="eager" fetchpriority="high" />
     </picture>
     <div class="hero-overlay"></div>
   </div>
@@ -665,77 +662,70 @@
           Shaping Ideas Into<br />
           Practical Engineering <span id="word-wrapper">Solutions</span>
         </h1>
-        <script type="module">
-        import { createTimeline, stagger } from 'https://esm.sh/animejs@4.0.0';
+        <script>
+        (function(){
+          var words = ['Solutions', 'Future', 'Career'];
+          var idx = 0;
+          var el = document.getElementById('word-wrapper');
+          if (!el) return;
 
-        var words = ['Solutions', 'Future', 'Career'];
-        var idx = 0;
-        var el = document.getElementById('word-wrapper');
-
-        function flipOut(element) {
-          var text = element.textContent;
-          element.innerHTML = '';
-          var chars = [];
-          for (var i = 0; i < text.length; i++) {
-            var wrap = document.createElement('span');
-            wrap.style.cssText = 'display:inline-block;perspective:300px;vertical-align:baseline;';
-            var inner = document.createElement('span');
-            inner.style.cssText = 'display:inline-block;';
-            inner.textContent = text[i];
-            wrap.appendChild(inner);
-            element.appendChild(wrap);
-            chars.push(inner);
-          }
-          return chars;
-        }
-
-        function nextWord() {
-          var chars = flipOut(el);
-          var n = chars.length;
-
-          createTimeline()
-            .add(chars, {
-              rotateX: [0, -90],
-              opacity: [1, 0],
-              duration: 300,
-              ease: 'inOut(2)',
-            }, stagger(40, { from: 'center' }));
-
-          setTimeout(function() {
-            idx = (idx + 1) % words.length;
-            flipIn();
-          }, (n - 1) * 40 + 300 + 80);
-        }
-
-        function flipIn() {
-          el.textContent = '';
-          var chars = [];
-          var text = words[idx];
-          for (var i = 0; i < text.length; i++) {
-            var wrap = document.createElement('span');
-            wrap.style.cssText = 'display:inline-block;perspective:300px;vertical-align:baseline;';
-            var inner = document.createElement('span');
-            inner.style.cssText = 'display:inline-block;opacity:0;';
-            inner.textContent = text[i];
-            wrap.appendChild(inner);
-            el.appendChild(wrap);
-            chars.push(inner);
+          if ((window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || !('animate' in el)) {
+            el.textContent = words[0];
+            return;
           }
 
-          createTimeline()
-            .add(chars, {
-              rotateX: [90, 0],
-              opacity: [0, 1],
-              duration: 300,
-              ease: 'inOut(2)',
-            }, stagger(40, { from: 'center' }));
+          function splitText(text) {
+            el.textContent = '';
+            var chars = [];
+            for (var i = 0; i < text.length; i++) {
+              var wrap = document.createElement('span');
+              wrap.style.cssText = 'display:inline-block;perspective:300px;vertical-align:baseline;';
+              var inner = document.createElement('span');
+              inner.style.cssText = 'display:inline-block;';
+              inner.textContent = text[i];
+              wrap.appendChild(inner);
+              el.appendChild(wrap);
+              chars.push(inner);
+            }
+            return chars;
+          }
 
-          setTimeout(function() {
-            setTimeout(nextWord, 1500);
-          }, (chars.length - 1) * 40 + 300 + 80);
-        }
+          function animateChars(chars, fromDeg, toDeg, fromOpacity, toOpacity) {
+            var n = chars.length;
+            for (var i = 0; i < n; i++) {
+              (function(c, delay){
+                c.animate([
+                  { transform: 'rotateX(' + fromDeg + 'deg)', opacity: fromOpacity },
+                  { transform: 'rotateX(' + toDeg + 'deg)', opacity: toOpacity }
+                ], {
+                  duration: 300,
+                  delay: delay,
+                  easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
+                  fill: 'both'
+                });
+              })(chars[i], Math.abs(i - (n - 1) / 2) * 40);
+            }
+          }
 
-        nextWord();
+          function flipOut() {
+            var chars = splitText(words[idx]);
+            animateChars(chars, 0, -90, 1, 0);
+            setTimeout(function(){
+              idx = (idx + 1) % words.length;
+              flipIn();
+            }, (chars.length - 1) * 40 + 300 + 80);
+          }
+
+          function flipIn() {
+            var chars = splitText(words[idx]);
+            animateChars(chars, 90, 0, 0, 1);
+            setTimeout(function(){
+              setTimeout(flipOut, 1500);
+            }, (chars.length - 1) * 40 + 300 + 80);
+          }
+
+          flipOut();
+        })();
         </script>
         <div class="d-flex mt-4" style="width:300px;gap:12px;">
           <div class="flex-fill d-flex flex-column align-items-center">
@@ -856,7 +846,7 @@
         <div class="position-absolute top-0 start-0" style="width:7rem;height:7rem;border-radius:50%;background:rgba(220,38,38,0.08);filter:blur(32px);transform:translate(-1rem,-1rem);"></div>
         <div class="position-absolute bottom-0 end-0" style="width:9rem;height:9rem;border-radius:50%;background:rgba(220,38,38,0.05);filter:blur(40px);transform:translate(1rem,1rem);"></div>
         <div class="card text-bg-dark ms-auto" style="max-width:100%; height: 70%; border-radius:0; margin-top: 10rem; border: none; border-color: transparent;">
-          <img src="images/about_us.jpg" class="card-img" alt="Engineering and design workspace" loading="lazy" style="height: 100%; object-fit: cover; border-radius: 0; border: none; border-color: transparent;" />
+          <img src="images/about_us.jpg" class="card-img" alt="Engineering and design workspace" width="1600" height="1067" loading="lazy" style="height: 100%; object-fit: cover; border-radius: 0; border: none; border-color: transparent;" />
         </div>
       </div>
     </div>
@@ -871,12 +861,12 @@
   </div>
 
   <div class="scroll-row">
-    <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)">&#8249;</button>
+    <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)" aria-label="Scroll left">&#8249;</button>
     <div class="scroll-container" data-speed="1" data-direction="left">
       <div class="scroll-inner">
         <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design With AI</h3> -->
@@ -886,27 +876,27 @@
         </a>
         <a href="courses.php?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
             <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design With AI</h3> -->
@@ -916,20 +906,20 @@
         </a>
         <a href="courses.php?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
             <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
             <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
@@ -938,7 +928,7 @@
       <div class="scroll-inner">
         <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design With AI</h3> -->
@@ -948,27 +938,27 @@
         </a>
         <a href="courses.php?course=advanced-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
             <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design With AI</h3> -->
@@ -978,86 +968,86 @@
         </a>
         <a href="courses.php?course=advanced-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
             <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
             <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
         </a>
       </div>
     </div>
-    <button class="scroll-arrow scroll-arrow-right" onclick="scrollRow(this, 1)">&#8250;</button>
+    <button class="scroll-arrow scroll-arrow-right" onclick="scrollRow(this, 1)" aria-label="Scroll right">&#8250;</button>
   </div>
 
   <div class="scroll-row mt-4">
-    <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)">&#8249;</button>
+    <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)" aria-label="Scroll left">&#8249;</button>
     <div class="scroll-container" data-speed="1" data-direction="right">
       <div class="scroll-inner">
         <a href="courses.php?course=bim-ready-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
             <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-interior" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
             <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
@@ -1067,7 +1057,7 @@
         </a>
         <a href="courses.php?course=master-diploma-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course With AI</h3> -->
@@ -1077,10 +1067,10 @@
         </a>
         <a href="courses.php?course=diploma-project-management" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
@@ -1089,57 +1079,57 @@
       <div class="scroll-inner">
         <a href="courses.php?course=bim-ready-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-architecture-advanced" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
             <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-civil" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-interior" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
             <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=bim-ready-complete" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
         </a>
         <a href="courses.php?course=building-smart-bim" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-12.jpg" class="card-img-top" alt="Building - SMART BIM Professional Certification" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
@@ -1149,7 +1139,7 @@
         </a>
         <a href="courses.php?course=master-diploma-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course With AI" width="1088" height="608" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course With AI</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course With AI</h3> -->
@@ -1159,17 +1149,17 @@
         </a>
         <a href="courses.php?course=diploma-project-management" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" width="1088" height="608" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management With AI</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management With AI</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
         </a>
       </div>
     </div>
-    <button class="scroll-arrow scroll-arrow-right" onclick="scrollRow(this, 1)">&#8250;</button>
+    <button class="scroll-arrow scroll-arrow-right" onclick="scrollRow(this, 1)" aria-label="Scroll right">&#8250;</button>
   </div>
 </section>
 <section class="bg-white py-20 overflow-hidden">
@@ -1481,6 +1471,7 @@
 </script>
 <script>
 (function(){
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var containers = document.querySelectorAll('.scroll-container');
   containers.forEach(function(c){
     var raw = parseFloat(c.getAttribute('data-speed')) || 0.5;
@@ -1488,31 +1479,49 @@
     c._direction = c.getAttribute('data-direction') || 'left';
     c._paused = false;
     c._manualPaused = false;
-    var half = c.scrollWidth / 2;
-    var pos = c.scrollLeft;
-    
+    var rafId = null;
+
     function tick(){
-      if (!c._paused && !c._manualPaused) {
-        if (c._direction === 'left') {
-          pos += c._speed;
-          if (pos >= half) pos = 0;
-        } else {
-          pos -= c._speed;
-          if (pos <= 0) pos = half;
-        }
-        c.scrollLeft = pos;
+      if (c._paused || c._manualPaused) { rafId = requestAnimationFrame(tick); return; }
+      var half = Math.max(c.scrollWidth / 2, 1);
+      var pos = c.scrollLeft;
+      if (c._direction === 'left') {
+        pos += c._speed;
+        if (pos >= half) pos = 0;
+      } else {
+        pos -= c._speed;
+        if (pos <= 0) pos = half;
       }
-      requestAnimationFrame(tick);
+      c.scrollLeft = pos;
+      rafId = requestAnimationFrame(tick);
     }
+
     c.addEventListener('mouseenter', function(){ c._paused = true; });
     c.addEventListener('mouseleave', function(){ c._paused = false; c._manualPaused = false; });
-    requestAnimationFrame(tick);
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting && rafId === null) {
+            rafId = requestAnimationFrame(tick);
+          } else if (!e.isIntersecting && rafId !== null) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        });
+      }, { threshold: 0.05 });
+      obs.observe(c);
+    } else if (!reduceMotion) {
+      rafId = requestAnimationFrame(tick);
+    }
   });
   window.scrollRow = function(btn, dir){
     var c = btn.parentElement.querySelector('.scroll-container');
     if (!c) return;
     c._manualPaused = true;
     c.scrollLeft += dir * 344;
+    if (reduceMotion) return;
+    setTimeout(function(){ c._manualPaused = false; }, 800);
   };
 })();
 </script>
@@ -1534,7 +1543,7 @@
 })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
 
 <footer style="background:#0f172a;color:#cbd5e1;">
   <div style="padding:4rem 0 2.5rem;">
@@ -1566,19 +1575,19 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small d-flex flex-wrap gap-x-3 gap-y-1" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -1619,17 +1628,22 @@
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
+  var showTimer = null;
   function show(){ loader.classList.remove('hidden'); }
   function hide(){
+    if (showTimer) { clearTimeout(showTimer); showTimer = null; }
     loader.classList.add('hidden');
   }
   hide();
+  window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if (!a || a.hostname !== location.hostname) return;
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
+    try { if (new URL(a.href).pathname === location.pathname) return; } catch (err) {}
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {

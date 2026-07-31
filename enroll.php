@@ -171,21 +171,15 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none';" />
   <meta name="description" content="Enroll in CADDFE Training Services — Fill out the form to register for your preferred Civil CAD, BIM, or architectural design course." />
   <link rel="icon" href="images/fav_icon.png" type="image/png" />
   <title>Enroll Now - CADDFE Training Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" /></noscript>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /></noscript>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>@font-face{font-family:'bootstrap-icons';src:url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2) format('woff2');font-display:swap}</style>
+  <script>document.documentElement.className += ' js';</script>
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
@@ -329,9 +323,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
     .page-hero { position: relative; min-height: 50vh; display: flex; align-items: center; }
     .page-hero-bg { position: absolute; inset: 0; z-index: -10; }
     .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05); }
-    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.45)); }
-    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
-    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.82), rgba(0,0,0,0.52)); }
+    html.js [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    html.js [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html.js [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
     .footer-link { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-link:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
     .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; transition: all 0.3s; }
@@ -384,6 +381,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
       background: #fff; transition: opacity 0.35s ease;
     }
     .page-loader.hidden { opacity: 0; pointer-events: none; }
+    .page-loader.hidden .banter-loader__box { animation-play-state: paused; }
     .banter-loader {
       position: relative;
       width: 72px; height: 72px;
@@ -600,7 +598,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
 
 <div class="page-hero hero-content">
   <div class="page-hero-bg">
-    <img src="images/enroll-hero.jpg" alt="Enroll at CADDFE" width="1920" height="1080" loading="eager" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05);" />
+    <img src="images/enroll-hero.jpg" alt="Enroll at CADDFE" width="1920" height="1088" loading="eager" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.05);" />
     <div class="page-hero-overlay"></div>
   </div>
   <div class="container text-center text-white position-relative">
@@ -715,7 +713,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
 })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
 
 <script>
 (function(){
@@ -823,15 +821,18 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
 (function(){
   var loader = document.getElementById('pageLoader');
   if (!loader) return;
+  var showTimer = null;
   function show(){ loader.classList.remove('hidden'); }
-  function hide(){ loader.classList.add('hidden'); }
+  function hide(){ if (showTimer) { clearTimeout(showTimer); showTimer = null; } loader.classList.add('hidden'); }
   window.addEventListener('pageshow', hide);
   document.addEventListener('click', function(e){
     var a = e.target.closest('a');
     if (!a || a.hostname !== location.hostname) return;
     var h = a.getAttribute('href');
     if (!h || h === '#' || h.charAt(0) === '#' || a.hasAttribute('download') || a.hasAttribute('data-bs-toggle')) return;
-    show();
+    try { if (new URL(a.href).pathname === location.pathname) return; } catch (err) {}
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
   });
   document.addEventListener('click', function(e){
     if (!e.target.closest('.dropdown-nav')) {
@@ -870,19 +871,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['enroll_sub
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
