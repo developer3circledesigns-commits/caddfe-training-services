@@ -358,6 +358,32 @@
       100% { transform: translate(0px, 0); }
     }
     .banter-loader__box:nth-child(9) { animation: moveBox-9 4s infinite; }
+    [data-aos] { opacity: 0; transform: translateY(40px); transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform, opacity; }
+    [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+    [data-aos="fade-left"] { transform: translateX(-60px); }
+    [data-aos="fade-left"].aos-animate { transform: translateX(0); }
+    [data-aos="fade-right"] { transform: translateX(60px); }
+    [data-aos="fade-right"].aos-animate { transform: translateX(0); }
+    .proj-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0; margin-bottom: 4rem; }
+    .proj-row:last-child { margin-bottom: 0; }
+    .proj-row .img-side { flex: 1 1 48%; overflow: hidden; }
+    .proj-row .txt-side { flex: 1 1 52%; padding: 2.5rem 3rem; }
+    .proj-row .txt-side.right { text-align: right; }
+    .proj-img { width: 100%; height: 360px; object-fit: cover; display: block; box-shadow: 0 20px 50px -20px rgba(15,23,42,0.25); transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+    .img-side:hover .proj-img { transform: scale(1.06); }
+    .proj-cat { display: inline-block; background: #fef2f2; color: #d8000d; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; margin-bottom: 0.75rem; }
+    .proj-row h3 { font-size: 1.6rem; font-weight: 800; color: #1e293b; margin-bottom: 0.75rem; }
+    .proj-row p { color: #64748b; line-height: 1.7; font-size: 0.95rem; }
+    .proj-features { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .proj-features li { font-size: 0.85rem; color: #334155; display: flex; align-items: center; gap: 0.5rem; }
+    .proj-features i { color: #d8000d; }
+    .proj-row.right .txt-side { order: -1; }
+    @media (max-width: 991px) {
+      .proj-row .txt-side { padding: 1.5rem 0.5rem; text-align: left !important; }
+      .proj-row.right .txt-side { order: 1; }
+      .proj-features { grid-template-columns: 1fr; }
+      .proj-img { height: 280px; }
+    }
   </style>
 </head>
 <body>
@@ -441,9 +467,95 @@ href="/services">Services</a>
   </div>
 </div>
 
-<!-- Main content section - to be populated -->
+<!-- Main content section -->
 <section class="py-20">
   <div class="container" style="max-width:80rem;">
+
+    <div class="proj-row">
+      <div class="img-side" data-aos="fade-left">
+        <img src="images/projects/modern-residential-elevation.jpg" class="proj-img" alt="Building Elevation Design" loading="lazy" />
+      </div>
+      <div class="txt-side">
+        <span class="proj-cat">Building Elevation Design</span>
+        <h3>Modern Residential Building Elevation</h3>
+        <p>Complete façade design for a contemporary G+2 residence, blending clean geometry with warm materials and balanced openings.</p>
+        <ul class="proj-features">
+          <li><i class="bi bi-check2-circle"></i> Front &amp; side elevations</li>
+          <li><i class="bi bi-check2-circle"></i> Material &amp; colour palette</li>
+          <li><i class="bi bi-check2-circle"></i> Door / window detailing</li>
+          <li><i class="bi bi-check2-circle"></i> Photoreal rendering</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj-row right">
+      <div class="img-side" data-aos="fade-right">
+        <img src="images/projects/living-room-interior-design.jpg" class="proj-img" alt="Living Room Interior" loading="lazy" />
+      </div>
+      <div class="txt-side">
+        <span class="proj-cat">Building Interior Design</span>
+        <h3>Living Room Interior Design</h3>
+        <p>Warm and inviting living room with a custom TV feature wall, recessed false ceiling, layered lighting and a comfortable furniture layout.</p>
+        <ul class="proj-features">
+          <li><i class="bi bi-check2-circle"></i> Space planning</li>
+          <li><i class="bi bi-check2-circle"></i> 3D visualisation</li>
+          <li><i class="bi bi-check2-circle"></i> False ceiling &amp; lighting</li>
+          <li><i class="bi bi-check2-circle"></i> Material board</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj-row">
+      <div class="img-side" data-aos="fade-left">
+        <img src="images/projects/modular-kitchen-interior-design.jpg" class="proj-img" alt="Kitchen Interior" loading="lazy" />
+      </div>
+      <div class="txt-side">
+        <span class="proj-cat">Building Interior Design</span>
+        <h3>Modular Kitchen Interior Design</h3>
+        <p>Ergonomic L-shaped modular kitchen designed for workflow, with intelligent storage, durable finishes and task-focused lighting.</p>
+        <ul class="proj-features">
+          <li><i class="bi bi-check2-circle"></i> Modular cabinetry</li>
+          <li><i class="bi bi-check2-circle"></i> Countertop selection</li>
+          <li><i class="bi bi-check2-circle"></i> Backsplash design</li>
+          <li><i class="bi bi-check2-circle"></i> 3D render views</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj-row right">
+      <div class="img-side" data-aos="fade-right">
+        <img src="images/projects/3d-floor-plan-rendering.jpg" class="proj-img" alt="3D Floor Plan" loading="lazy" />
+      </div>
+      <div class="txt-side">
+        <span class="proj-cat">3D Floor Plan</span>
+        <h3>3D Floor Plan Design &amp; Rendering</h3>
+        <p>Fully furnished and textured 3D floor plans that communicate scale, furniture placement and finishes with photo-real clarity.</p>
+        <ul class="proj-features">
+          <li><i class="bi bi-check2-circle"></i> Furnished 3D plans</li>
+          <li><i class="bi bi-check2-circle"></i> Realistic textures</li>
+          <li><i class="bi bi-check2-circle"></i> Sun &amp; lighting study</li>
+          <li><i class="bi bi-check2-circle"></i> Walk-through ready</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="proj-row">
+      <div class="img-side" data-aos="fade-left">
+        <img src="images/projects/4d-phased-floor-plan-simulation-v2.jpg" class="proj-img" alt="4D Floor Plan" loading="lazy" />
+      </div>
+      <div class="txt-side">
+        <span class="proj-cat">4D Floor Plan</span>
+        <h3>4D Phased Floor Plan Simulation</h3>
+        <p>Time-linked 4D floor plan that visualises construction sequencing and space utilisation stage by stage across the project lifecycle.</p>
+        <ul class="proj-features">
+          <li><i class="bi bi-check2-circle"></i> Construction sequencing</li>
+          <li><i class="bi bi-check2-circle"></i> Phased space usage</li>
+          <li><i class="bi bi-check2-circle"></i> Schedule integration</li>
+          <li><i class="bi bi-check2-circle"></i> BIM-based simulation</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -476,19 +588,19 @@ href="/services">Services</a>
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
           </ul>
         </div>
         <div class="col-lg-3">
@@ -562,6 +674,18 @@ href="/services">Services</a>
     }
   });
 })();
+</script>
+<script>
+  (function(){
+    var els = document.querySelectorAll('[data-aos]');
+    if (!els.length) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('aos-animate'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el){ obs.observe(el); });
+  })();
 </script>
 </body>
 </html>

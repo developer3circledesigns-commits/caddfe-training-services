@@ -878,8 +878,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 370hrs<br />Mode: Online<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
@@ -888,8 +888,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
@@ -898,8 +898,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
@@ -908,8 +908,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
@@ -918,8 +918,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
@@ -928,8 +928,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
@@ -940,8 +940,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 370hrs<br />Mode: Online<br />Level 1: 2D Architectural Presentation<br />Level 2: Advanced 3D Modelling <br />Level 3: Advanced Architectural Visualisation</p>
           </div>
         </div>
@@ -950,8 +950,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-02.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 200hrs<br />Mode: Online<br />Level 1: Advanced 3D Modelling<br />Level 2: Advanced Architectural Visualisation</p>
           </div>
         </div>
@@ -960,8 +960,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-03.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Architectural Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Architectural Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Basic 3D Modelling<br />Level 3: Basic Architectural Visualisation</p>
           </div>
         </div>
@@ -970,8 +970,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Space Planning<br />Level 2: 3D Modelling<br />Level 3: Architectural Visualisation</p>
           </div>
         </div>
@@ -980,8 +980,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-05.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Advanced Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Advanced Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 160hrs<br />Mode: Online<br />Level 1: Basic 2D Drafting<br />Level 2: Advanced 3D Modelling (Interior)<br />Level 3: Advanced Architectural Visualisation (Interior)</p>
           </div>
         </div>
@@ -990,8 +990,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-06.jpg" class="card-img-top" alt="CAD Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Interior Design With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Interior Design With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 70hrs<br />Mode: Online<br />Level 1: Basic 3D Modelling (Interior)<br />Level 2: Basic Architectural Visualisation (Interior)</p>
           </div>
         </div>
@@ -1009,8 +1009,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1019,8 +1019,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
@@ -1029,8 +1029,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1039,8 +1039,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1049,8 +1049,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
@@ -1069,8 +1069,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Structural Drafting<br />Level 2: Advanced 3D Modelling<br />Level 3: Structural Visualisation</p>
           </div>
         </div>
@@ -1079,8 +1079,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
@@ -1091,8 +1091,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1101,8 +1101,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-08.jpg" class="card-img-top" alt="BIM-Ready Architecture Advanced" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Architecture Advanced With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Architecture Advanced With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 8 Months<br />Mode: Online<br />Hours: 160hrs<br />Modules: 14<br />Assessments: 5</p>
           </div>
         </div>
@@ -1111,8 +1111,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="BIM-Ready Civil Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Civil Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Civil Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1121,8 +1121,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
@@ -1131,8 +1131,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="BIM-Ready Complete International Certification" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready Complete – International Certification in BIM Modeling &amp; Coordination With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 9<br />Assessments: 3</p>
           </div>
         </div>
@@ -1151,8 +1151,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Structural Drafting<br />Level 2: Advanced 3D Modelling<br />Level 3: Structural Visualisation</p>
           </div>
         </div>
@@ -1161,8 +1161,8 @@
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
           <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management With AI</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management With AI</h3> -->
             <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
@@ -1566,19 +1566,19 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small d-flex flex-wrap gap-x-3 gap-y-1" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-interior-design" class="footer-link">Master Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-interior-design" class="footer-link">Advanced Diploma in Interior Design With AI</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-interior-design" class="footer-link">Diploma in Interior Design With AI</a></li>
           </ul>
         </div>
         <div class="col-lg-3">

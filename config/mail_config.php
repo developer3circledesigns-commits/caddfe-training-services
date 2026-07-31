@@ -45,15 +45,7 @@ function sendContactEmail(array $data): bool
         $mail->Password   = $mailPass;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
-
-        $dkimPrivate = __DIR__ . '/dkim/private.pem';
-        if (file_exists($dkimPrivate)) {
-            $mail->DKIM_domain      = 'ghostwhite-donkey-624151.hostingersite.com';
-            $mail->DKIM_private     = $dkimPrivate;
-            $mail->DKIM_selector    = 'default';
-            $mail->DKIM_passphrase  = '';
-            $mail->DKIM_identity    = $mail->From;
-        }
+        $mail->Timeout    = 20;
 
         $mail->setFrom('Caddfe90@gmail.com', 'CADDFE Contact Form');
         $mail->addAddress('Caddfe90@gmail.com', 'CADDFE Admin');
