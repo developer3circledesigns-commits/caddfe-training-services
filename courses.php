@@ -549,11 +549,13 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-post-graduation" class="footer-link">BIM-Ready+ Post Graduation</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=michigan-state-university-bim" class="footer-link">MSU Certification in BIM</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
@@ -622,12 +624,14 @@ const coursesData = [
   { id: 4, name: 'Master Diploma in Interior Design', category: 'interior', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-04.jpg', levelsDetail: 'Level 1: 2D Space Planning<br>Level 2: 3D Modelling<br>Level 3: Architectural Visualisation', mode: 'Online' },
   { id: 5, name: 'Advanced Diploma in Interior Design', category: 'interior', hrs: 160, levels: 3, tag: 'Advanced', tagColor: 'warning text-dark', img: 'images/courses_first/cad-course-clean-05.jpg', levelsDetail: 'Level 1: Basic 2D Drafting<br>Level 2: Advanced 3D Modelling (Interior)<br>Level 3: Advanced Architectural Visualisation (Interior)', mode: 'Online' },
   { id: 6, name: 'Diploma in Interior Design', category: 'interior', hrs: 70, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-06.jpg', levelsDetail: 'Level 1: Basic 3D Modelling (Interior)<br>Level 2: Basic Architectural Visualisation (Interior)', mode: 'Online' },
-  { id: 7, name: 'BIM-Ready+ International Post Graduation Certification in BIM Management', category: 'bim', duration: '10 Months', hrs: 200, modules: 10, assessments: 8, tag: 'Post Graduate', tagColor: 'dark', img: 'images/courses_first/cad-course-clean-07.jpg', mode: 'Online' },
+  { id: 7, name: 'BIM Ready Structure Course', category: 'bim', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Structure', tagColor: 'success', img: 'images/courses_first/cad-course-clean-07.jpg', mode: 'Online' },
   { id: 8, name: 'BIM-Ready Architecture Advanced', category: 'bim', duration: '8 Months', hrs: 160, modules: 14, assessments: 5, tag: 'Architecture', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-08.jpg', mode: 'Online' },
   { id: 9, name: 'BIM-Ready Civil Course', category: 'civil', duration: '6 Months', hrs: 120, modules: 6, assessments: 3, tag: 'Civil', tagColor: 'success', img: 'images/courses_first/cad-course-clean-09.jpg', mode: 'Online' },
-  { id: 10, name: 'Michigan State University Certification Program in BIM', category: 'bim', duration: '5 Months', hrs: 100, modules: 11, assessments: 3, tag: 'University Program', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg', mode: 'Online' },
+  { id: 10, name: 'BIM Ready Interior Course', category: 'bim', duration: '4 Months', hrs: 80, modules: 6, assessments: 3, tag: 'Interior', tagColor: 'primary', img: 'images/courses_first/cad-course-clean-10.jpg', mode: 'Online' },
   { id: 11, name: 'BIM-Ready Complete \u2013 International Certification in BIM Modeling & Coordination', category: 'bim', duration: '6 Months', hrs: 120, modules: 9, assessments: 3, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-11.jpg', mode: 'Online' },
   { id: 12, name: 'Building - SMART BIM Professional Certification', category: 'bim', duration: '10 Days', hrs: 10, modules: 6, assessments: 6, tag: 'Professional', tagColor: 'success', img: 'images/courses_first/cad-course-clean-12.jpg', mode: 'Online' },
+  { id: 13, name: 'Master Diploma Structure Course', category: 'civil', hrs: 250, levels: 3, tag: 'Master', tagColor: 'danger', img: 'images/courses_first/cad-course-clean-09.jpg', levelsDetail: 'Level 1: 2D Structural Drafting<br>Level 2: Advanced 3D Modelling<br>Level 3: Structural Visualisation', mode: 'Online' },
+  { id: 14, name: 'Diploma in Project Management', category: 'civil', hrs: 100, levels: 2, tag: 'Diploma', tagColor: 'info text-dark', img: 'images/courses_first/cad-course-clean-11.jpg', levelsDetail: 'Level 1: Project Planning &amp; Scheduling<br>Level 2: Project Execution &amp; Monitoring', mode: 'Online' },
 ];
 
 let whatsappWin = null;

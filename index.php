@@ -876,7 +876,7 @@
       <div class="scroll-inner">
         <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
@@ -906,7 +906,7 @@
         </a>
         <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
@@ -938,7 +938,7 @@
       <div class="scroll-inner">
         <a href="courses.php?course=master-diploma-architectural-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-01.jpg" class="card-img-top" alt="Master Diploma in Architectural Design" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Architectural Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Architectural Design</h3> -->
@@ -968,7 +968,7 @@
         </a>
         <a href="courses.php?course=master-diploma-interior-design" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-04.jpg" class="card-img-top" alt="Master Diploma in Interior Design" loading="lazy" />
           <div class="card-body">
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma in Interior Design</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma in Interior Design</h3> -->
@@ -1005,13 +1005,13 @@
     <button class="scroll-arrow scroll-arrow-left" onclick="scrollRow(this, -1)">&#8249;</button>
     <div class="scroll-container" data-speed="1" data-direction="right">
       <div class="scroll-inner">
-        <a href="courses.php?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready+ International Post Graduation Certification in BIM Management</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Mode: Online<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1035,13 +1035,13 @@
           </div>
         </div>
         </a>
-        <a href="courses.php?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-interior" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Michigan State University Certification Program in BIM</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h3> -->
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Mode: Online<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1062,18 +1062,38 @@
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
             <p class="card-text small text-secondary">Duration: 10 Days<br />Mode: Online<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+          </div>
+        </div>
+        </a>
+        <a href="courses.php?course=master-diploma-structure" style="text-decoration:none;color:inherit;display:block;">
+        <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
+          <div class="card-body">
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Structural Drafting<br />Level 2: Advanced 3D Modelling<br />Level 3: Structural Visualisation</p>
+          </div>
+        </div>
+        </a>
+        <a href="courses.php?course=diploma-project-management" style="text-decoration:none;color:inherit;display:block;">
+        <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
+          <div class="card-body">
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
         </a>
       </div>
       <div class="scroll-inner">
-        <a href="courses.php?course=bim-ready-post-graduation" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-structure" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM-Ready+ International Post Graduation Certification" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-07.jpg" class="card-img-top" alt="BIM Ready Structure Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM-Ready+ International Post Graduation Certification in BIM Management</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM-Ready+ International Post Graduation Certification in BIM Management</h3> -->
-            <p class="card-text small text-secondary">Duration: 10 Months<br />Mode: Online<br />Hours: 200hrs<br />Modules: 10<br />Assessments: 8</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Structure Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 6 Months<br />Mode: Online<br />Hours: 120hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1097,13 +1117,13 @@
           </div>
         </div>
         </a>
-        <a href="courses.php?course=michigan-state-university-bim" style="text-decoration:none;color:inherit;display:block;">
+        <a href="courses.php?course=bim-ready-interior" style="text-decoration:none;color:inherit;display:block;">
         <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
-          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="Michigan State University Certification Program in BIM" loading="lazy" />
+          <img src="images/courses_first/cad-course-clean-10.jpg" class="card-img-top" alt="BIM Ready Interior Course" loading="lazy" />
           <div class="card-body">
-            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Michigan State University Certification Program in BIM</span>
-            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Michigan State University Certification Program in BIM</h3> -->
-            <p class="card-text small text-secondary">Duration: 5 Months<br />Mode: Online<br />Hours: 100hrs<br />Modules: 11<br />Assessments: 3</p>
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">BIM Ready Interior Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">BIM Ready Interior Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 4 Months<br />Mode: Online<br />Hours: 80hrs<br />Modules: 6<br />Assessments: 3</p>
           </div>
         </div>
         </a>
@@ -1124,6 +1144,26 @@
             <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Building - SMART BIM Professional Certification</span>
             <!-- <h3 class="card-title mt-2 fw-bold text-dark">Building - SMART BIM Professional Certification</h3> -->
             <p class="card-text small text-secondary">Duration: 10 Days<br />Mode: Online<br />Hours: 10hrs<br />Modules: 6<br />Assessments: 6</p>
+          </div>
+        </div>
+        </a>
+        <a href="courses.php?course=master-diploma-structure" style="text-decoration:none;color:inherit;display:block;">
+        <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
+          <img src="images/courses_first/cad-course-clean-09.jpg" class="card-img-top" alt="Master Diploma Structure Course" loading="lazy" />
+          <div class="card-body">
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Master Diploma Structure Course</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Master Diploma Structure Course</h3> -->
+            <p class="card-text small text-secondary">Duration: 250hrs<br />Mode: Online<br />Level 1: 2D Structural Drafting<br />Level 2: Advanced 3D Modelling<br />Level 3: Structural Visualisation</p>
+          </div>
+        </div>
+        </a>
+        <a href="courses.php?course=diploma-project-management" style="text-decoration:none;color:inherit;display:block;">
+        <div class="card bg-white rounded-0" style="width:320px;flex-shrink:0;">
+          <img src="images/courses_first/cad-course-clean-11.jpg" class="card-img-top" alt="Diploma in Project Management" loading="lazy" />
+          <div class="card-body">
+            <span class="small fw-semibold text-danger text-uppercase" style="letter-spacing:0.05em;">Diploma in Project Management</span>
+            <!-- <h3 class="card-title mt-2 fw-bold text-dark">Diploma in Project Management</h3> -->
+            <p class="card-text small text-secondary">Duration: 100hrs<br />Mode: Online<br />Level 1: Project Planning &amp; Scheduling<br />Level 2: Project Execution &amp; Monitoring</p>
           </div>
         </div>
         </a>
@@ -1375,7 +1415,7 @@
               <div class="stars mt-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             </div>
           </div>
-          <p class="text-secondary" style="line-height:1.7;flex:1;">"The BIM-Ready+ Post Graduation program gave me a comprehensive understanding of BIM management. The international certification opened doors to opportunities in the Middle East and Southeast Asia."</p>
+          <p class="text-secondary" style="line-height:1.7;flex:1;">"The BIM Ready Structure Course gave me a comprehensive understanding of BIM management. The certification opened doors to opportunities in the Middle East and Southeast Asia."</p>
         </div>
       </div>
       <div data-aos="fade-up" data-aos-delay="250" class="col-md-6 col-lg-4">
@@ -1526,11 +1566,13 @@
         <div class="col-6 col-lg-3">
           <h3 class="footer-heading text-white">Programs</h3>
           <ul class="list-unstyled small d-flex flex-wrap gap-x-3 gap-y-1" style="column-count:2;display:block!important;">
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-post-graduation" class="footer-link">BIM-Ready+ Post Graduation</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-structure" class="footer-link">BIM Ready Structure Course</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-architecture-advanced" class="footer-link">BIM-Ready Architecture Advanced</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-civil" class="footer-link">BIM-Ready Civil Course</a></li>
-            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=michigan-state-university-bim" class="footer-link">MSU Certification in BIM</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=bim-ready-interior" class="footer-link">BIM Ready Interior Course</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=building-smart-bim" class="footer-link">Building - SMART Certification</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-structure" class="footer-link">Master Diploma Structure Course</a></li>
+            <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-project-management" class="footer-link">Diploma in Project Management</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=master-diploma-architectural-design" class="footer-link">Master Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=advanced-diploma-architectural-design" class="footer-link">Advanced Diploma in Architectural Design</a></li>
             <li style="break-inside:avoid;margin-bottom:0.25rem;"><a href="courses.php?course=diploma-architectural-design" class="footer-link">Diploma in Architectural Design</a></li>
